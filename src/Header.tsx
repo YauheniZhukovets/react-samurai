@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+export const Header = () => {
     return (
         <div>
             <a href="#a">Home</a>
@@ -11,4 +11,3 @@ function Header() {
 }
 
 
-export default Header

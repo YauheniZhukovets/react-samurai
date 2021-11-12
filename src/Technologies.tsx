@@ -1,6 +1,6 @@
 import React from "react";
 
-function Technologies() {
+export const Technologies = () => {
     return (
         <div>
             <ul>
@@ -14,4 +14,3 @@ function Technologies() {
 }
 
 
-export default Technologies;
