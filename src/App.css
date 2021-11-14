@@ -1,3 +1,31 @@
-ul li {
-  list-style-type: georgian;
+.app-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-areas:
+    "h h"
+    "n c";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    /*grid-gap: 10px;*/
+
+
+}
+
+.header {
+    grid-area: h;
+    background-color: darkcyan;
+}
+.header img {
+    width: 50px;
+}
+
+.nav {
+    grid-area: n;
+    background-color: bisque;
+}
+
+.content {
+    background-color: aquamarine;
+    grid-area: c;
 }
