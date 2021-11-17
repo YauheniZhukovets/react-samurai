@@ -3,7 +3,7 @@ import s from './Post.module.css'
 
 type PostPropsType = {
     massage: string
-    likes: number
+    likesCount: number
 }
 
 export const Post = (props: PostPropsType) => {
@@ -15,7 +15,7 @@ export const Post = (props: PostPropsType) => {
                 {props.massage}
             </div>
             <div className={s.like}>
-                <span>{props.likes} likes!</span>
+                <span>{props.likesCount} likes!</span>
             </div>
         </div>
     )
