@@ -9,7 +9,6 @@ import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
 
-
 function App() {
     return (
 
@@ -29,6 +28,5 @@ function App() {
 
     )
 }
-
 
 export default App;
