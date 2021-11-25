@@ -3,17 +3,17 @@ import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 
 
-type postsProps = {
+type PostsProps = {
     id: number
     massage: string
     likesCount: number
 }
 
-type postsDataProps = {
-    postsD: Array<postsProps>
+type PostsDataProps = {
+    postsD: Array<PostsProps>
 }
 
-export const MyPosts = (props:postsDataProps) => {
+export const MyPosts = (props:PostsDataProps) => {
     // const postsData = [
     //     {id:1, massage:'Hi, how are you?', likesCount:15},
     //     {id:2, massage:'My first post!', likesCount:20},
