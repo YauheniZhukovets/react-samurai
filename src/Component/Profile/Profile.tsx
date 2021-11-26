@@ -7,10 +7,10 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 
 export const Profile = () => {
-    const postsData = [
+    /*const postsData = [
         {id:1, massage:'Hi, how are you?', likesCount:15},
         {id:2, massage:'My first post!', likesCount:20},
-    ]
+    ]*/
 
     return (
         <div>

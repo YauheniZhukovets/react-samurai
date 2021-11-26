@@ -18,12 +18,12 @@ type DialogsPageType= {
 type ProfilePageType= {
     postsData: Array<PostsType>
 }
-type RootState = {
+type RootStateType = {
     profilePage:ProfilePageType
     dialogsPage:DialogsPageType
 }
 
-export const state:RootState = {
+const state:RootStateType = {
     profilePage:{
         postsData: [
             {id:1, message:'Hi, how are you?', likesCount:15},
@@ -48,3 +48,6 @@ export const state:RootState = {
         ]
     }
 }
+
+
+export default state;

@@ -9,7 +9,7 @@ type DialogsPropsType = {
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsData = [
+   /* const dialogsData = [
         {id: 1, name: 'Egor'},
         {id: 2, name: 'Marina'},
         {id: 3, name: 'Veronika'},
@@ -24,7 +24,7 @@ export const Dialogs = (props: DialogsPropsType) => {
         {id: 3, message: 'Yo'},
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
-    ]
+    ]*/
 
     const dialogElement = dialogsData.map((n) => <DialogItems name={n.name} id={n.id}/>)
 

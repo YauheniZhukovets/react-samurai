@@ -8,19 +8,26 @@ import {Route, Routes, } from 'react-router';
 import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
+import state from './Redux/state';
 
-export function App() {
+
+
+
+function App() {
+
     return (
 
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
+                <Routes>
                     <Route path={'/profile'} element={<Profile/>}/>
-                    <Route path={'/dialogs'} element={<Dialogs name={'Dialogs'}/>}/>
+                    <Route path={'/dialogs'} element={<Dialogs ={profileData}/>}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>
+                </Routes>
             </div>
         </div>
 
