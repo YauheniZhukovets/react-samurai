@@ -1,33 +1,33 @@
-type DialogsType = {
-    id:number
-    name:string
+export type DialogsType = {
+    id: number
+    name: string
 }
-type MessageType = {
-    id:number
-    message:string
+export type MessageType = {
+    id: number
+    message: string
 }
-type PostsType = {
-    id:number
-    message:string
-    likesCount:number
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
 }
-type DialogsPageType= {
+export type DialogsPageType = {
     dialogsData: Array<DialogsType>
     massagesData: Array<MessageType>
 }
-type ProfilePageType= {
+export type ProfilePageType = {
     postsData: Array<PostsType>
 }
-type RootStateType = {
-    profilePage:ProfilePageType
-    dialogsPage:DialogsPageType
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
 }
 
-const state:RootStateType = {
-    profilePage:{
+export const state: RootStateType = {
+    profilePage: {
         postsData: [
-            {id:1, message:'Hi, how are you?', likesCount:15},
-            {id:2, message:'My first post!', likesCount:20},
+            {id: 1, message: 'Hi, how are you?', likesCount: 15},
+            {id: 2, message: 'My first post!', likesCount: 20},
         ]
     },
     dialogsPage: {
@@ -50,4 +50,3 @@ const state:RootStateType = {
 }
 
 
-export default state;
