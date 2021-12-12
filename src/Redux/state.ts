@@ -21,6 +21,7 @@ export type ProfilePageType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+
 }
 
 export const state: RootStateType = {
@@ -49,4 +50,12 @@ export const state: RootStateType = {
     }
 }
 
+export const addPost = (postText:string) => {
+    const newPost: PostsType = {
+        id:5,
+        message: postText,
+        likesCount: 0
+    }
+    state.profilePage.postsData.push(newPost)
+}
 

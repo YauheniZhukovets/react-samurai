@@ -1,28 +1,35 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {ProfilePageType} from '../../../Redux/state';
+import {PostsType} from '../../../Redux/state';
+
+type MyPostsType = {
+    postsData: Array<PostsType>
+    addPost: (postText:string)=> void
+}
+
+export const MyPosts = (props: MyPostsType) => {
 
 
-export const MyPosts = (props: ProfilePageType) => {
+    const postElements = props.postsData.map(m => <Post id={m.id} message={m.message} likesCount={m.likesCount}/>)
 
+    const newPostElement = React.createRef<HTMLTextAreaElement>();
+    const addPost = () => {
+        if(newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+        }
 
-    // const postsData = [
-    //     {id:1, massage:'Hi, how are you?', likesCount:15},
-    //     {id:2, massage:'My first post!', likesCount:20},
-    // ]
-
-    const postElements = props.postsData.map(m => <Post massage={m.message} likesCount={m.likesCount}/>)
+    }
 
     return (
         <div className={s.potsBlock}>
             My posts
             <div>
                 <div>
-                    <textarea>''</textarea>
+                    <textarea ref={newPostElement}> </textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div>

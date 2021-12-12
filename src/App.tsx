@@ -8,10 +8,16 @@ import {Route, Routes,} from 'react-router';
 import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
-import {RootStateType} from './Redux/state';
+import {DialogsPageType, ProfilePageType} from './Redux/state';
+
+type AppType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    addPost: (postText:string)=> void
+}
 
 
-function App(props: RootStateType) {
+function App(props:AppType) {
 
     return (
 
@@ -20,8 +26,12 @@ function App(props: RootStateType) {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<Profile postsData={props.profilePage.postsData}/>}/>
-                    <Route path={'/dialogs'} element={<Dialogs dialogsData={props.dialogsPage.dialogsData} massagesData={props.dialogsPage.massagesData}/>}/>
+                    <Route path={'/profile'} element={<Profile addPost={props.addPost}
+                                                               postsData={props.profilePage.postsData} />} />
+
+                    <Route path={'/dialogs'} element={<Dialogs dialogsData={props.dialogsPage.dialogsData}
+                                                               massagesData={props.dialogsPage.massagesData}/>}/>
+
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>
