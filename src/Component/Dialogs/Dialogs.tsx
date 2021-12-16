@@ -23,7 +23,7 @@ export const Dialogs = (props: DialogsPageType) => {
          {id: 5, message: 'Yo'},
      ]*/
 
-    const dialogElement = props.dialogsData.map((n) => <DialogItems name={n.name} id={n.id}/>)
+    const dialogElement = props.dialogsData.map((m) => <DialogItems key={m.id} name={m.name} id={m.id}/>)
     const messageElement = props.massagesData.map((m) => <Message message={m.message}/>)
 
     const newMessage = React.createRef<HTMLTextAreaElement>()

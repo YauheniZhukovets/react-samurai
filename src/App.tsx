@@ -10,14 +10,15 @@ import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
 import {DialogsPageType, ProfilePageType} from './Redux/state';
 
+
 type AppType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    addPost: (postText:string)=> void
+    addPost: (postText: string) => void
 }
 
 
-function App(props:AppType) {
+function App(props: AppType) {
 
     return (
 
@@ -27,7 +28,9 @@ function App(props:AppType) {
             <div className={'app-wrapper-content'}>
                 <Routes>
                     <Route path={'/profile'} element={<Profile addPost={props.addPost}
-                                                               postsData={props.profilePage.postsData} />} />
+                                                               profilePage={props.profilePage}
+
+                    />}/>
 
                     <Route path={'/dialogs'} element={<Dialogs dialogsData={props.dialogsPage.dialogsData}
                                                                massagesData={props.dialogsPage.massagesData}/>}/>
