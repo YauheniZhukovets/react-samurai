@@ -6,23 +6,27 @@ import {ProfilePageType} from '../../../Redux/state';
 type MyPostsType = {
     profilePage: ProfilePageType
     addPost: (postText: string) => void
-
+    updateNewPostText: (newText: string) => void
 }
 
 export const MyPosts = (props: MyPostsType) => {
 
-    const postElements = props.profilePage.postsData.map(m => <Post key={m.id} id={m.id} message={m.message}
+    const postElements = props.profilePage.postsData.map(m => <Post key={m.id}
+                                                                    id={m.id}
+                                                                    message={m.message}
                                                                     likesCount={m.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
     const addMyPost = () => {
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
+            props.updateNewPostText('')
         }
     }
     const onPostChange = () => {
-
+        if (newPostElement.current) {
+            props.updateNewPostText(newPostElement.current.value)
+        }
     }
     return (
         <div className={s.potsBlock}>

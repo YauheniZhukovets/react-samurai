@@ -15,6 +15,7 @@ type AppType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     addPost: (postText: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 
@@ -27,14 +28,11 @@ function App(props: AppType) {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<Profile addPost={props.addPost}
+                    <Route path={'/profile'} element={<Profile updateNewPostText={props.updateNewPostText}
+                                                               addPost={props.addPost}
                                                                profilePage={props.profilePage}
-
                     />}/>
-
-                    <Route path={'/dialogs'} element={<Dialogs dialogsData={props.dialogsPage.dialogsData}
-                                                               massagesData={props.dialogsPage.massagesData}/>}/>
-
+                    <Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}/>}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>
