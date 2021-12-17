@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 import {ProfilePageType} from '../../../Redux/state';
@@ -16,17 +16,12 @@ export const MyPosts = (props: MyPostsType) => {
                                                                     message={m.message}
                                                                     likesCount={m.likesCount}/>)
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+
     const addMyPost = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            props.updateNewPostText('')
-        }
+        props.addPost(props.profilePage.newPostText)
     }
-    const onPostChange = () => {
-        if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
-        }
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value)
     }
     return (
         <div className={s.potsBlock}>
@@ -34,7 +29,6 @@ export const MyPosts = (props: MyPostsType) => {
             <div>
                 <div>
                     <textarea onChange={onPostChange}
-                              ref={newPostElement}
                               value={props.profilePage.newPostText}/>
                 </div>
                 <div>

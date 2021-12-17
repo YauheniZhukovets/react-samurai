@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from '../rerenderEntireTree';
+let rerenderEntireTree = (state:RootStateType) => {
+    console.log('State changed')
+}
 
 export type DialogsType = {
     id: number
@@ -16,6 +18,7 @@ export type PostsType = {
 export type DialogsPageType = {
     dialogsData: Array<DialogsType>
     massagesData: Array<MessageType>
+    newMessageText: string
 }
 export type ProfilePageType = {
     postsData: Array<PostsType>
@@ -50,7 +53,8 @@ export const state: RootStateType = {
             {id: 3, message: 'Yo'},
             {id: 4, message: 'Yo'},
             {id: 5, message: 'Yo'},
-        ]
+        ],
+        newMessageText: ''
     }
 }
 
@@ -61,10 +65,28 @@ export const addPost = (postText: string) => {
         likesCount: 0
     }
     state.profilePage.postsData.push(newPost)
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state)
 }
-
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
     rerenderEntireTree(state)
+}
+
+export const addMessage = (messageText: string) => {
+    const newMessage: MessageType = {
+        id: 6,
+        message: messageText,
+    }
+    state.dialogsPage.massagesData.push(newMessage)
+    state.dialogsPage.newMessageText = ''
+    rerenderEntireTree(state)
+}
+export const updateNewMessageText = (newTextMessage: string) => {
+    state.dialogsPage.newMessageText = newTextMessage
+    rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: RootStateType) =>void) => {
+    rerenderEntireTree = observer
 }

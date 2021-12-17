@@ -13,9 +13,12 @@ import {DialogsPageType, ProfilePageType} from './Redux/state';
 
 type AppType = {
     profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
     addPost: (postText: string) => void
     updateNewPostText: (newText: string) => void
+
+    dialogsPage: DialogsPageType
+    addMessage:(messageText: string) => void
+    updateNewMessageText:(newTextMessage:string) => void
 }
 
 
@@ -28,11 +31,14 @@ function App(props: AppType) {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<Profile updateNewPostText={props.updateNewPostText}
+                    <Route path={'/profile'} element={<Profile profilePage={props.profilePage}
                                                                addPost={props.addPost}
-                                                               profilePage={props.profilePage}
+                                                               updateNewPostText={props.updateNewPostText}
                     />}/>
-                    <Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}/>}/>
+                    <Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}
+                                                               addMessage={props.addMessage}
+                                                               updateNewMessageText={props.updateNewMessageText}
+                    />}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>
