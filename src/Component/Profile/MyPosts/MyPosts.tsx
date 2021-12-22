@@ -6,9 +6,6 @@ import {ActionsTypes, ProfilePageType} from '../../../Redux/state';
 type MyPostsType = {
     profilePage: ProfilePageType
     dispatch: (action: ActionsTypes) => void
-    // addPost: (postText: string) => void
-    // updateNewPostText: (newText: string) => void
-
 }
 
 export const MyPosts = (props: MyPostsType) => {
@@ -20,11 +17,9 @@ export const MyPosts = (props: MyPostsType) => {
 
 
     const addMyPost = () => {
-        // props.addPost(props.profilePage.newPostText)
         props.dispatch({type: 'ADD-POST', postText: props.profilePage.newPostText})
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // props.updateNewPostText(e.currentTarget.value)
         let text = e.currentTarget.value
         props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }

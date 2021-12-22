@@ -6,8 +6,6 @@ import {ActionsTypes, DialogsPageType} from '../../Redux/state';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    addMessage: (messageText: string) => void
-    updateNewMessageText: (newTextMessage: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
@@ -19,10 +17,11 @@ export const Dialogs = (props: DialogsPropsType) => {
 
 
     const sendMessage = () => {
-        props.addMessage(props.dialogsPage.newMessageText)
+        props.dispatch({type: 'ADD-MESSAGE', messageText: props.dialogsPage.newMessageText})
     }
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewMessageText(e.currentTarget.value)
+        let text = e.currentTarget.value
+        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT',newTextMessage: text})
     }
 
     return (

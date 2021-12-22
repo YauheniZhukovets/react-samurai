@@ -8,6 +8,7 @@ import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
 import {ActionsTypes, DialogsPageType, ProfilePageType} from './Redux/state';
+import {Dialogs} from './Component/Dialogs/Dialogs';
 
 
 type AppType = {
@@ -33,15 +34,10 @@ function App(props: AppType) {
                 <Routes>
                     <Route path={'/profile'} element={<Profile profilePage={props.profilePage}
                                                                dispatch={props.dispatch}
-                        // addPost={props.addPost}
-                        // updateNewPostText={props.updateNewPostText}
                     />}/>
-                    {/*<Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}*/}
-                    {/*                                           dispatch={props.dispatch}*/}
-
-                    {/*    // addMessage={props.addMessage}*/}
-                    {/*    // updateNewMessageText={props.updateNewMessageText}*/}
-                    {/*/>}/>*/}
+                    <Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}
+                                                               dispatch={props.dispatch}
+                    />}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>

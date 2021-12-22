@@ -1,8 +1,4 @@
 
-// let rerenderEntireTree = (state:RootStateType) => {
-//     console.log('State changed')
-// }
-
 export type DialogsType = {
     id: number
     name: string
@@ -31,45 +27,8 @@ export type RootStateType = {
 
 }
 
-// export const addPost = (postText: string) => {
-//     const newPost: PostsType = {
-//         id: 5,
-//         message: postText,
-//         likesCount: 0
-//     }
-//     state.profilePage.postsData.push(newPost)
-//     state.profilePage.newPostText = ''
-//     rerenderEntireTree(state)
-// }
-// export const updateNewPostText = (newText: string) => {
-//     state.profilePage.newPostText = newText
-//     rerenderEntireTree(state)
-// }
-//
-// export const addMessage = (messageText: string) => {
-//     const newMessage: MessageType = {
-//         id: 6,
-//         message: messageText,
-//     }
-//     state.dialogsPage.massagesData.push(newMessage)
-//     state.dialogsPage.newMessageText = ''
-//     rerenderEntireTree(state)
-// }
-// export const updateNewMessageText = (newTextMessage: string) => {
-//     state.dialogsPage.newMessageText = newTextMessage
-//     rerenderEntireTree(state)
-// }
-//
-// export const subscribe = (observer: (state: RootStateType) =>void) => {
-//     rerenderEntireTree = observer
-// }
-
 export type storeType = {
     _state:RootStateType
-    // addPost: (postText: string) => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage:(messageText: string) => void
-    // updateNewMessageText:(newTextMessage: string) => void
     _callSubscriber:()=> void
     subscribe: (observer: () =>void) => void
     getState: ()=> RootStateType
@@ -132,37 +91,6 @@ export const store:storeType = {
     subscribe (observer) {
         this._callSubscriber = observer
     },
-
-    // addPost(postText: string) {
-    //     const newPost: PostsType = {
-    //         id: 5,
-    //         message: postText,
-    //         likesCount: 0
-    //     }
-    //     this._state.profilePage.postsData.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-    //     this._callSubscriber()
-    // },
-
-    // updateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._callSubscriber()
-    // },
-
-    // addMessage(messageText: string) {
-    //     const newMessage: MessageType = {
-    //         id: 6,
-    //         message: messageText,
-    //     }
-    //     this._state.dialogsPage.massagesData.push(newMessage)
-    //     this._state.dialogsPage.newMessageText = ''
-    //     this._callSubscriber()
-    // },
-
-    // updateNewMessageText(newTextMessage: string) {
-    //     this._state.dialogsPage.newMessageText = newTextMessage
-    //     this._callSubscriber()
-    // },
 
     dispatch(action) {
         if (action.type === 'ADD-POST') {
