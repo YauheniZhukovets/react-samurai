@@ -16,13 +16,11 @@ export const Dialogs = (props: DialogsPropsType) => {
     const messageElement = props.dialogsPage.massagesData.map((m) => <Message message={m.message}/>)
 
 
-    const sendMessage = () => {
-        // props.dispatch({type: 'ADD-MESSAGE', messageText: props.dialogsPage.newMessageText})
-        props.dispatch( AddMessageAC(props.dialogsPage.newMessageText))
+    const onSendMessage = () => {
+        props.dispatch(AddMessageAC(props.dialogsPage.newMessageText))
     }
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        // props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT',newTextMessage: text})
         props.dispatch(UpdateNewMessageTextAC(text))
     }
 
@@ -33,14 +31,15 @@ export const Dialogs = (props: DialogsPropsType) => {
                     {dialogElement}
                 </div>
                 <div className={s.messages}>
-                    {messageElement}
+                    <div>{messageElement}</div>
                     <div>
-                        <textarea onChange={onMessageChange}
+                        <textarea placeholder={'Enter your message'}
+                                  onChange={onMessageChange}
                                   value={props.dialogsPage.newMessageText}>
                         </textarea>
                     </div>
                     <div>
-                        <button onClick={sendMessage}>Send</button>
+                        <button onClick={onSendMessage}>Send</button>
                     </div>
                 </div>
 

@@ -11,7 +11,8 @@ let rerenderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App profilePage={state.profilePage}
+                <App state={state}
+                    // profilePage={state.profilePage}
                      dialogsPage={state.dialogsPage}
                      dispatch={store.dispatch.bind(store)}
                 />

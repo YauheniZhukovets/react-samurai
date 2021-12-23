@@ -7,21 +7,16 @@ import {Route, Routes,} from 'react-router';
 import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
-import {ActionsTypes, DialogsPageType, ProfilePageType} from './Redux/state';
+import {ActionsTypes, DialogsPageType, ProfilePageType, RootStateType} from './Redux/state';
 import {Dialogs} from './Component/Dialogs/Dialogs';
 
 
 type AppType = {
-    profilePage: ProfilePageType
+    state: RootStateType
+    // profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     dispatch: (action: ActionsTypes) => void
-
-    // addPost: (postText: string) => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage: (messageText: string) => void
-    // updateNewMessageText: (newTextMessage: string) => void
 }
-
 
 function App(props: AppType) {
 
@@ -32,7 +27,8 @@ function App(props: AppType) {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<Profile profilePage={props.profilePage}
+                    <Route path={'/profile'} element={<Profile state={props.state}
+                                                               // profilePage={props.profilePage}
                                                                dispatch={props.dispatch}
                     />}/>
                     <Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}

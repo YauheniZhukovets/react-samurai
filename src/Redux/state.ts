@@ -1,3 +1,5 @@
+import profileReducer from './profileReducer';
+import dialogsReducer from './dialogsReducer';
 
 export type DialogsType = {
     id: number
@@ -24,22 +26,25 @@ export type ProfilePageType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-
 }
 
-export type storeType = {
-    _state:RootStateType
-    _callSubscriber:()=> void
-    subscribe: (observer: () =>void) => void
-    getState: ()=> RootStateType
-    dispatch: (action: ActionsTypes ) => void
+export type StoreType = {
+    _state: RootStateType
+    _callSubscriber: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => RootStateType
+    dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC> | ReturnType<typeof AddMessageAC> | ReturnType<typeof UpdateNewMessageTextAC>
+export type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof AddMessageAC>
+    | ReturnType<typeof UpdateNewMessageTextAC>
 
 export const addPostAC = (postText: string) => {
     return {
-        type:'ADD-POST',
+        type: 'ADD-POST',
         postText: postText
     } as const
 }
@@ -52,18 +57,18 @@ export const updateNewPostTextAC = (newText: string) => {
 export const AddMessageAC = (messageText: string) => {
     return {
         type: 'ADD-MESSAGE',
-        messageText:messageText
+        messageText: messageText
     } as const
 }
 export const UpdateNewMessageTextAC = (newTextMessage: string) => {
     return {
-        type:'UPDATE-NEW-MESSAGE-TEXT',
-        newTextMessage:newTextMessage
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newTextMessage: newTextMessage
     } as const
 }
 
-export const store:storeType = {
-    _state:  {
+export const store: StoreType = {
+    _state: {
         profilePage: {
             postsData: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 15},
@@ -88,47 +93,50 @@ export const store:storeType = {
                 {id: 5, message: 'Yo'},
             ],
             newMessageText: ''
-        }
+        },
+
     },
     _callSubscriber() {
         console.log('State changed')
     },
 
-    getState () {
+    getState() {
         return this._state
     },
-    subscribe (observer) {
+    subscribe(observer) {
         this._callSubscriber = observer
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostsType = {
-                id: 5,
-                message: action.postText,
-                likesCount: 0
-            }
-            this._state.profilePage.postsData.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
-
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber()
-
-        } else if (action.type === 'ADD-MESSAGE') {
-            const newMessage: MessageType = {
-                id: 6,
-                message: action.messageText,
-            }
-            this._state.dialogsPage.massagesData.push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber()
-
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newTextMessage
+        profileReducer(this._state.profilePage,action)
+        dialogsReducer(this._state.dialogsPage,action)
+        // if (action.type === 'ADD-POST') {
+        //     const newPost: PostsType = {
+        //         id: 5,
+        //         message: action.postText,
+        //         likesCount: 0
+        //     }
+        //     this._state.profilePage.postsData.push(newPost)
+        //     this._state.profilePage.newPostText = ''
+        //     this._callSubscriber()
+        //
+        // } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        //     this._state.profilePage.newPostText = action.newText
+        //     this._callSubscriber()
+        //
+        // } else if (action.type === 'ADD-MESSAGE') {
+        //     const newMessage: MessageType = {
+        //         id: 6,
+        //         message: action.messageText,
+        //     }
+        //     this._state.dialogsPage.massagesData.push(newMessage)
+        //     this._state.dialogsPage.newMessageText = ''
+        //     this._callSubscriber()
+        //
+        // } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        //     this._state.dialogsPage.newMessageText = action.newTextMessage
             this._callSubscriber()
         }
     }
-}
+
 
