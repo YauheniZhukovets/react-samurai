@@ -1,29 +1,29 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {ActionsTypes, addPostAC, ProfilePageType, RootStateType, updateNewPostTextAC} from '../../../Redux/state';
+import {ProfilePageType} from '../../../Redux/store';
 
 type MyPostsType = {
-    state:RootStateType
-    // profilePage: ProfilePageType
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
+    profilePage: ProfilePageType
 }
 
 export const MyPosts = (props: MyPostsType) => {
 
-
-
-    const postElements = props.state.profilePage.postsData.map(m => <Post key={m.id}
+    const postElements = props.profilePage.postsData.map(m => <Post key={m.id}
                                                                     id={m.id}
                                                                     message={m.message}
                                                                     likesCount={m.likesCount}/>)
 
     const addMyPost = () => {
-        props.dispatch(addPostAC(props.state.profilePage.newPostText))
+        props.addPost()
+        // props.dispatch(addPostAC(props.state.profilePage.newPostText))
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        props.dispatch(updateNewPostTextAC(text))
+        props.updateNewPostText(text)
+        // props.dispatch(updateNewPostTextAC(text))
     }
     return (
         <div className={s.potsBlock}>
@@ -32,7 +32,7 @@ export const MyPosts = (props: MyPostsType) => {
                 <div>
                     <textarea placeholder={'Enter your post'}
                               onChange={onPostChange}
-                              value={props.state.profilePage.newPostText}/>
+                              value={props.profilePage.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addMyPost}>Add post</button>

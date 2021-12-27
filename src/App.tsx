@@ -7,32 +7,24 @@ import {Route, Routes,} from 'react-router';
 import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
-import {ActionsTypes, DialogsPageType, ProfilePageType, RootStateType} from './Redux/state';
-import {Dialogs} from './Component/Dialogs/Dialogs';
+import {StoreType} from './Redux/store';
+import {DialogsContainer} from './Component/Dialogs/DialogsContainer';
 
 
 type AppType = {
-    state: RootStateType
-    // profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
+    store: StoreType
 }
 
 function App(props: AppType) {
-
     return (
-
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<Profile state={props.state}
-                                                               // profilePage={props.profilePage}
-                                                               dispatch={props.dispatch}
+                    <Route path={'/profile'} element={<Profile store={props.store}
                     />}/>
-                    <Route path={'/dialogs'} element={<Dialogs dialogsPage={props.dialogsPage}
-                                                               dispatch={props.dispatch}
+                    <Route path={'/dialogs'} element={<DialogsContainer store={props.store}
                     />}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
@@ -40,7 +32,6 @@ function App(props: AppType) {
                 </Routes>
             </div>
         </div>
-
     )
 }
 
