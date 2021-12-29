@@ -8,4 +8,4 @@ const reducers = combineReducers({
     dialogsPage: dialogsReducer
 })
 
-export const store:StoreType = createStore(reducers)
+export const store: StoreType = createStore(reducers)
