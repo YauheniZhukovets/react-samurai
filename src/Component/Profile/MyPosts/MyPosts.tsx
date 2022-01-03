@@ -1,12 +1,12 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {ProfilePageType} from '../../../Redux/store';
+import {initialStateProfileType} from '../../../Redux/profileReducer';
 
 type MyPostsType = {
-    updateNewPostText: (text: string) => void
-    addPost: () => void
-    profilePage: ProfilePageType
+    UpdateNewPostText: (text: string) => void
+    AddPost: () => void
+    profilePage: initialStateProfileType
 }
 
 export const MyPosts = (props: MyPostsType) => {
@@ -17,12 +17,12 @@ export const MyPosts = (props: MyPostsType) => {
                                                                     likesCount={m.likesCount}/>)
 
     const addMyPost = () => {
-        props.addPost()
+        props.AddPost()
         // props.dispatch(addPostAC(props.state.profilePage.newPostText))
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        props.updateNewPostText(text)
+        props.UpdateNewPostText(text)
         // props.dispatch(updateNewPostTextAC(text))
     }
     return (

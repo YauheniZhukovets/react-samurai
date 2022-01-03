@@ -2,67 +2,37 @@ export type DialogsType = {
     id: number
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type PostsType = {
+type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogsData: Array<DialogsType>
     massagesData: Array<MessageType>
     newMessageText: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     postsData: Array<PostsType>
     newPostText: string
 }
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: () => void
 }
 
-export type ActionsTypes =
-    ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof AddMessageAC>
-    | ReturnType<typeof UpdateNewMessageTextAC>
-
-export const addPostAC = (postText: string) => {
-    return {
-        type: 'ADD-POST',
-        postText: postText
-    } as const
-}
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: newText
-    } as const
-}
-export const AddMessageAC = (messageText: string) => {
-    return {
-        type: 'ADD-MESSAGE',
-        messageText: messageText
-    } as const
-}
-export const UpdateNewMessageTextAC = (newTextMessage: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newTextMessage: newTextMessage
-    } as const
-}
 
 // export const store: StoreType = {
 //     _state: {

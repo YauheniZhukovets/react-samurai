@@ -10,10 +10,6 @@ import {Setting} from './Component/Setting/Setting';
 import {DialogsContainer} from './Component/Dialogs/DialogsContainer';
 
 
-// type AppType = {
-//     store: StoreType
-// }
-
 function App() {
     return (
         <div className={'app-wrapper'}>
@@ -21,12 +17,8 @@ function App() {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<Profile
-                        // store={props.store}
-                    />}/>
-                    <Route path={'/dialogs'} element={<DialogsContainer
-                        // store={props.store}
-                    />}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/dialogs'} element={<DialogsContainer/>}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>

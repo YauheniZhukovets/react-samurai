@@ -1,4 +1,11 @@
-import {ActionsTypes, DialogsPageType, MessageType} from './store';
+export type DialogsType = {
+    id: number
+    name: string
+}
+export type MessageType = {
+    id: number
+    message: string
+}
 
 const initialState = {
     dialogsData: [
@@ -8,32 +15,49 @@ const initialState = {
         {id: 4, name: 'Andrey'},
         {id: 5, name: 'Igor'},
         {id: 6, name: 'Artem'},
-    ],
+    ] as Array<DialogsType>,
     massagesData: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How is your it-kamasutra'},
         {id: 3, message: 'Yo'},
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
-    ],
+    ] as Array<MessageType>,
     newMessageText: ''
 }
 
-const DialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+export type InitialStateDialogsType = typeof initialState
+
+export const DialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType) => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
-            const newMessage: MessageType = {
+        case 'UPDATE-NEW-MESSAGE-TEXT': {
+            const copyState = {...state}
+            copyState.newMessageText = action.newTextMessage
+            return copyState
+        }
+        case 'ADD-MESSAGE': {
+            const newMessage = {
                 id: 6,
-                message: action.messageText,
+                message: state.newMessageText
             }
-            state.massagesData.push(newMessage)
-            state.newMessageText = ''
-            return state
-        case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newTextMessage
-            return state
+            const copyState = {...state}
+            copyState.massagesData = [...copyState.massagesData]
+            copyState.massagesData.push(newMessage)
+            copyState.newMessageText = ''
+            return copyState
+        }
         default:
             return state
     }
 }
-export default DialogsReducer;
+type ACDialogsReducerType = AddMessageACType | UpdateNewMessageTextACType
+
+type UpdateNewMessageTextACType = ReturnType<typeof UpdateNewMessageTextAC>
+export const UpdateNewMessageTextAC = (newTextMessage: string) => {
+    return {type: 'UPDATE-NEW-MESSAGE-TEXT', newTextMessage: newTextMessage} as const
+}
+
+type AddMessageACType = ReturnType<typeof AddMessageAC>
+export const AddMessageAC = () => {
+    return {type: 'ADD-MESSAGE'} as const
+}
