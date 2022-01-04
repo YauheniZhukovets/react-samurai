@@ -7,6 +7,7 @@ export const Navbar = () => {
     const {pathname} = location
     const splitLocation = pathname.split('/')
 
+
     return (
         <nav className={s.nav}>
             <div className={splitLocation[1] === 'profile' ? s.activeLink : s.item}>
