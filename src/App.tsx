@@ -8,6 +8,7 @@ import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
 import {DialogsContainer} from './Component/Dialogs/DialogsContainer';
+import {UsersContainer} from './Component/Users/UsersContainer';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route path={'/profile'} element={<Profile/>}/>
                     <Route path={'/dialogs'} element={<DialogsContainer/>}/>
+                    <Route path={'/users'} element={<UsersContainer/>}/>
                     <Route path={'/news'} element={<News name={'News'}/>}/>
                     <Route path={'/music'} element={<Music name={'Music'}/>}/>
                     <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>

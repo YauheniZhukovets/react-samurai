@@ -1,13 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {initialStateProfileType} from '../../../Redux/profileReducer';
+import {MyPostsType} from './MyPostsContainer';
 
-type MyPostsType = {
-    UpdateNewPostText: (text: string) => void
-    AddPost: () => void
-    profilePage: initialStateProfileType
-}
 
 export const MyPosts = (props: MyPostsType) => {
 
@@ -18,12 +13,10 @@ export const MyPosts = (props: MyPostsType) => {
 
     const addMyPost = () => {
         props.AddPost()
-        // props.dispatch(addPostAC(props.state.profilePage.newPostText))
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
         props.UpdateNewPostText(text)
-        // props.dispatch(updateNewPostTextAC(text))
     }
     return (
         <div className={s.potsBlock}>

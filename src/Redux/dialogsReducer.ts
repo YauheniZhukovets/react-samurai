@@ -31,21 +31,12 @@ export type InitialStateDialogsType = typeof initialState
 export const DialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType) => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-TEXT': {
-            const copyState = {...state}
-            copyState.newMessageText = action.newTextMessage
-            return copyState
+            return {...state, newMessageText: action.newTextMessage}
         }
         case 'ADD-MESSAGE': {
-            const newMessage = {
-                id: 6,
-                message: state.newMessageText
-            }
-            const copyState = {...state}
-            copyState.massagesData = [...copyState.massagesData]
-            copyState.massagesData.push(newMessage)
-            copyState.newMessageText = ''
-            return copyState
-        }
+            const body = state.newMessageText
+            return {...state, newMessageText:'', massagesData: [...state.massagesData, {id:6, message:body}] }
+         }
         default:
             return state
     }

@@ -9,7 +9,7 @@ const initialState = {
         {id: 1, message: 'Hi, how are you?', likesCount: 15},
         {id: 2, message: 'My first post!', likesCount: 20},
     ] as Array<PostsType>,
-    newPostText: ''
+    newPostText:''
 }
 
 export type initialStateProfileType = typeof initialState
@@ -17,21 +17,11 @@ export type initialStateProfileType = typeof initialState
 export const ProfileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType) => {
     switch (action.type) {
         case 'UPDATE-NEW-POST-TEXT':{
-            const copyState = {...state}
-            copyState.newPostText = action.newText
-            return copyState
+            return {...state, newPostText: action.newText}
         }
         case 'ADD-POST': {
-            const newPost: PostsType = {
-                id: 5,
-                message: state.newPostText,
-                likesCount: 0
-            }
-            const copyState = {...state}
-            copyState.postsData = [...state.postsData]
-            copyState.postsData.push(newPost)
-            copyState.newPostText = ''
-            return copyState
+            const body = state.newPostText
+            return {...state, newPostText:'', postsData: [...state.postsData, {id:5, message:body, likesCount:0}]}
         }
         default:
             return state
@@ -40,7 +30,6 @@ export const ProfileReducer = (state: initialStateProfileType = initialState, ac
 type ACProfileReducerType = AddPostACType | UpdateNewPostTextACType
 
 type UpdateNewPostTextACType = ReturnType<typeof UpdateNewPostTextAC>
-
 export const UpdateNewPostTextAC = (newText: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',

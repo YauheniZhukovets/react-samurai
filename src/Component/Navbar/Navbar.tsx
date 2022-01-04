@@ -15,6 +15,9 @@ export const Navbar = () => {
             <div className={splitLocation[1] === 'dialogs' ? s.activeLink : s.item}>
                 <NavLink to={'/dialogs'}>Messages</NavLink>
             </div>
+            <div className={splitLocation[1] === 'users' ? s.activeLink : s.item}>
+                <NavLink to={'/users'}>Users</NavLink>
+            </div>
             <div className={splitLocation[1] === 'news' ? s.activeLink : s.item}>
                 <NavLink to={'/news'}>News</NavLink>
             </div>
