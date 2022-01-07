@@ -8,29 +8,29 @@ import {followAC, initialStateUserType, setUserAC, unfollowAC, UserType} from '.
 export type UsersType = MapStateToPropsType & mapDispatchToPropsType
 
 type MapStateToPropsType = {
-    state: initialStateUserType
+    userPage: initialStateUserType
 }
 type mapDispatchToPropsType = {
-    follow: (userID:number) => void
-    unfollow: (userID:number) => void
-    setUsers: (users:UserType) => void
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    setUsers: (users: Array<UserType>) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        state: state.usersPage
+        userPage: state.usersPage
     }
 }
 
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        follow: (userID:number) => {
+        follow: (userID: number) => {
             dispatch(followAC(userID))
         },
-        unfollow: (userID:number) => {
+        unfollow: (userID: number) => {
             dispatch(unfollowAC(userID))
         },
-        setUsers: (users:UserType) => {
+        setUsers: (users: Array<UserType>) => {
             dispatch(setUserAC(users))
         }
     }
