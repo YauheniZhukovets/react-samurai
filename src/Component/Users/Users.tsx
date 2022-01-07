@@ -1,45 +1,18 @@
 import React from 'react';
 import {UsersType} from './UsersContainer';
 import s from './Users.module.css'
+import axios from 'axios';
+import userPhoto from '../../assets/images/userIcon.png'
 
 export const Users = (props: UsersType) => {
-    if (props.userPage.users.length === 0) {
-        props.setUsers([
-                {
-                    id: 1,
-                    photoUrl: 'https://www.mariinsky.ru/images/cms/data/orchestra_biography/violin/smirnov_dmitry2018.jpg',
-                    followed: true,
-                    fullName: 'Dmitry',
-                    location: {country: 'Belarus', city: 'Minsk'},
-                    status: 'I like football'
-                },
-                {
-                    id: 2,
-                    photoUrl: 'https://www.xyplanningnetwork.com/wp-content/uploads/2020/12/swetalinkedin_1-300x300.jpg',
-                    followed: true,
-                    fullName: 'Sweta',
-                    location: {country: 'Belarus', city: 'Minsk'},
-                    status: 'I so pretty woman'
-                },
-                {
-                    id: 3,
-                    photoUrl: 'https://img.a.transfermarkt.technology/portrait/big/127032-1479730792.jpg',
-                    followed: false,
-                    fullName: 'Sergey',
-                    location: {country: 'Ukraine', city: 'Kiev'},
-                    status: 'I like play football'
-                },
-                {
-                    id: 4,
-                    photoUrl: 'https://akn.ug/wp-content/uploads/2020/10/312439-3E1IxJu0.jpg',
-                    followed: false,
-                    fullName: 'Andrew',
-                    location: {country: 'U.S.', city: 'Philadelphia'},
-                    status: 'I like meet'
-                }
-            ]
-        )
+    const getUsers = () => {
+        if (props.userPage.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
     }
+
 
     const followHandler = (id: number) => {
         props.follow(id)
@@ -50,10 +23,12 @@ export const Users = (props: UsersType) => {
 
     return (
         <div>
+            <button onClick={getUsers}>Get Users</button>
             {props.userPage.users.map(m => <div key={m.id}>
                 <span>
                     <div>
-                        <img src={m.photoUrl} alt="photo" className={s.userPhoto}/>
+                        <img src={m.photos.small !== null ? m.photos.small : userPhoto}
+                             className={s.userPhoto} alt={'123'}/>
                     </div>
                     <div>
                         {m.followed
@@ -65,12 +40,12 @@ export const Users = (props: UsersType) => {
 
                 <span>
                     <span>
-                        <div>{m.fullName}</div>
+                        <div>{m.name}</div>
                         <div>{m.status}</div>
                     </span>
                     <span>
-                        <div>{m.location.country}</div>
-                        <div>{m.location.city}</div>
+                        <div>{'m.location.country'}</div>
+                        <div>{'m.location.city'}</div>
                     </span>
                 </span>
             </div>)}
