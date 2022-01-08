@@ -17,9 +17,9 @@ export type UserType = {
 }
 
 export type initialStateUserType = {
-    users:Array<UserType>
+    users: Array<UserType>
 }
-const initialState: initialStateUserType = {
+const initialState = {
     users: []
 }
 
