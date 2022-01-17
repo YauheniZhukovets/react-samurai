@@ -2,3 +2,12 @@
     width: 50px
 }
 
+.selectedPage {
+    font-weight: bold;
+}
+
+.numberPage {
+    display: inline-block;
+    cursor: pointer;
+
+}

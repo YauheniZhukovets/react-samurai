@@ -18,9 +18,15 @@ export type UserType = {
 
 export type initialStateUserType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPages:number
 }
 const initialState = {
-    users: []
+    users: [],
+    pageSize:100,
+    totalUsersCount: 0,
+    currentPages:1
 }
 
 export const UsersReducer = (state:initialStateUserType = initialState, action: ACUsersReducerType): initialStateUserType => {
@@ -31,23 +37,37 @@ export const UsersReducer = (state:initialStateUserType = initialState, action: 
             return {...state, users: state.users.map(m=>m.id === action.id ? {...m, followed:false} : m ) }
         case 'SET-USER':
             return {...state, users: [...action.users]}
+        case 'SET-CURRENT-PAGE':
+            return {...state, currentPages: action.currentPages}
+        case 'SET-TOTAL-USERS-COUNT':
+            return {...state, totalUsersCount: action.totalCount}
         default:
             return state
     }
 }
-type ACUsersReducerType = followACType | unfollowACType | setUserACType
+type ACUsersReducerType = FollowACType | UnfollowACType | SetUserACType
+    | SetCurrentPageACType | SetTotalUsersCountACType
 
-type followACType = ReturnType<typeof followAC>
+type FollowACType = ReturnType<typeof followAC>
 export const followAC = (userID:number) => {
     return {type: 'FOLLOW', id:userID} as const
 }
 
-type unfollowACType = ReturnType<typeof unfollowAC>
+type UnfollowACType = ReturnType<typeof unfollowAC>
 export const unfollowAC = (userID:number) => {
     return {type: 'UNFOLLOW', id:userID} as const
 }
 
-type setUserACType = ReturnType<typeof setUserAC>
+type SetUserACType = ReturnType<typeof setUserAC>
 export const setUserAC = (users:Array<UserType>) => {
     return {type : 'SET-USER', users:users} as const
+}
+type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+export const setCurrentPageAC = (currentPages:number) => {
+    return {type: 'SET-CURRENT-PAGE', currentPages } as const
+}
+
+type SetTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
+export const setTotalUsersCountAC = (totalCount:number) =>{
+    return {type: 'SET-TOTAL-USERS-COUNT', totalCount } as const
 }
