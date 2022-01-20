@@ -21,12 +21,14 @@ export type initialStateUserType = {
     pageSize: number
     totalUsersCount: number
     currentPages:number
+    isFetching:boolean
 }
 const initialState = {
     users: [],
     pageSize:100,
     totalUsersCount: 0,
-    currentPages:1
+    currentPages:1,
+    isFetching:true
 }
 
 export const UsersReducer = (state:initialStateUserType = initialState, action: ACUsersReducerType): initialStateUserType => {
@@ -41,23 +43,23 @@ export const UsersReducer = (state:initialStateUserType = initialState, action: 
             return {...state, currentPages: action.currentPages}
         case 'SET-TOTAL-USERS-COUNT':
             return {...state, totalUsersCount: action.totalCount}
+        case 'TOGGLE-IS-FETCHING':
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
 }
 type ACUsersReducerType = FollowACType | UnfollowACType | SetUserACType
-    | SetCurrentPageACType | SetTotalUsersCountACType
+    | SetCurrentPageACType | SetTotalUsersCountACType | ToggleIsFetchingACType
 
 type FollowACType = ReturnType<typeof followAC>
 export const followAC = (userID:number) => {
     return {type: 'FOLLOW', id:userID} as const
 }
-
 type UnfollowACType = ReturnType<typeof unfollowAC>
 export const unfollowAC = (userID:number) => {
     return {type: 'UNFOLLOW', id:userID} as const
 }
-
 type SetUserACType = ReturnType<typeof setUserAC>
 export const setUserAC = (users:Array<UserType>) => {
     return {type : 'SET-USER', users:users} as const
@@ -66,8 +68,11 @@ type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 export const setCurrentPageAC = (currentPages:number) => {
     return {type: 'SET-CURRENT-PAGE', currentPages } as const
 }
-
 type SetTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
 export const setTotalUsersCountAC = (totalCount:number) =>{
     return {type: 'SET-TOTAL-USERS-COUNT', totalCount } as const
+}
+type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+export const toggleIsFetchingAC = (isFetching:boolean) =>{
+    return {type: 'TOGGLE-IS-FETCHING', isFetching } as const
 }
