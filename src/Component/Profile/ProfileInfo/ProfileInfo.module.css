@@ -1,3 +1,20 @@
+.profileBlock {
+    display: flex;
+}
+
 .discriptionBlock {
     padding: 10px;
 }
+
+.userPhoto {
+    width: 200px
+}
+
+.contact{
+    font-weight: lighter;
+}
+
+.contact p {
+    margin: 2px;
+}
+

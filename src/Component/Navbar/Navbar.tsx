@@ -26,7 +26,7 @@ export const Navbar = () => {
                 <NavLink to={'/music'}>Music</NavLink>
             </div>
             <div className={splitLocation[1] === 'setting' ? s.activeLink : s.item}>
-                <NavLink to={'setting'}>Setting</NavLink>
+                <NavLink to={'/setting'}>Setting</NavLink>
             </div>
         </nav>
     )

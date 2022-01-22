@@ -1,19 +1,21 @@
 import React from 'react';
 import s from './Users.module.css';
-import userPhoto from '../../assets/images/userIcon.png';
 import {UserType} from '../../Redux/usersReducer';
+import {NavLink} from 'react-router-dom';
+import userPhoto from './../../assets/images/userIcon.png'
+
 
 type UsersPropsType = {
     totalUsersCount: number
-    pageSize:number
-    onPageChanged: (pageNumber: number)=> void
+    pageSize: number
+    onPageChanged: (pageNumber: number) => void
     currentPages: number
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    userPage:Array<UserType>
+    userPage: Array<UserType>
 }
 
-export const Users = (props:UsersPropsType) => {
+export const Users = (props: UsersPropsType) => {
 
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
@@ -26,7 +28,9 @@ export const Users = (props:UsersPropsType) => {
         <div>
             {pages.map((p, i) => {
                 return <span style={{cursor: 'pointer'}}
-                             key={i} onClick={() => { props.onPageChanged(p)} }
+                             key={i} onClick={() => {
+                    props.onPageChanged(p)
+                }}
                              className={props.currentPages === p ? s.selectedPage : ''}> {p}
                     </span>
             })}
@@ -35,8 +39,10 @@ export const Users = (props:UsersPropsType) => {
         {props.userPage.map(m => <div key={m.id}>
                 <span>
                     <div>
-                        <img src={m.photos.small !== null ? m.photos.small : userPhoto}
-                             className={s.userPhoto} alt={'123'}/>
+                         <NavLink to={'/profile/'+m.id} >
+                            <img src={m.photos.small !== null ? m.photos.small : userPhoto}
+                                 className={s.userPhoto} alt={'123'}/>
+                         </NavLink>
                     </div>
                     <div>
                         {m.followed
