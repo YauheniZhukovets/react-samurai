@@ -37,7 +37,7 @@ const initialState = {
 export type initialStateProfileType = typeof initialState
 
 
-export const ProfileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType) => {
+export const ProfileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType):initialStateProfileType => {
     switch (action.type) {
         case 'UPDATE-NEW-POST-TEXT': {
             return {...state, newPostText: action.newText}

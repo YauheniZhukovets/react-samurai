@@ -39,7 +39,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <p><b>youtube: </b>{props.profile.contacts.youtube ? props.profile.contacts.youtube : noData}</p>
             </span>
                 <p><b>Обо мне: </b>{props.profile.aboutMe}</p>
-                <p><b>Мои скиллы: </b>{props.profile.lookingForAJob ? props.profile.lookingForAJobDescription : noData}</p>
+                <p><b>Мои скиллы: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : noData}</p>
             </div>
 
         </div>

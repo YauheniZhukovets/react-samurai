@@ -17,8 +17,7 @@ export const withRouter = (WrapperComponent: typeof React.Component) => (props:o
 
     return (
         <WrapperComponent
-            {...props}
-            router={{location, navigate, params}}
+            {...props} router={{location, navigate, params}}
         />
     )
 }

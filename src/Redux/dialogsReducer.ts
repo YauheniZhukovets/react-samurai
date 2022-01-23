@@ -28,7 +28,7 @@ const initialState = {
 
 export type InitialStateDialogsType = typeof initialState
 
-export const DialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType) => {
+export const DialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType):InitialStateDialogsType => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-TEXT': {
             return {...state, newMessageText: action.newTextMessage}

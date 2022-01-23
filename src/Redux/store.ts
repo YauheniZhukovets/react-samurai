@@ -1,37 +1,39 @@
-export type DialogsType = {
-    id: number
-    name: string
-}
-type MessageType = {
-    id: number
-    message: string
-}
-type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-type DialogsPageType = {
-    dialogsData: Array<DialogsType>
-    massagesData: Array<MessageType>
-    newMessageText: string
-}
-type ProfilePageType = {
-    postsData: Array<PostsType>
-    newPostText: string
-}
-type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-}
+import React from 'react';
+// export type DialogsType = {
+//     id: number
+//     name: string
+// }
+// type MessageType = {
+//     id: number
+//     message: string
+// }
+// type PostsType = {
+//     id: number
+//     message: string
+//     likesCount: number
+// }
+// type DialogsPageType = {
+//     dialogsData: Array<DialogsType>
+//     massagesData: Array<MessageType>
+//     newMessageText: string
+// }
+// type ProfilePageType = {
+//     postsData: Array<PostsType>
+//     newPostText: string
+// }
+// type RootStateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DialogsPageType
+// }
+//
+// type StoreType = {
+//     _state: RootStateType
+//     _callSubscriber: () => void
+//     subscribe: (observer: () => void) => void
+//     getState: () => RootStateType
+//     dispatch: () => void
+// }
 
-type StoreType = {
-    _state: RootStateType
-    _callSubscriber: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => RootStateType
-    dispatch: () => void
-}
 
 
 // export const store: StoreType = {
