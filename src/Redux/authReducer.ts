@@ -1,3 +1,5 @@
+import {Dispatch} from 'redux';
+import {headerAPI} from '../API/api';
 
 const initialState = {
     id: null ,
@@ -27,12 +29,27 @@ export const authReducer = (state: initialStateProfileType = initialState, actio
 }
 type AuthReducerType =  SetAuthUserDataACType | SetIsAuth
 
-type SetAuthUserDataACType = ReturnType<typeof setAuthUserData>
-export const setAuthUserData = (id: number, login: string, email: string ) => {
+type SetAuthUserDataACType = ReturnType<typeof setAuthUserDataAC>
+export const setAuthUserDataAC = (id: number, login: string, email: string ) => {
     return {type: 'SET-USER-DATA', payload:{id,login,email} } as const
 }
 
-type SetIsAuth = ReturnType<typeof setIsAuth>
-export const setIsAuth = (isAuth: boolean) => {
+type SetIsAuth = ReturnType<typeof setIsAuthAC>
+export const setIsAuthAC = (isAuth: boolean) => {
     return {type: 'SET-IS-AUTH', isAuth} as const
+}
+
+export const setAuthUserTC = () => {
+    return (dispatch: Dispatch<AuthReducerType>) => {
+        headerAPI.setAuthUser()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
+                    dispatch(setAuthUserDataAC(id, login, email))
+                    dispatch(setIsAuthAC(true))
+                } else {
+                    dispatch(setIsAuthAC(false))
+                }
+            })
+    }
 }

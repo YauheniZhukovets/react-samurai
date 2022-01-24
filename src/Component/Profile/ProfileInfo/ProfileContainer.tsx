@@ -16,7 +16,7 @@ type mapDispatchToProps = {
     setUserProfile: (profile: ProfileType) => void
 }
 
-class ProfileContainer extends React.Component<ProfileContainerType> {
+class ProfileContainer extends React.Component<ProfileContainerType, AppStateType> {
     componentDidMount() {
         let userId = this.props.router.params.userId
         if (!userId) {

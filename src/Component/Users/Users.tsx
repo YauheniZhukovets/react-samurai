@@ -6,13 +6,18 @@ import userPhoto from './../../assets/images/userIcon.png'
 
 
 type UsersPropsType = {
+    userPage: Array<UserType>
     totalUsersCount: number
     pageSize: number
-    onPageChanged: (pageNumber: number) => void
     currentPages: number
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
-    userPage: Array<UserType>
+    followingInProgress: number[]
+    isFetching: boolean
+    onPageChanged: (pageNumber: number) => void
+    followSuccessAC: (userID: number) => void
+    unfollowSuccessAC: (userID: number) => void
+    toggleIsFollowingProgressAC: (isFetching: boolean, userId: number) => void
+    followTC: (userId: number) => void
+    unfollowTC: (userId: number) => void
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -39,15 +44,36 @@ export const Users = (props: UsersPropsType) => {
         {props.userPage.map(m => <div key={m.id}>
                 <span>
                     <div>
-                         <NavLink to={'/profile/'+m.id} >
+                         <NavLink to={'/profile/' + m.id}>
                             <img src={m.photos.small !== null ? m.photos.small : userPhoto}
                                  className={s.userPhoto} alt={'123'}/>
                          </NavLink>
                     </div>
                     <div>
                         {m.followed
-                            ? <button onClick={() => props.unfollow(m.id)}>Unfollowed</button>
-                            : <button onClick={() => props.follow(m.id)}>Followed</button>
+                            ? <button disabled={props.followingInProgress.some(id => id === m.id)} onClick={() => {
+                                props.unfollowTC(m.id)
+
+                                // props.toggleIsFollowingProgressAC(true, m.id)
+                                // usersAPI.unfollowUser(m.id).then(resultCode => {
+                                //     if (resultCode === 0) {
+                                //         props.unfollowSuccessAC(m.id)
+                                //     }
+                                //     props.toggleIsFollowingProgressAC(false, m.id)
+                                // })
+                            }}>Unfollowed</button>
+
+                            : <button disabled={props.followingInProgress.some(id => id === m.id)} onClick={() => {
+                                props.followTC(m.id)
+
+                                // props.toggleIsFollowingProgressAC(true, m.id)
+                                // usersAPI.followUser(m.id).then(resultCode => {
+                                //     if (resultCode === 0) {
+                                //         props.followSuccessAC(m.id)
+                                //     }
+                                //     props.toggleIsFollowingProgressAC(false, m.id)
+                                // })
+                            }}>Followed</button>
                         }
                     </div>
                 </span>
