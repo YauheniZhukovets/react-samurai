@@ -31,9 +31,18 @@ export const usersAPI = {
     }
 }
 
-export const headerAPI = {
-    setAuthUser() {
+export const authAPI = {
+    authMe() {
         return instance.get(`auth/me`)
+            .then(response => {
+                return response.data
+            })
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instance.get(`profile/`+ userId)
             .then(response => {
                 return response.data
             })

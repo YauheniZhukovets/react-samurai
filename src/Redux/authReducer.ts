@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {headerAPI} from '../API/api';
+import {authAPI} from '../API/api';
 
 const initialState = {
     id: null ,
@@ -39,9 +39,9 @@ export const setIsAuthAC = (isAuth: boolean) => {
     return {type: 'SET-IS-AUTH', isAuth} as const
 }
 
-export const setAuthUserTC = () => {
+export const getAuthMeTC = () => {
     return (dispatch: Dispatch<AuthReducerType>) => {
-        headerAPI.setAuthUser()
+        authAPI.authMe()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data

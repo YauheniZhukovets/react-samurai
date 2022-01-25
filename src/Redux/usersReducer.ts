@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {headerAPI, usersAPI} from '../API/api';
+import {authAPI, usersAPI} from '../API/api';
 
 type PhotosType = {
     small: string | undefined

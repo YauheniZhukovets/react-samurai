@@ -9,6 +9,7 @@ import {DialogsContainer} from './Component/Dialogs/DialogsContainer';
 import {UsersContainer} from './Component/Users/UsersContainer';
 import ProfileContainer from './Component/Profile/ProfileInfo/ProfileContainer';
 import HeaderContainer from './Component/Header/HeaderContainer';
+import {Login} from './Component/Login/Login';
 
 
 function App() {
@@ -18,14 +19,15 @@ function App() {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path={'/profile'} element={<ProfileContainer/>}>
-                        <Route path={':userId'} element={<ProfileContainer/>}/>
+                    <Route path='/profile' element={<ProfileContainer/>}>
+                        <Route path=':userId' element={<ProfileContainer/>}/>
                     </Route>
-                    <Route path={'/dialogs'} element={<DialogsContainer/>}/>
-                    <Route path={'/users'} element={<UsersContainer/>}/>
-                    <Route path={'/news'} element={<News name={'News'}/>}/>
-                    <Route path={'/music'} element={<Music name={'Music'}/>}/>
-                    <Route path={'/setting'} element={<Setting name={'Setting'}/>}/>
+                    <Route path='/dialogs' element={<DialogsContainer/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/news' element={<News name={'News'}/>}/>
+                    <Route path='/music' element={<Music name={'Music'}/>}/>
+                    <Route path='/setting' element={<Setting name={'Setting'}/>}/>
+                    <Route path='/login' element={<Login name={'Login'}/> }/>
                 </Routes>
             </div>
         </div>

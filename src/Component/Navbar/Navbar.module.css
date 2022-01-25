@@ -4,12 +4,12 @@
     padding: 20px;
 }
 
-.activeLink a {
+.activeLink {
     color: red;
     text-decoration: none;
 }
 
-.item a {
+.item {
     color: blueviolet;
     text-decoration: none;
 }

@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {profileAPI} from '../API/api';
+
 export type PostsType = {
     id: number
     message: string
@@ -5,24 +8,24 @@ export type PostsType = {
 }
 
 export type ProfileType = {
-    "aboutMe": string,
-    "contacts": {
-        "facebook": string,
-        "website": string,
-        "vk": string,
-        "twitter": string,
-        "instagram": string,
-        "youtube": string,
-        "github": string,
-        "mainLink": string
+    'aboutMe': string,
+    'contacts': {
+        'facebook': string,
+        'website': string,
+        'vk': string,
+        'twitter': string,
+        'instagram': string,
+        'youtube': string,
+        'github': string,
+        'mainLink': string
     },
-    "lookingForAJob": string,
-    "lookingForAJobDescription": string,
-    "fullName": string,
-    "userId": number,
-    "photos": {
-        "small": string,
-        "large": string
+    'lookingForAJob': string,
+    'lookingForAJobDescription': string,
+    'fullName': string,
+    'userId': number,
+    'photos': {
+        'small': string,
+        'large': string
     }
 } | null
 
@@ -37,7 +40,7 @@ const initialState = {
 export type initialStateProfileType = typeof initialState
 
 
-export const ProfileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType):initialStateProfileType => {
+export const ProfileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType): initialStateProfileType => {
     switch (action.type) {
         case 'UPDATE-NEW-POST-TEXT': {
             return {...state, newPostText: action.newText}
@@ -63,7 +66,15 @@ type AddPostACType = ReturnType<typeof AddPostAC>
 export const AddPostAC = () => {
     return {type: 'ADD-POST'} as const
 }
-type setUserProfileACType  = ReturnType<typeof setUserProfile>
-export const setUserProfile = (profile: any) => {
+type setUserProfileACType = ReturnType<typeof setUserProfileAC>
+export const setUserProfileAC = (profile: any) => {
     return {type: 'SET-USER-PROFILE', profile} as const
+}
+
+export const getUserProfileTC = (userId: string) => {
+    return (dispatch: Dispatch<ACProfileReducerType>) => {
+        profileAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfileAC(data))
+        })
+    }
 }

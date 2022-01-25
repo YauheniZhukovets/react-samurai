@@ -11,11 +11,7 @@ type UsersPropsType = {
     pageSize: number
     currentPages: number
     followingInProgress: number[]
-    isFetching: boolean
     onPageChanged: (pageNumber: number) => void
-    followSuccessAC: (userID: number) => void
-    unfollowSuccessAC: (userID: number) => void
-    toggleIsFollowingProgressAC: (isFetching: boolean, userId: number) => void
     followTC: (userId: number) => void
     unfollowTC: (userId: number) => void
 }
@@ -52,28 +48,10 @@ export const Users = (props: UsersPropsType) => {
                     <div>
                         {m.followed
                             ? <button disabled={props.followingInProgress.some(id => id === m.id)} onClick={() => {
-                                props.unfollowTC(m.id)
-
-                                // props.toggleIsFollowingProgressAC(true, m.id)
-                                // usersAPI.unfollowUser(m.id).then(resultCode => {
-                                //     if (resultCode === 0) {
-                                //         props.unfollowSuccessAC(m.id)
-                                //     }
-                                //     props.toggleIsFollowingProgressAC(false, m.id)
-                                // })
-                            }}>Unfollowed</button>
+                                props.unfollowTC(m.id)}}>Unfollowed</button>
 
                             : <button disabled={props.followingInProgress.some(id => id === m.id)} onClick={() => {
-                                props.followTC(m.id)
-
-                                // props.toggleIsFollowingProgressAC(true, m.id)
-                                // usersAPI.followUser(m.id).then(resultCode => {
-                                //     if (resultCode === 0) {
-                                //         props.followSuccessAC(m.id)
-                                //     }
-                                //     props.toggleIsFollowingProgressAC(false, m.id)
-                                // })
-                            }}>Followed</button>
+                                props.followTC(m.id)}}>Followed</button>
                         }
                     </div>
                 </span>
