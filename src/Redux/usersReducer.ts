@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {authAPI, usersAPI} from '../API/api';
+import {usersAPI} from '../API/api';
 
 type PhotosType = {
     small: string | undefined
@@ -107,7 +107,8 @@ export const getUsersTC = (currentNumberPages: number, pageSize: number) => {
             dispatch(toggleIsFetchingAC(false))
             dispatch(setUserAC(data.items))
             dispatch(setTotalUsersCountAC(data.totalCount))
-        })}
+        })
+    }
 }
 
 export const getUsersPageChangedTC = (pageNumber: number, pageSize: number) => {
@@ -117,7 +118,8 @@ export const getUsersPageChangedTC = (pageNumber: number, pageSize: number) => {
         usersAPI.getUsers(pageNumber, pageSize).then(data => {
             dispatch(toggleIsFetchingAC(false))
             dispatch(setUserAC(data.items))
-        })}
+        })
+    }
 }
 
 export const followTC = (userId: number) => {

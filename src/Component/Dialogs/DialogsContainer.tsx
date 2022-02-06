@@ -3,6 +3,7 @@ import {AddMessageAC, InitialStateDialogsType, UpdateNewMessageTextAC} from '../
 import {AppStateType} from '../../Redux/reduxStore';
 import {Dispatch} from 'redux';
 import {Dialogs} from './Dialogs';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 
 export type DialogsPropsType = MapStateToPropsType & mapDispatchToPropsType
@@ -38,5 +39,5 @@ let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
 
     }
 }
-
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
