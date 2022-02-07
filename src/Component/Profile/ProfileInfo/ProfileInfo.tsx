@@ -3,10 +3,13 @@ import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileType} from '../../../Redux/profileReducer';
 import userPhoto from '../../../assets/images/userIcon.png';
+import ProfileStatus from './ProfileStatus'
 
 
 type ProfileInfoPropsType = {
     profile: ProfileType
+    status: string
+    updateStatusTC: (status: string) => void
 }
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -16,14 +19,19 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     const noData = 'не указан'
     return (
         <div className={s.profileBlock}>
-            <div>
+
+            {/*<div>
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS27oZW3GPaCyGG172TNgXUjfyJxSq-ETp2AA&usqp=CAU"
                     alt="img"/>
-            </div>
+            </div>*/}
+
             <div className={s.discriptionBlock}>
                 <img className={s.userPhoto} src={props.profile.photos.small ? props.profile.photos.small : userPhoto}
                      alt={'img'}/>
+
+                <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
+
                 <h3>{props.profile.fullName}</h3>
             </div>
             <div>
@@ -39,8 +47,8 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <p><b>youtube: </b>{props.profile.contacts.youtube ? props.profile.contacts.youtube : noData}</p>
             </span>
                 <p><b>Обо мне: </b>{props.profile.aboutMe}</p>
-                <p><b>Мои
-                    скиллы: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : noData}
+                <p>
+                    <b>Ищу работу: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : noData}
                 </p>
             </div>
 

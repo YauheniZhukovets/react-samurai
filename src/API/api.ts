@@ -10,7 +10,6 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentNumberPages: number, pageSize: number) {
-        debugger
         return instance.get(`users?page=${currentNumberPages}&count=${pageSize}`)
             .then(response => {
                     return response.data
@@ -33,7 +32,7 @@ export const usersAPI = {
 
 export const authAPI = {
     authMe() {
-        return instance.get(`auth/me`)
+        return instance.get<BaseProfileType<AuthMeType>>(`auth/me`)
             .then(response => {
                 return response.data
             })
@@ -42,10 +41,24 @@ export const authAPI = {
 
 export const profileAPI = {
     getProfile(userId: string) {
-        return instance.get(`profile/`+ userId)
-            .then(response => {
-                return response.data
-            })
+        return instance.get(`profile/` + userId)
+    },
+    getStatus(userId: string) {
+        return instance.get(`profile/status/` + userId)
+    },
+    updateStatus(status:string) {
+        return instance.put<BaseProfileType>(`profile/status/`,{status:status})
     }
 }
 
+type AuthMeType = {
+    email: string
+    id: number
+    login: string
+}
+type BaseProfileType<T = {}> = {
+    data: T
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}

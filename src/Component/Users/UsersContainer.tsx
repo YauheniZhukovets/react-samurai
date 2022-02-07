@@ -4,6 +4,8 @@ import {followTC, getUsersPageChangedTC, getUsersTC, unfollowTC, UserType,} from
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
+import {compose} from 'redux';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 
 type MapStateToPropsType = {
@@ -37,8 +39,8 @@ class UsersComponent extends React.Component<UsersType, AppStateType> {
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users onPageChanged={this.onPageChanged}
-                   {...this.props}            />
+            {!this.props.isFetching && <Users onPageChanged={this.onPageChanged}
+                   {...this.props}            />}
         </>
     }
 
@@ -55,10 +57,20 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, {
+/*export const UsersContainer = connect(mapStateToProps, {
         getUsersTC,
         followTC,
         unfollowTC,
         getUsersPageChangedTC,
     }
-)(UsersComponent)
+)(UsersComponent)*/
+
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+            getUsersTC,
+            followTC,
+            unfollowTC,
+            getUsersPageChangedTC,
+        }
+    ))(UsersComponent)
