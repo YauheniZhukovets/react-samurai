@@ -8,7 +8,7 @@ export type PostsType = {
 }
 
 export type ProfileType = {
-    'aboutMe': string,
+    'aboutMe': string
     'contacts': {
         'facebook': string,
         'website': string,
@@ -18,13 +18,13 @@ export type ProfileType = {
         'youtube': string,
         'github': string,
         'mainLink': string
-    },
-    'lookingForAJob': string,
-    'lookingForAJobDescription': string,
-    'fullName': string,
-    'userId': number,
+    }
+    'lookingForAJob': string
+    'lookingForAJobDescription': string
+    'fullName': string
+    'userId': number
     'photos': {
-        'small': string,
+        'small': string
         'large': string
     }
 } | null
@@ -72,7 +72,7 @@ export const AddPostAC = () => {
     return {type: 'ADD-POST'} as const
 }
 type setUserProfileACType = ReturnType<typeof setUserProfileAC>
-export const setUserProfileAC = (profile: any) => {
+export const setUserProfileAC = (profile: ProfileType) => {
     return {type: 'SET-USER-PROFILE', profile} as const
 }
 type SetStatus = ReturnType<typeof setStatusAC>

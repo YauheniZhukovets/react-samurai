@@ -10,7 +10,7 @@ export type WithRouterType = {
     router: ComponentWithRouterPropsType
 }
 
-export const withRouter = (WrapperComponent: typeof React.Component) => (props:object) =>{
+export const withRouter = (WrapperComponent: typeof React.Component) => (props: object) => {
     const location = useLocation();
     const navigate = useNavigate();
     const params = useParams();
@@ -21,3 +21,4 @@ export const withRouter = (WrapperComponent: typeof React.Component) => (props:o
         />
     )
 }
+
