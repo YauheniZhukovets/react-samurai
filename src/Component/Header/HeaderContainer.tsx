@@ -11,7 +11,7 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 type MapDispatchToProps = {
-    getAuthMeTC: () => void
+    getAuthMeTC: Function
 }
 
 class HeaderContainer extends React.Component<HeaderContainerType, AppStateType> {

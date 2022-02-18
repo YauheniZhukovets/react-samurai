@@ -27,7 +27,7 @@ function App() {
                     <Route path="/news" element={<News name={'News'}/>}/>
                     <Route path="/music" element={<Music name={'Music'}/>}/>
                     <Route path="/setting" element={<Setting name={'Setting'}/>}/>
-                    <Route path="/login" element={<Login name={'Login'}/>}/>
+                    <Route path="/login" element={<Login/>}/>
                 </Routes>
             </div>
         </div>
