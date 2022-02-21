@@ -23,32 +23,23 @@ const initialState = {
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
     ] as Array<MessageType>,
-    newMessageText: ''
 }
 
 export type InitialStateDialogsType = typeof initialState
 
 export const DialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType):InitialStateDialogsType => {
     switch (action.type) {
-        case 'UPDATE-NEW-MESSAGE-TEXT': {
-            return {...state, newMessageText: action.newTextMessage}
-        }
         case 'ADD-MESSAGE': {
-            const body = state.newMessageText
-            return {...state, newMessageText:'', massagesData: [...state.massagesData, {id:6, message:body}] }
+            const body = action.newMessageBody
+            return {...state, massagesData: [...state.massagesData, {id:6, message:body}] }
          }
         default:
             return state
     }
 }
-type ACDialogsReducerType = AddMessageACType | UpdateNewMessageTextACType
-
-type UpdateNewMessageTextACType = ReturnType<typeof UpdateNewMessageTextAC>
-export const UpdateNewMessageTextAC = (newTextMessage: string) => {
-    return {type: 'UPDATE-NEW-MESSAGE-TEXT', newTextMessage: newTextMessage} as const
-}
+type ACDialogsReducerType = AddMessageACType
 
 type AddMessageACType = ReturnType<typeof AddMessageAC>
-export const AddMessageAC = () => {
-    return {type: 'ADD-MESSAGE'} as const
+export const AddMessageAC = (newMessageBody: string) => {
+    return {type: 'ADD-MESSAGE', newMessageBody} as const
 }

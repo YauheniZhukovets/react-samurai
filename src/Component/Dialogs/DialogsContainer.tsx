@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {AddMessageAC, InitialStateDialogsType, UpdateNewMessageTextAC} from '../../Redux/dialogsReducer';
+import {AddMessageAC, InitialStateDialogsType} from '../../Redux/dialogsReducer';
 import {AppStateType} from '../../Redux/reduxStore';
 import {compose, Dispatch} from 'redux';
 import {Dialogs} from './Dialogs';
@@ -11,31 +11,24 @@ export type DialogsPropsType = MapStateToPropsType & mapDispatchToPropsType
 
 type MapStateToPropsType = {
     dialogsPage: InitialStateDialogsType
-    newMessageText:string
-    isAuth:boolean
+    isAuth: boolean
 }
 type mapDispatchToPropsType = {
-    UpdateNewMessageText: (text: string) => void
-    AddMessage: () => void
+    AddMessage: (newMessageBody: string) => void
 }
 
 
-
-const mapStateToProps = (state: AppStateType):MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageText:state.dialogsPage.newMessageText,
         isAuth: state.auth.isAuth,
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        UpdateNewMessageText: (text: string) => {
-            dispatch(UpdateNewMessageTextAC(text))
-        },
-        AddMessage: () => {
-            dispatch(AddMessageAC())
+        AddMessage: (newMessageBody: string) => {
+            dispatch(AddMessageAC(newMessageBody))
         }
 
     }
