@@ -1,6 +1,7 @@
 import {authAPI, LoginParamsType} from '../API/api';
 import {Dispatch} from 'redux';
 import {AppThunk} from './reduxStore';
+import {stopSubmit} from 'redux-form';
 
 const initialState = {
     id: null,
@@ -43,9 +44,9 @@ export const setIsAuthAC = (isAuth: boolean) => {
 export const getAuthMeTC = () => {
     return (dispatch: Dispatch) => {
         authAPI.authMe()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let {id, login, email} = data.data
+            .then(res => {
+                if (res.resultCode === 0) {
+                    let {id, login, email} = res.data
                     dispatch(setAuthUserDataAC(id, login, email, true))
                 }
             })
@@ -55,9 +56,13 @@ export const getAuthMeTC = () => {
 export const loginTC = (data: LoginParamsType): AppThunk => {
     return (dispatch) => {
         authAPI.login(data)
-            .then(data => {
-                if (data.data.resultCode === 0) {
+            .then(res => {
+                if (res.data.resultCode === 0) {
                     dispatch(getAuthMeTC())
+                } else {
+                    let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Email or login is wrong'
+                    let action:any = stopSubmit('login', {_error: message})
+                    dispatch(action)
                 }
             })
     }
@@ -66,10 +71,10 @@ export const loginTC = (data: LoginParamsType): AppThunk => {
 export const logoutTC = (): AppThunk => {
     return (dispatch) => {
         authAPI.logout()
-            .then(data => {
-                if (data.data.resultCode === 0) {
+            .then(res => {
+                if (res.data.resultCode === 0) {
                     dispatch(getAuthMeTC())
-                    dispatch(setAuthUserDataAC( null!, null!, null!, false))
+                    dispatch(setAuthUserDataAC(null!, null!, null!, false))
                 }
             })
     }
