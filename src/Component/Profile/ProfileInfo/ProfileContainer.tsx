@@ -13,25 +13,26 @@ type ProfileContainerType = mapStateToPropsType & mapDispatchToProps & WithRoute
 type mapStateToPropsType = {
     status: string
     profile: ProfileType | null
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 type mapDispatchToProps = {
-    getUserProfileTC: (userId: number) => any
-    getStatusTC: (userId: number) => any
-    updateStatusTC: (status: string) => any
+    getUserProfileTC: (userId: number | null) => Function
+    getStatusTC: (userId: number | null) => Function
+    updateStatusTC: (status: string) => Function
 }
 
 class ProfileContainer extends React.Component<ProfileContainerType, AppStateType> {
     componentDidMount() {
-        let userId = Number(this.props.router.params.userId)
+        let userId  = +this.props.router.params.userId || null
         if (!userId) {
-            userId = 21541
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfileTC(userId)
         this.props.getStatusTC(userId)
     }
 
     render() {
-
         return (
             <div>
                 <Profile profile={this.props.profile}
@@ -46,7 +47,9 @@ class ProfileContainer extends React.Component<ProfileContainerType, AppStateTyp
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorizedUserId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 }
 
