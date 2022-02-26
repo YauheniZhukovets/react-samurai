@@ -61,7 +61,7 @@ export const UsersReducer = (state: initialStateUserType = initialState, action:
             return state
     }
 }
-type ACUsersReducerType = FollowSuccessACType | UnfollowSuccessACType | SetUserACType
+export type ACUsersReducerType = FollowSuccessACType | UnfollowSuccessACType | SetUserACType
     | SetCurrentPageACType | SetTotalUsersCountACType | ToggleIsFetchingACType
     | ToggleIsFollowingProgressACType
 

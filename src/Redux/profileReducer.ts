@@ -57,7 +57,7 @@ export const ProfileReducer = (state: initialStateProfileType = initialState, ac
             return state
     }
 }
-type ACProfileReducerType = AddPostACType |  setUserProfileACType | SetStatus
+export type ACProfileReducerType = AddPostACType |  setUserProfileACType | SetStatus
 
 
 type AddPostACType = ReturnType<typeof AddPostAC>

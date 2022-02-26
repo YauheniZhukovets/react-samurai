@@ -7,7 +7,7 @@ import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
 import ProfileContainer from './Component/Profile/ProfileInfo/ProfileContainer';
 import HeaderContainer from './Component/Header/HeaderContainer';
-import {Login} from './Component/Login/Login';
+import Login from './Component/Login/Login';
 import DialogsContainer from './Component/Dialogs/DialogsContainer';
 import UsersContainer from './Component/Users/UsersContainer';
 

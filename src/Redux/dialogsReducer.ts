@@ -37,7 +37,7 @@ export const DialogsReducer = (state: InitialStateDialogsType = initialState, ac
             return state
     }
 }
-type ACDialogsReducerType = AddMessageACType
+export type ACDialogsReducerType = AddMessageACType
 
 type AddMessageACType = ReturnType<typeof AddMessageAC>
 export const AddMessageAC = (newMessageBody: string) => {

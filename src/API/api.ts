@@ -36,7 +36,13 @@ export const authAPI = {
             .then(response => {
                 return response.data
             })
-    }
+    },
+    login(data: LoginParamsType) {
+        return instance.post<BaseProfileType<{ userId: number }>>('/auth/login', data)
+    },
+    logout() {
+        return instance.delete<BaseProfileType>('/auth/login')
+    },
 }
 
 export const profileAPI = {
@@ -46,10 +52,18 @@ export const profileAPI = {
     getStatus(userId: string) {
         return instance.get(`profile/status/` + userId)
     },
-    updateStatus(status:string) {
-        return instance.put<BaseProfileType>(`profile/status/`,{status:status})
+    updateStatus(status: string) {
+        return instance.put<BaseProfileType>(`profile/status/`, {status: status})
     }
 }
+
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe?: boolean
+    captcha?: string
+}
+
 
 type AuthMeType = {
     email: string
