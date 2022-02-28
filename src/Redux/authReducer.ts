@@ -43,7 +43,7 @@ export const setIsAuthAC = (isAuth: boolean) => {
 
 export const getAuthMeTC = () => {
     return (dispatch: Dispatch) => {
-        authAPI.authMe()
+     return authAPI.authMe()
             .then(res => {
                 if (res.resultCode === 0) {
                     let {id, login, email} = res.data
