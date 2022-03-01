@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileType} from '../../../Redux/profileReducer';
 import userPhoto from '../../../assets/images/userIcon.png';
-import ProfileStatus from './ProfileStatus'
+import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
 
 
 type ProfileInfoPropsType = {
@@ -30,7 +30,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img className={s.userPhoto} src={props.profile.photos.small ? props.profile.photos.small : userPhoto}
                      alt={'img'}/>
 
-                <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
+                <ProfileStatusWithHooks status={props.status} updateStatusTC={props.updateStatusTC}/>
 
                 <h3>{props.profile.fullName}</h3>
             </div>
@@ -48,7 +48,8 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             </span>
                 <p><b>Обо мне: </b>{props.profile.aboutMe}</p>
                 <p>
-                    <b>Ищу работу: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : noData}
+                    <b>Ищу
+                        работу: </b>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : noData}
                 </p>
             </div>
 

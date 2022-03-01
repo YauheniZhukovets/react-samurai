@@ -16,7 +16,7 @@ import {
 
 
 type MapStateToPropsType = {
-    userPage: Array<UserType>
+    getUsers: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPages: number
@@ -55,7 +55,7 @@ class UsersComponent extends React.Component<UsersType, AppStateType> {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        userPage: getUsers(state),
+        getUsers: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPages: getCurrentPages(state),

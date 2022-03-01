@@ -6,7 +6,7 @@ import userPhoto from './../../assets/images/userIcon.png'
 
 
 type UsersPropsType = {
-    userPage: Array<UserType>
+    getUsers: Array<UserType>
     totalUsersCount: number
     pageSize: number
     currentPages: number
@@ -37,7 +37,7 @@ export const Users = (props: UsersPropsType) => {
             })}
 
         </div>
-        {props.userPage.map(m => <div key={m.id}>
+        {props.getUsers.map(m => <div key={m.id}>
                 <span>
                     <div>
                          <NavLink to={'/profile/' + m.id}>
