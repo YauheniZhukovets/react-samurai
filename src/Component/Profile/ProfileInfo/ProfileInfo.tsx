@@ -20,12 +20,6 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     return (
         <div className={s.profileBlock}>
 
-            {/*<div>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS27oZW3GPaCyGG172TNgXUjfyJxSq-ETp2AA&usqp=CAU"
-                    alt="img"/>
-            </div>*/}
-
             <div className={s.discriptionBlock}>
                 <img className={s.userPhoto} src={props.profile.photos.small ? props.profile.photos.small : userPhoto}
                      alt={'img'}/>
