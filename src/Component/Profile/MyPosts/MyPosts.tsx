@@ -7,8 +7,8 @@ import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControls';
 
 
-export const MyPosts = (props: MyPostsType) => {
-
+export const MyPosts = React.memo((props: MyPostsType) => {
+    console.log('Render!!!!!')
     const postElements = props.profilePage.postsData.map(m => <Post key={m.id}
                                                                     id={m.id}
                                                                     message={m.message}
@@ -31,7 +31,7 @@ export const MyPosts = (props: MyPostsType) => {
             </div>
         </div>
     )
-}
+})
 
 type FormDataType = {
     newPostBody: string
@@ -43,7 +43,7 @@ const AddMyPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={ Textarea }
+                <Field component={Textarea}
                        validate={[required, maxLength]}
                        placeholder={'Enter your post'}
                        name={'newPostBody'}
