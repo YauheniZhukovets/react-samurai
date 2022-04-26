@@ -8,15 +8,14 @@ import {Textarea} from '../common/FormsControls/FormsControls';
 import {maxLengthCreator, required} from '../../utils/validators/validators';
 
 
-export const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs = ({dialogsPage, AddMessage,}: DialogsPropsType) => {
 
-    const dialogElement = props.dialogsPage.dialogsData.map((m) => <DialogItems key={m.id} name={m.name} id={m.id}/>)
+    const dialogElement = dialogsPage.dialogsData.map((m) => <DialogItems key={m.id} name={m.name} id={m.id}/>)
 
-    const messageElement = props.dialogsPage.massagesData.map((m) => <Message key={m.id} message={m.message}/>)
-
+    const messageElement = dialogsPage.massagesData.map((m) => <Message key={m.id} message={m.message}/>)
 
     const addNewMessage = (values: FormDataType) => {
-        props.AddMessage(values.newMessageBody)
+        AddMessage(values.newMessageBody)
     }
 
     return (
@@ -42,9 +41,11 @@ type FormDataType = {
 const maxLength = maxLengthCreator(50)
 
 const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    return (<form onSubmit={props.handleSubmit}>
+    const {handleSubmit} = props
+
+    return (<form onSubmit={handleSubmit}>
             <div>
-                <Field component={Textarea }
+                <Field component={Textarea}
                        validate={[required, maxLength]}
                        name={'newMessageBody'}
                        placeholder={'Enter your message'}

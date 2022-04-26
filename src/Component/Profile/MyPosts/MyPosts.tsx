@@ -8,12 +8,13 @@ import {Textarea} from '../../common/FormsControls/FormsControls';
 
 
 export const MyPosts = React.memo((props: MyPostsType) => {
-    console.log('Render!!!!!')
+
     const postElements = props.profilePage.postsData.map(m => <Post key={m.id}
                                                                     id={m.id}
                                                                     message={m.message}
-                                                                    likesCount={m.likesCount}/>)
+                                                                    likesCount={m.likesCount}
 
+    />)
 
     const addNewMyPost = (value: FormDataType) => {
         props.AddPost(value.newPostBody)
@@ -47,9 +48,7 @@ const AddMyPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        validate={[required, maxLength]}
                        placeholder={'Enter your post'}
                        name={'newPostBody'}
-
                 />
-
             </div>
             <div>
                 <button type={'submit'}>Add post</button>

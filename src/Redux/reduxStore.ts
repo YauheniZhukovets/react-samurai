@@ -1,8 +1,8 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 
-import {ACDialogsReducerType, DialogsReducer} from './dialogsReducer';
-import {ACProfileReducerType, ProfileReducer} from './profileReducer';
-import {ACUsersReducerType, UsersReducer} from './usersReducer';
+import {ACDialogsReducerType, dialogsReducer} from './dialogsReducer';
+import {ACProfileReducerType, profileReducer} from './profileReducer';
+import {ACUsersReducerType, usersReducer,} from './usersReducer';
 import {authReducer, AuthReducerType} from './authReducer';
 import thunk, {ThunkAction} from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
@@ -10,9 +10,9 @@ import {appReducer, AppReducerType} from './appReducer';
 
 
 const rootReducer = combineReducers({
-    profilePage: ProfileReducer,
-    dialogsPage: DialogsReducer,
-    usersPage: UsersReducer,
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
     app: appReducer

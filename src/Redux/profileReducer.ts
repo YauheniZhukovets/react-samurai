@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {profileAPI} from '../API/api';
 
-export type PostsType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
@@ -34,69 +34,70 @@ const initialState = {
     postsData: [
         {id: 1, message: 'Hi, how are you?', likesCount: 15},
         {id: 2, message: 'My first post!', likesCount: 20},
-    ] as Array<PostsType>,
-    profile: null as ProfileType,
-    status: ''  as string,
+    ],
+    profile: null,
+    status: '',
 }
-export type initialStateProfileType = typeof initialState
+export type initialStateProfileType = {
+    postsData: Array<PostType>
+    profile: null | ProfileType
+    status: string
+}
 
-
-export const ProfileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType): initialStateProfileType => {
+export const profileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType): initialStateProfileType => {
     switch (action.type) {
-        case 'ADD-POST': {
+        case 'profile/ADD-POST': {
             const body = action.newPostBody
             return {...state, postsData: [...state.postsData, {id: 5, message: body, likesCount: 0}]}
         }
-        case 'SET-USER-PROFILE': {
+        case 'profile/SET-USER-PROFILE': {
             return {...state, profile: action.profile}
         }
-        case 'SET-STATUS': {
+        case 'profile/SET-STATUS': {
             return {...state, status: action.status}
+        }
+        case 'profile/DELETE-POST': {
+            return {...state, postsData: state.postsData.filter(post => post.id !== action.id)}
         }
         default:
             return state
     }
 }
-export type ACProfileReducerType = AddPostACType |  setUserProfileACType | SetStatus
+export type ACProfileReducerType = AddPostACType | SetUserProfileACType | SetStatusACType | DeletePostACType
 
 
-type AddPostACType = ReturnType<typeof AddPostAC>
-export const AddPostAC = (newPostBody: string) => {
-    return {type: 'ADD-POST', newPostBody} as const
+type AddPostACType = ReturnType<typeof addPostAC>
+export const addPostAC = (newPostBody: string) => {
+    return {type: 'profile/ADD-POST', newPostBody} as const
 }
-type setUserProfileACType = ReturnType<typeof setUserProfileAC>
+type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
 export const setUserProfileAC = (profile: ProfileType) => {
-    return {type: 'SET-USER-PROFILE', profile} as const
+    return {type: 'profile/SET-USER-PROFILE', profile} as const
 }
-type SetStatus = ReturnType<typeof setStatusAC>
+type SetStatusACType = ReturnType<typeof setStatusAC>
 export const setStatusAC = (status: string) => {
-    return {type: 'SET-STATUS', status} as const
+    return {type: 'profile/SET-STATUS', status} as const
+}
+type DeletePostACType = ReturnType<typeof deletePostAC>
+export const deletePostAC = (id: number) => {
+    return {type: 'profile/DELETE-POST', id} as const
 }
 
-export const getUserProfileTC = (userId: string) => {
-    return (dispatch: Dispatch<ACProfileReducerType>) => {
-        profileAPI.getProfile(userId).then(response => {
-            dispatch(setUserProfileAC(response.data))
-        })
-    }
+export const getUserProfileTC = (userId: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+    const res = await profileAPI.getProfile(userId)
+    dispatch(setUserProfileAC(res.data))
 }
 
-export const getStatusTC = (status: string) => {
-    return (dispatch: Dispatch<ACProfileReducerType>) => {
-        profileAPI.getStatus(status).then(response => {
-            dispatch(setStatusAC(response.data))
-        })
-    }
+export const getStatusTC = (status: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+    const res = await profileAPI.getStatus(status)
+    dispatch(setStatusAC(res.data))
 }
 
-export const updateStatusTC = (status: string) => {
-    return (dispatch: Dispatch<ACProfileReducerType>) => {
-        profileAPI.updateStatus(status)
-            .then(response => {
-                if(response.data.resultCode === 0) {
-                    dispatch(setStatusAC(status))
-                }
-        })
+export const updateStatusTC = (status: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+    const res = await profileAPI.updateStatus(status)
+
+    if (res.data.resultCode === 0) {
+        dispatch(setStatusAC(status))
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './FormsControls.module.css'
 
 
-const FormControl = ({input, meta, children, ...props}: any) => {
+const FormControl = ({meta, children,}: any) => {
     const hasError = meta.touched && meta.error
 
     return (
@@ -19,7 +19,6 @@ export const Textarea = (props: any) => {
     const {input, meta, child, ...restProps} = props
     return <FormControl {...props} ><textarea {...props.input} {...restProps} /></FormControl>
 }
-
 
 export const Input = (props: any) => {
     const {input, meta, children, ...restProps} = props

@@ -7,10 +7,10 @@ type DialogItemsType = {
     id: number
 }
 
-export const DialogItems = (props: DialogItemsType) => {
-    let path = '/dialogs/' + props.id
+export const DialogItems = ({id, name,}: DialogItemsType) => {
+    let path = '/dialogs/' + id
 
     return <div className={s.dialog}>
-        <NavLink to={path}>{props.name}</NavLink>
+        <NavLink to={path}>{name}</NavLink>
     </div>
 }

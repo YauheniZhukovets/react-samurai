@@ -6,7 +6,6 @@ import {Dialogs} from './Dialogs';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import React from 'react';
 
-
 export type DialogsPropsType = MapStateToPropsType & mapDispatchToPropsType
 
 type MapStateToPropsType = {
@@ -16,7 +15,6 @@ type MapStateToPropsType = {
 type mapDispatchToPropsType = {
     AddMessage: (newMessageBody: string) => void
 }
-
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -30,7 +28,6 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         AddMessage: (newMessageBody: string) => {
             dispatch(AddMessageAC(newMessageBody))
         }
-
     }
 }
 
@@ -38,6 +35,3 @@ export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
 )(Dialogs)
-
-// let AuthRedirectComponent = withAuthRedirect(Dialogs)
-// export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)

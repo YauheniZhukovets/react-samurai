@@ -11,7 +11,7 @@ export type initialStateProfileType = {
 
 export const appReducer = (state: initialStateProfileType = initialState, action: AppReducerType): initialStateProfileType => {
     switch (action.type) {
-        case 'INITIALIZED-SUCCESS': {
+        case 'app/INITIALIZED-SUCCESS': {
             return {...state, initialized: true}
         }
         default:
@@ -22,15 +22,12 @@ export type AppReducerType = InitializedSuccessACType
 
 type InitializedSuccessACType = ReturnType<typeof initializedSuccessAC>
 export const initializedSuccessAC = () => {
-    return {type: 'INITIALIZED-SUCCESS'} as const
+    return {type: 'app/INITIALIZED-SUCCESS'} as const
 }
 
-export const initializeAppTC = (): AppThunk => (dispatch) => {
-    let promise = dispatch(getAuthMeTC())
-
-    promise.then(() => {
-        dispatch(initializedSuccessAC())
-    })
+export const initializeAppTC = (): AppThunk => async (dispatch) => {
+    await dispatch(getAuthMeTC())
+    dispatch(initializedSuccessAC())
 }
 
 

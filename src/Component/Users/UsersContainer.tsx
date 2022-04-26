@@ -23,6 +23,7 @@ type MapStateToPropsType = {
     isFetching: boolean
     followingInProgress: number[]
 }
+
 type mapDispatchToPropsType = {
     requestUsersTC: (currentNumberPages: number, pageSize: number) => void
     getUsersPageChangedTC: (pageNumber: number, pageSize: number) => void
@@ -31,7 +32,6 @@ type mapDispatchToPropsType = {
 }
 
 export type UsersType = MapStateToPropsType & mapDispatchToPropsType
-
 
 class UsersComponent extends React.Component<UsersType, AppStateType> {
 

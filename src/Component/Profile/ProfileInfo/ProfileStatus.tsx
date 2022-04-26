@@ -6,7 +6,6 @@ export type ProfileStatusPropsType = {
     updateStatusTC: (status: string) => void
 }
 
-
 class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     state = {
         editMode: false,

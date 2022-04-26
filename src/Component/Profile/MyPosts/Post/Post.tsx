@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Post.module.css'
-import {PostsType} from '../../../../Redux/profileReducer';
+import {PostType} from '../../../../Redux/profileReducer';
 
-export const Post = (props: PostsType) => {
+export const Post = ({...props}: PostType) => {
     return (
         <div key={props.id}
              className={s.item}>

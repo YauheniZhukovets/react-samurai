@@ -27,9 +27,9 @@ const initialState = {
 
 export type InitialStateDialogsType = typeof initialState
 
-export const DialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType):InitialStateDialogsType => {
+export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType):InitialStateDialogsType => {
     switch (action.type) {
-        case 'ADD-MESSAGE': {
+        case 'dialogs/ADD-MESSAGE': {
             const body = action.newMessageBody
             return {...state, massagesData: [...state.massagesData, {id:6, message:body}] }
          }
@@ -41,5 +41,5 @@ export type ACDialogsReducerType = AddMessageACType
 
 type AddMessageACType = ReturnType<typeof AddMessageAC>
 export const AddMessageAC = (newMessageBody: string) => {
-    return {type: 'ADD-MESSAGE', newMessageBody} as const
+    return {type: 'dialogs/ADD-MESSAGE', newMessageBody} as const
 }
