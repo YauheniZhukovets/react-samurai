@@ -1,5 +1,4 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-
 import {ACDialogsReducerType, dialogsReducer} from './dialogsReducer';
 import {ACProfileReducerType, profileReducer} from './profileReducer';
 import {ACUsersReducerType, usersReducer,} from './usersReducer';
@@ -7,6 +6,7 @@ import {authReducer, AuthReducerType} from './authReducer';
 import thunk, {ThunkAction} from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
 import {appReducer, AppReducerType} from './appReducer';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 
 const rootReducer = combineReducers({
@@ -19,7 +19,10 @@ const rootReducer = combineReducers({
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>
-export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
+//export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppActionType =
     | ACProfileReducerType
