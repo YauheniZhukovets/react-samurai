@@ -7,7 +7,6 @@ type UsersPropsType = {
     getUsers: Array<UserType>
     totalUsersCount: number
     pageSize: number
-    portionSize:number
     currentPages: number
     followingInProgress: number[]
     onPageChanged: (pageNumber: number) => void
@@ -24,7 +23,6 @@ export const Users = ({
                           followingInProgress,
                           followTC,
                           unfollowTC,
-                          portionSize,
                       }: UsersPropsType) => {
 
     return <div>
@@ -32,8 +30,8 @@ export const Users = ({
                    pageSize={pageSize}
                    currentPages={currentPages}
                    onPageChanged={onPageChanged}
-                   portionSize={portionSize}
-        />
+                   portionSize={10}/>
+
 
         {getUsers.map(m => <User key={m.id}
                                  user={m}

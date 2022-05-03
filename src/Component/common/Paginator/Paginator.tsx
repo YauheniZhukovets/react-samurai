@@ -3,10 +3,10 @@ import s from './Paginator.module.css';
 
 type PaginatorPropsType = {
     totalItemsCount: number
-    portionSize: number
     pageSize: number
     currentPages: number
     onPageChanged: (pageNumber: number) => void
+    portionSize: number
 }
 
 export const Paginator = ({
@@ -39,7 +39,9 @@ export const Paginator = ({
             .map((page, index) => {
                 return <span style={{cursor: 'pointer'}}
                              key={index}
-                             onClick={(e) => {onPageChanged(page)}}
+                             onClick={() => {
+                                 onPageChanged(page)
+                             }}
                              className={currentPages === page ? s.selectedPage : ''}> {page}
                     </span>
             })}

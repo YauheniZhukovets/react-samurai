@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {AppStateType} from '../../Redux/reduxStore';
-import {followTC, getUsersPageChangedTC, requestUsersTC, unfollowTC, UserType,} from '../../Redux/usersReducer';
+import {followTC, requestUsersTC, unfollowTC, UserType,} from '../../Redux/usersReducer';
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
@@ -26,7 +26,6 @@ type MapStateToPropsType = {
 
 type mapDispatchToPropsType = {
     requestUsersTC: (currentNumberPages: number, pageSize: number) => void
-    getUsersPageChangedTC: (pageNumber: number, pageSize: number) => void
     followTC: (userId: number) => void
     unfollowTC: (userId: number) => void
 }
@@ -40,18 +39,13 @@ class UsersComponent extends React.Component<UsersType, AppStateType> {
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersPageChangedTC(pageNumber, this.props.pageSize)
+        this.props.requestUsersTC(pageNumber, this.props.pageSize)
     }
 
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            {
-                !this.props.isFetching && <Users portionSize={10}
-                                                 onPageChanged={this.onPageChanged}
-                                                 {...this.props}
-                />
-            }
+            <Users onPageChanged={this.onPageChanged} {...this.props}/>
         </>
     }
 
@@ -73,6 +67,5 @@ export default compose<React.ComponentType>(
             requestUsersTC,
             followTC,
             unfollowTC,
-            getUsersPageChangedTC,
         }
     ))(UsersComponent)

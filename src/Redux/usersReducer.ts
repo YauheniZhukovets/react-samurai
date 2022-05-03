@@ -31,7 +31,7 @@ export type initialStateUserType = {
 }
 const initialState = {
     users: [],
-    pageSize: 100,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPages: 1,
     isFetching: true,
@@ -116,15 +116,6 @@ export const requestUsersTC = (page: number, pageSize: number) => async (dispatc
     dispatch(toggleIsFetchingAC(false))
     dispatch(setUserAC(data.items))
     dispatch(setTotalUsersCountAC(data.totalCount))
-}
-
-export const getUsersPageChangedTC = (pageNumber: number, pageSize: number) => async (dispatch: Dispatch<ACUsersReducerType>) => {
-    dispatch(setCurrentPageAC(pageNumber))
-    dispatch(toggleIsFetchingAC(true))
-
-    const data = await usersAPI.getUsers(pageNumber, pageSize)
-    dispatch(toggleIsFetchingAC(false))
-    dispatch(setUserAC(data.items))
 }
 
 export const followUnfollowFlow = async (dispatch: any, userId: number, apiMethod: Function, actionCreator: Function) => {
