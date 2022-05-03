@@ -46,8 +46,12 @@ class UsersComponent extends React.Component<UsersType, AppStateType> {
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            {!this.props.isFetching && <Users onPageChanged={this.onPageChanged}
-                                              {...this.props}            />}
+            {
+                !this.props.isFetching && <Users portionSize={10}
+                                                 onPageChanged={this.onPageChanged}
+                                                 {...this.props}
+                />
+            }
         </>
     }
 

@@ -1,32 +1,54 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './Paginator.module.css';
 
 type PaginatorPropsType = {
-    totalUsersCount: number
+    totalItemsCount: number
+    portionSize: number
     pageSize: number
     currentPages: number
     onPageChanged: (pageNumber: number) => void
 }
 
-export const Paginator = ({totalUsersCount, pageSize,currentPages,onPageChanged,}: PaginatorPropsType) => {
+export const Paginator = ({
+                              totalItemsCount,
+                              pageSize,
+                              currentPages,
+                              onPageChanged,
+                              portionSize,
+                          }: PaginatorPropsType) => {
 
-    let pageCount = Math.ceil(totalUsersCount / pageSize)
+    let pagesCount = Math.ceil(totalItemsCount / pageSize)
     let pages = [];
-    for (let i = 1; i <= pageCount; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
 
+    const portionCount = Math.ceil(pagesCount / portionSize)
+    const [portionNumber, setPortionNumber] = useState(1)
+    const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
+    const rightPortionPageNumber = portionNumber * portionSize
+
     return <div>
-        <div>
-            {pages.map((p, i) => {
+        {
+            portionNumber > 1 &&
+            <button onClick={() => setPortionNumber(portionNumber - 1)}>{`<`}</button>
+        }
+
+        {pages
+            .filter((page) => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
+            .map((page, index) => {
                 return <span style={{cursor: 'pointer'}}
-                             key={i} onClick={() => {
-                    onPageChanged(p)
-                }}
-                             className={currentPages === p ? s.selectedPage : ''}> {p}
+                             key={index}
+                             onClick={(e) => {onPageChanged(page)}}
+                             className={currentPages === page ? s.selectedPage : ''}> {page}
                     </span>
             })}
-        </div>
+
+        {
+            portionCount > portionNumber &&
+            <button onClick={() => setPortionNumber(portionNumber + 1)}>{`>`}</button>
+        }
+
     </div>;
 };
 

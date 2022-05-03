@@ -3,11 +3,11 @@ import {UserType} from '../../Redux/usersReducer';
 import {Paginator} from '../common/Paginator/Paginator';
 import {User} from './User';
 
-
 type UsersPropsType = {
     getUsers: Array<UserType>
     totalUsersCount: number
     pageSize: number
+    portionSize:number
     currentPages: number
     followingInProgress: number[]
     onPageChanged: (pageNumber: number) => void
@@ -24,13 +24,15 @@ export const Users = ({
                           followingInProgress,
                           followTC,
                           unfollowTC,
+                          portionSize,
                       }: UsersPropsType) => {
 
     return <div>
-        <Paginator totalUsersCount={totalUsersCount}
+        <Paginator totalItemsCount={totalUsersCount}
                    pageSize={pageSize}
                    currentPages={currentPages}
                    onPageChanged={onPageChanged}
+                   portionSize={portionSize}
         />
 
         {getUsers.map(m => <User key={m.id}
