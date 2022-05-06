@@ -88,7 +88,6 @@ export const setUserAC = (users: Array<UserType>) => {
 }
 
 type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-debugger
 export const setCurrentPageAC = (currentPages: number) => {
     return {type: 'users/SET-CURRENT-PAGE', currentPages} as const
 }
