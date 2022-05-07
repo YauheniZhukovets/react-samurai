@@ -5,17 +5,15 @@ import {Route, Routes,} from 'react-router';
 import {Music} from './Component/Music/Music';
 import {News} from './Component/News/News';
 import {Setting} from './Component/Setting/Setting';
-//import ProfileContainer from './Component/Profile/ProfileInfo/ProfileContainer';
-import HeaderContainer from './Component/Header/HeaderContainer';
-import Login from './Component/Login/Login';
-//import DialogsContainer from './Component/Dialogs/DialogsContainer';
-import UsersContainer from './Component/Users/UsersContainer';
 import {AppStateType} from './Redux/reduxStore';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {initializeAppTC} from './Redux/appReducer';
 import {Preloader} from './Component/common/Preloader/Preloader';
+import HeaderContainer from './Component/Header/HeaderContainer';
 
+const Login = React.lazy(() => import('./Component/Login/Login'));
+const UsersContainer = React.lazy(() => import('./Component/Users/UsersContainer'));
 const DialogsContainer = React.lazy(() => import('./Component/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./Component/Profile/ProfileInfo/ProfileContainer'));
 
