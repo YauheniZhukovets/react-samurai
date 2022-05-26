@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileType} from '../../../Redux/profileReducer';
@@ -8,21 +8,28 @@ import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
 type ProfileInfoPropsType = {
     profile: ProfileType
     status: string
-    updateStatusTC: (status: string) => void
+    updateStatusTC: (status: string) => Function
+    savePhotoTC: (file: File) => Function
+    isOwner: boolean
 }
 
-export const ProfileInfo = ({profile, status, updateStatusTC,}: ProfileInfoPropsType) => {
+export const ProfileInfo = ({profile, status, updateStatusTC, isOwner, savePhotoTC}: ProfileInfoPropsType) => {
     if (!profile) {
         return <Preloader/>
     }
     const noData = 'не указан'
+    const onChangePhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            savePhotoTC(e.target.files[0]);
+        }
+    }
+
     return (
         <div className={s.profileBlock}>
 
             <div className={s.descriptionBlock}>
-                <img className={s.userPhoto} src={profile.photos.small ? profile.photos.small : userPhoto}
-                     alt={'img'}/>
-
+                <img className={s.userPhoto} src={profile.photos.large || userPhoto} alt={'img'}/>
+                {isOwner && <div><input type="file" onChange={onChangePhotoSelected}/></div>}
                 <ProfileStatusWithHooks statusText={status} updateStatusTC={updateStatusTC}/>
 
                 <h3>{profile.fullName}</h3>

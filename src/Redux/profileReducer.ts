@@ -36,15 +36,15 @@ const initialState = {
         {id: 2, message: 'My first post!', likesCount: 20},
     ],
     profile: null,
-    status: '',
+    status: '' ,
 }
-export type initialStateProfileType = {
+export type InitialStateProfileType = {
     postsData: Array<PostType>
-    profile: null | ProfileType
+    profile: ProfileType
     status: string
 }
 
-export const profileReducer = (state: initialStateProfileType = initialState, action: ACProfileReducerType): initialStateProfileType => {
+export const profileReducer = (state: InitialStateProfileType = initialState, action: ACProfileReducerType) => {
     switch (action.type) {
         case 'profile/ADD-POST': {
             const body = action.newPostBody
@@ -59,11 +59,19 @@ export const profileReducer = (state: initialStateProfileType = initialState, ac
         case 'profile/DELETE-POST': {
             return {...state, postsData: state.postsData.filter(post => post.id !== action.id)}
         }
+        case 'profile/SAVE-PHOTO-SUCCESS': {
+            return {...state, profile: {...state.profile, photos: action.photos}}
+        }
         default:
             return state
     }
 }
-export type ACProfileReducerType = AddPostACType | SetUserProfileACType | SetStatusACType | DeletePostACType
+export type ACProfileReducerType =
+    AddPostACType
+    | SetUserProfileACType
+    | SetStatusACType
+    | DeletePostACType
+    | SavePhotoSuccessACACType
 
 
 type AddPostACType = ReturnType<typeof addPostAC>
@@ -82,6 +90,10 @@ type DeletePostACType = ReturnType<typeof deletePostAC>
 export const deletePostAC = (id: number) => {
     return {type: 'profile/DELETE-POST', id} as const
 }
+type SavePhotoSuccessACACType = ReturnType<typeof savePhotoSuccessAC>
+export const savePhotoSuccessAC = (photos: { small: string, large: string }) => {
+    return {type: 'profile/SAVE-PHOTO-SUCCESS', photos} as const
+}
 
 export const getUserProfileTC = (userId: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
     const res = await profileAPI.getProfile(userId)
@@ -95,11 +107,17 @@ export const getStatusTC = (status: string) => async (dispatch: Dispatch<ACProfi
 
 export const updateStatusTC = (status: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
     const res = await profileAPI.updateStatus(status)
-
     if (res.data.resultCode === 0) {
         dispatch(setStatusAC(status))
     }
 }
+export const savePhotoTC = (file: File) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+    const res = await profileAPI.savePhoto(file)
+    if (res.data.resultCode === 0) {
+        dispatch(savePhotoSuccessAC(res.data.data.photos))
+    }
+}
+
 
 
 
