@@ -6,12 +6,13 @@ import {ProfileType} from '../../Redux/profileReducer';
 export type ProfilePropsType = {
     profile: ProfileType
     status: string
-    updateStatusTC: (status: string) => Function
     isOwner: boolean
-    savePhotoTC: (file: File) => Function
+    updateStatusTC: (status: string) => any
+    savePhotoTC: (file: File) => any
+    saveProfileTC: (formData: ProfileType) => any
 }
 
-export const Profile = ({profile, status, updateStatusTC, isOwner, savePhotoTC}: ProfilePropsType) => {
+export const Profile = ({profile, status, updateStatusTC, isOwner, savePhotoTC, saveProfileTC}: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo profile={profile}
@@ -19,6 +20,7 @@ export const Profile = ({profile, status, updateStatusTC, isOwner, savePhotoTC}:
                          updateStatusTC={updateStatusTC}
                          isOwner={isOwner}
                          savePhotoTC={savePhotoTC}
+                         saveProfileTC={saveProfileTC}
             />
             <MyPostsContainer/>
         </div>

@@ -1,5 +1,6 @@
-import {Dispatch} from 'redux';
 import {profileAPI} from '../API/api';
+import {AppStateType, AppThunk} from './reduxStore';
+import {stopSubmit} from 'redux-form';
 
 export type PostType = {
     id: number
@@ -22,12 +23,12 @@ export type ProfileType = {
     'lookingForAJob': string
     'lookingForAJobDescription': string
     'fullName': string
-    'userId': number
+    'userId': string
     'photos': {
         'small': string
         'large': string
     }
-} | null
+}
 
 
 const initialState = {
@@ -35,8 +36,8 @@ const initialState = {
         {id: 1, message: 'Hi, how are you?', likesCount: 15},
         {id: 2, message: 'My first post!', likesCount: 20},
     ],
-    profile: null,
-    status: '' ,
+    profile: null as unknown as ProfileType,
+    status: '',
 }
 export type InitialStateProfileType = {
     postsData: Array<PostType>
@@ -67,7 +68,7 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
     }
 }
 export type ACProfileReducerType =
-    AddPostACType
+    | AddPostACType
     | SetUserProfileACType
     | SetStatusACType
     | DeletePostACType
@@ -95,26 +96,38 @@ export const savePhotoSuccessAC = (photos: { small: string, large: string }) => 
     return {type: 'profile/SAVE-PHOTO-SUCCESS', photos} as const
 }
 
-export const getUserProfileTC = (userId: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+export const getUserProfileTC = (userId: string): AppThunk => async (dispatch) => {
     const res = await profileAPI.getProfile(userId)
     dispatch(setUserProfileAC(res.data))
 }
 
-export const getStatusTC = (status: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+export const getStatusTC = (status: string): AppThunk => async (dispatch) => {
     const res = await profileAPI.getStatus(status)
     dispatch(setStatusAC(res.data))
 }
 
-export const updateStatusTC = (status: string) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+export const updateStatusTC = (status: string): AppThunk => async (dispatch) => {
     const res = await profileAPI.updateStatus(status)
     if (res.data.resultCode === 0) {
         dispatch(setStatusAC(status))
     }
 }
-export const savePhotoTC = (file: File) => async (dispatch: Dispatch<ACProfileReducerType>) => {
+export const savePhotoTC = (file: File): AppThunk => async (dispatch) => {
     const res = await profileAPI.savePhoto(file)
     if (res.data.resultCode === 0) {
         dispatch(savePhotoSuccessAC(res.data.data.photos))
+    }
+}
+
+export const saveProfileTC = (profile: ProfileType): AppThunk => async (dispatch, getState: () => AppStateType) => {
+    const state = getState()
+    const res = await profileAPI.saveProfile(profile)
+    if (res.data.resultCode === 0) {
+        dispatch(getUserProfileTC(state.profilePage.profile.userId))
+    } else {
+        let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Field is wrong'
+        dispatch(stopSubmit('edit-profile', {_error: message}))
+        return Promise.reject(res.data.messages[0])
     }
 }
 

@@ -26,7 +26,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginParamsType>> = (props) => {
     );
 };
 
-const LoginReduxForm = reduxForm<LoginParamsType>({form: 'login'})(LoginForm)
+ const LoginReduxForm = reduxForm<LoginParamsType>({form: 'login'})(LoginForm)
 
 const Login = ({loginTC,isAuth,}: LoginContainerType) => {
 

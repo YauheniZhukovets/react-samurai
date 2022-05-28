@@ -21,3 +21,10 @@
 .contactValue {
     padding-left: 10px;
 }
+
+.formSummaryError {
+    border: solid red 2px;
+    color: red;
+    padding: 5px;
+    width: 160px
+}

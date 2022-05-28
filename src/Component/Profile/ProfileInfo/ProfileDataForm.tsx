@@ -1,32 +1,63 @@
-import {ProfileType} from '../../../Redux/profileReducer';
-import {Preloader} from '../../common/Preloader/Preloader';
 import React from 'react';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {Input, Textarea} from '../../common/FormsControls/FormsControls';
+import {ProfileType} from '../../../Redux/profileReducer';
+import s from './ProfileInfo.module.css'
 
-export type ProfileDataFormType = {
-    profile: ProfileType
+type ProfileDataFormType = {
+    profile: ProfileType;
 }
-export const ProfileDataForm = ({profile}: ProfileDataFormType) => {
-    if (!profile) {
-        return <Preloader/>
-    }
+
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormType> & ProfileDataFormType> = (props) => {
+    const {error, handleSubmit, profile} = props
+
     return (
-        <form>
-            <div><b>Full name</b>: {profile.fullName}</div>
+        <form onSubmit={handleSubmit}>
             <div>
-                {<button onClick={()=>{}}>save</button>}
+                <p>
+                    <b>Full name</b> :
+                    <Field name={'fullName'} component={Input} placeholder={'Full name'}/>
+                </p>
             </div>
-           {/* <div className={s.contact}>
+            <div>
                 <b>Contacts</b>:
-                {keysContacts.map((key, index) => {
-                    return <Contact key={index} contactTitle={key} contactValue={valuesContacts[index]}/>
+                {Object.keys(profile.contacts).map((key, index) => {
+                    return (
+                        <div className={s.contactValue} key={index}>
+                            <b>{key}</b> : <Field name={'contacts.' + key} component={Input} placeholder={key}/>
+                        </div>
+                    )
                 })}
-            </div>*/}
-            <p><b>Ищу работу: </b>{profile.lookingForAJob ? 'yas' : 'no'}</p>
-            {profile.lookingForAJob &&
-                <div>
-                    <p><b>My skills: </b>{profile.lookingForAJobDescription}</p>
-                </div>}
-            <p><b>Обо мне: </b>{profile.aboutMe}</p>
+            </div>
+            <div>
+                <p>
+                    <b>looking for a job</b> :
+                    <Field name={'lookingForAJob'} component={Input} type={'checkbox'}/>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <b>My skills</b> :
+                    <Field name={'lookingForAJobDescription'} component={Textarea} placeholder={'My skills'}/>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <b>About me</b> :
+                    <Field name={'aboutMe'} component={Textarea} placeholder={'About me'}/>
+                </p>
+            </div>
+            
+            <div>
+                <button>save</button>
+            </div>
+            {error && <div className={s.formSummaryError}>{error}</div>}
         </form>
     )
 }
+
+
+const ProfileDataFormReduxForm = reduxForm<ProfileType, ProfileDataFormType>({form: 'edit-profile'})(ProfileDataForm)
+export default ProfileDataFormReduxForm

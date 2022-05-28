@@ -19,7 +19,7 @@ export const ProfileData = ({profile, isOwner, goToEditMode}: ProfileDataType) =
         <div>
             <h3>{profile.fullName}</h3>
             <div>
-                {isOwner && <button onClick={goToEditMode}>edit</button>}
+                {isOwner && <button onClick={goToEditMode}>Edit profile</button>}
             </div>
             <div className={s.contact}>
                 <b>Contacts</b>:
@@ -27,12 +27,12 @@ export const ProfileData = ({profile, isOwner, goToEditMode}: ProfileDataType) =
                     return <Contact key={index} contactTitle={key} contactValue={valuesContacts[index]}/>
                 })}
             </div>
-            <p><b>Ищу работу: </b>{profile.lookingForAJob ? 'yas' : 'no'}</p>
+            <p><b>looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}</p>
             {profile.lookingForAJob &&
                 <div>
-                    <p><b>My skills: </b>{profile.lookingForAJobDescription}</p>
+                    <p><b>My skills</b>: {profile.lookingForAJobDescription}</p>
                 </div>}
-            <p><b>Обо мне: </b>{profile.aboutMe}</p>
+            <p><b>About me</b>: {profile.aboutMe}</p>
         </div>
     )
 }
