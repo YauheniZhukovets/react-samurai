@@ -27,9 +27,15 @@ type MapDispatchToProps = {
 }
 
 class App extends React.Component <AppConnectType, AppStateType> {
-
+    catchAllUnhandledErrors(promiseRejectionEvent: PromiseRejectionEvent) {
+        console.log('Some error occurred', promiseRejectionEvent)
+    }
     componentDidMount() {
         this.props.initializeAppTC()
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+    }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
 
     render() {
@@ -44,6 +50,7 @@ class App extends React.Component <AppConnectType, AppStateType> {
                 <div className={'app-wrapper-content'}>
                     <React.Suspense fallback={<div>Loading...</div>}>
                         <Routes>
+                            <Route path="/" element={<ProfileContainer/>}/>
                             <Route path="/profile" element={<ProfileContainer/>}>
                                 <Route path=":userId" element={<ProfileContainer/>}/>
                             </Route>
@@ -53,6 +60,7 @@ class App extends React.Component <AppConnectType, AppStateType> {
                             <Route path="/music" element={<Music name={'Music'}/>}/>
                             <Route path="/setting" element={<Setting name={'Setting'}/>}/>
                             <Route path="/login" element={<Login/>}/>
+                            <Route path="*" element={<div>404 NOT FOUND</div>}/>
                         </Routes>
                     </React.Suspense>
                 </div>

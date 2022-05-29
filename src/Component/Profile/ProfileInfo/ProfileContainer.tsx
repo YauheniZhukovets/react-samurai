@@ -57,8 +57,8 @@ class ProfileContainer extends React.Component<ProfileContainerType, AppStateTyp
                 <Profile profile={this.props.profile}
                          status={this.props.status}
                          updateStatusTC={this.props.updateStatusTC}
-                         savePhotoTC={this.props.savePhotoTC}
                          isOwner={!this.props.router.params.userId}
+                         savePhotoTC={this.props.savePhotoTC}
                          saveProfileTC={this.props.saveProfileTC}
                 />
             </div>
