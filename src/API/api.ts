@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {ProfileType} from '../Redux/profileReducer';
 
 const instance = axios.create({
@@ -46,6 +46,12 @@ export const authAPI = {
     },
 }
 
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get<any,AxiosResponse<SecurityType>>(`security/get-captcha-url`)
+    }
+}
+
 export const profileAPI = {
     getProfile(userId: string) {
         return instance.get(`profile/` + userId)
@@ -89,4 +95,8 @@ type BaseProfileType<T = {}> = {
     fieldsErrors: string[]
     messages: string[]
     resultCode: number
+}
+
+type SecurityType = {
+    url: string
 }

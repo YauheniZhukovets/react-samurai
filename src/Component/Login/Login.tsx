@@ -9,8 +9,13 @@ import {AppStateType} from '../../Redux/reduxStore';
 import {Navigate} from 'react-router-dom';
 import s from '../common/FormsControls/FormsControls.module.css'
 
-const LoginForm: React.FC<InjectedFormProps<LoginParamsType>> = (props) => {
-    const {handleSubmit, error} = props
+
+type LoginFormType = {
+    captcha: string | null
+}
+
+const LoginForm: React.FC<InjectedFormProps<LoginParamsType, LoginFormType> & LoginFormType> = (props) => {
+    const {handleSubmit, error, captcha} = props
 
     return (
         <form onSubmit={handleSubmit}>
@@ -19,6 +24,9 @@ const LoginForm: React.FC<InjectedFormProps<LoginParamsType>> = (props) => {
                         type={'password'}/></div>
             <div><Field name={'rememberMe'} component={Input} type={'checkbox'}/>remember me</div>
             {error && <div className={s.formSummaryError}>{error}</div>}
+            {captcha && <img src={captcha} alt="captcha"/>}
+            {captcha && <Field validate={[required]} name={'captcha'} component={Input} placeholder={'Symbols from image'}/>}
+
             <div>
                 <button type={'submit'}>Login</button>
             </div>
@@ -26,9 +34,9 @@ const LoginForm: React.FC<InjectedFormProps<LoginParamsType>> = (props) => {
     );
 };
 
- const LoginReduxForm = reduxForm<LoginParamsType>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<LoginParamsType, LoginFormType>({form: 'login'})(LoginForm)
 
-const Login = ({loginTC,isAuth,}: LoginContainerType) => {
+const Login = ({loginTC, isAuth, captcha}: LoginContainerType) => {
 
     const onSubmit = (formData: LoginParamsType) => {
         loginTC(formData)
@@ -39,12 +47,13 @@ const Login = ({loginTC,isAuth,}: LoginContainerType) => {
     }
     return <div>
         <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm onSubmit={onSubmit} captcha={captcha}/>
     </div>
 }
 
 const mapStateToProps = (state: AppStateType) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captcha: state.auth.captchaUrl,
 })
 
 export default connect(mapStateToProps, {loginTC})(Login)
@@ -52,6 +61,7 @@ export default connect(mapStateToProps, {loginTC})(Login)
 type LoginContainerType = MapDispatchToProps & MapStateToProps
 type MapStateToProps = {
     isAuth: boolean
+    captcha: string | null
 }
 type MapDispatchToProps = {
     loginTC: Function

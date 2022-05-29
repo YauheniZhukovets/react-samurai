@@ -23,7 +23,7 @@ type MapStateToProps = {
     initialized: boolean
 }
 type MapDispatchToProps = {
-    initializeAppTC: Function
+    initializeAppTC: () => any
 }
 
 class App extends React.Component <AppConnectType, AppStateType> {
