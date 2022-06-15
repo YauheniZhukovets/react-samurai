@@ -1,0 +1,44 @@
+.nav {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: linear-gradient(#3a0064, #483d8b, transparent, transparent);
+    border-radius: 8px;
+}
+
+.item {
+    padding: 7px 12px;
+}
+
+.activeLink {
+    text-decoration: none;
+    color: gold;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.link {
+    text-decoration: none;
+    color: #fff;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: #fff;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 24px;
+    line-height: 1.2;
+    background-color: #7536b4;
+    box-shadow: 0 0 15px #520099;
+}

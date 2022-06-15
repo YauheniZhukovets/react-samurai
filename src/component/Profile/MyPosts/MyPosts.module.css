@@ -1,0 +1,38 @@
+.potsBlock {
+    padding: 15px;
+    line-height: 1;
+    font-size: 14px;
+}
+
+.myPostTitle {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.addMyPostForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    line-height: 1;
+    font-size: 18px;
+}
+
+.formTextarea {
+    min-height: 70px;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    word-break: break-word;
+    resize: vertical;
+}
+
+.formTextarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px 1px #7fff00;
+}
+
+.buttonAddPost {
+    margin-top: 15px;
+}
