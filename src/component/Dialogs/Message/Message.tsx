@@ -7,5 +7,7 @@ type MessagePropsType = {
 
 export const Message = ({message,}: MessagePropsType) => {
 
-    return <div className={s.dialog}>{message}</div>
+    return <div>
+        <span className={s.textMessage}>{message}</span>
+    </div>
 }

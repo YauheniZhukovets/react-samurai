@@ -8,9 +8,10 @@ type DialogItemsType = {
 }
 
 export const DialogItems = ({id, name,}: DialogItemsType) => {
-    let path = '/dialogs/' + id
+    const path = `/dialogs/${id}`
+    const setActive = ({isActive}: { isActive: boolean }) => isActive ? s.activeLink : s.link
 
     return <div className={s.dialog}>
-        <NavLink to={path}>{name}</NavLink>
+        <NavLink className={setActive} to={path}>{name}</NavLink>
     </div>
 }

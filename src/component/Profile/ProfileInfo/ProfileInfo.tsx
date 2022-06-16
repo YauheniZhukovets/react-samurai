@@ -58,9 +58,12 @@ export const ProfileInfo = ({
 
             </div>
             <div className={s.editModeContainer}>
-                <ProfileStatusWithHooks statusText={status}
-                                        updateStatusTC={updateStatusTC}
-                />
+                {isOwner
+                    ? <ProfileStatusWithHooks statusText={status}
+                                              updateStatusTC={updateStatusTC}
+                    />
+                    : <div><b>Status: </b><span>{status}</span></div>
+                }
                 {
                     editMode
                         ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} profile={profile}/>

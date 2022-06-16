@@ -19,7 +19,7 @@ type MapStateToPropsType = {
     getUsers: Array<UserType>
     pageSize: number
     totalUsersCount: number
-    currentPages: number
+    currentPage: number
     isFetching: boolean
     followingInProgress: number[]
 }
@@ -35,7 +35,7 @@ export type UsersType = MapStateToPropsType & mapDispatchToPropsType
 class UsersComponent extends React.Component<UsersType, AppStateType> {
 
     componentDidMount() {
-        this.props.requestUsersTC(this.props.currentPages, this.props.pageSize)
+        this.props.requestUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -56,7 +56,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         getUsers: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
-        currentPages: getCurrentPages(state),
+        currentPage: getCurrentPages(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)
     }

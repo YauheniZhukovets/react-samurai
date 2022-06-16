@@ -5,12 +5,11 @@ import {MyPostsType} from './MyPostsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControls';
-import SuperButton from '../../../common/c2-SuperButton/SuperButton';
-import {Preloader} from '../../common/Preloader/Preloader';
+import SuperButton from '../../common/SuperButton/SuperButton';
 
 export const MyPosts = React.memo((props: MyPostsType) => {
     if (!props.profilePage.profile) {
-        return <Preloader/>
+        return <div/>
     }
 
     const postElements = props.profilePage.postsData.map(m => <Post key={m.id}

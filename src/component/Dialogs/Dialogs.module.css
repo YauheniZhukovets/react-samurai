@@ -1,18 +1,102 @@
- .dialogs {
-     display: grid;
-     grid-template-columns: 2fr 10fr;
- }
+.dialogsContainer {
+    display: flex;
+}
 
- .dialogsItems {
-     padding: 10px;
- }
+.dialogsItems {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
 
- .dialogsItems .active {
-     color: gold;
- }
+.dialogs {
+    display: grid;
+    grid-gap: 15px;
+    gap: 15px;
+    grid-template-columns: minmax(75px, 1fr) 1fr;
+    padding: 15px;
+    height: 400px;
+}
 
- .messages {
-     padding: 10px;
- }
 
+.dialog {
+    padding: 0 10px;
+}
 
+.activeLink {
+    text-decoration: none;
+    font-size: 18px;
+    color: gold;
+    border-radius: 8px;
+    line-height: 1.2;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 18px;
+    color: #7fffd4;
+    border-radius: 8px;
+    line-height: 1.2;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: auto;
+    margin-top: 15px;
+}
+
+.textMessage {
+    display: inline-block;
+    color: #000;
+    font-size: 16px;
+    word-break: break-word;
+    margin-bottom: 25px;
+    background-color: #ddd;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.avatarContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.formContainer {
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.formTextarea {
+    width: auto;
+    min-width: 300px;
+    padding: 5px 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    resize: none;
+    margin: 20px 0 0;
+    min-height: 70px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    word-break: break-word;
+}
+
+.formTextarea:focus {
+    outline: none;
+}
+
+.buttonDialogs {
+    margin-top: 15px;
+}

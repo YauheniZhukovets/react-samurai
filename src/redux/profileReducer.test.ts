@@ -1,6 +1,13 @@
-import {addPostAC, deletePostAC, initialStateProfileType, profileReducer, setStatusAC} from './profileReducer';
+import {
+    addPostAC,
+    deletePostAC,
+    InitialStateProfileType,
+    profileReducer,
+    ProfileType,
+    setStatusAC
+} from './profileReducer';
 
-let startState: initialStateProfileType;
+let startState: InitialStateProfileType;
 
 beforeEach(() => {
     startState = {
@@ -8,7 +15,7 @@ beforeEach(() => {
             {id: 1, message: 'Hi, how are you?', likesCount: 15},
             {id: 2, message: 'My first post!', likesCount: 20},
         ],
-        profile: null,
+        profile: null as unknown as ProfileType,
         status: '',
     }
 })

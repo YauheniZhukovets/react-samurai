@@ -1,11 +1,4 @@
-export type DialogsType = {
-    id: number
-    name: string
-}
-export type MessageType = {
-    id: number
-    message: string
-}
+import avatar from '../assets/images/userIcon.png'
 
 const initialState = {
     dialogsData: [
@@ -14,25 +7,31 @@ const initialState = {
         {id: 3, name: 'Veronika'},
         {id: 4, name: 'Andrey'},
         {id: 5, name: 'Igor'},
-        {id: 6, name: 'Artem'},
-    ] as Array<DialogsType>,
+    ],
     massagesData: [
         {id: 1, message: 'Hi'},
-        {id: 2, message: 'How is your it-kamasutra'},
-        {id: 3, message: 'Yo'},
-        {id: 4, message: 'Yo'},
-        {id: 5, message: 'Yo'},
-    ] as Array<MessageType>,
+        {id: 2, message: 'Hello'},
+        {id: 3, message: 'How are you?'},
+        {id: 4, message: 'I\'m ok!'},
+        {id: 5, message: 'It is good!'}
+    ],
+    avatarData: [
+        {id: 1, link: avatar},
+        {id: 2, link: avatar},
+        {id: 3, link: avatar},
+        {id: 4, link: avatar},
+        {id: 5, link: avatar},
+    ]
 }
 
 export type InitialStateDialogsType = typeof initialState
 
-export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType):InitialStateDialogsType => {
+export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType): InitialStateDialogsType => {
     switch (action.type) {
         case 'dialogs/ADD-MESSAGE': {
             const body = action.newMessageBody
-            return {...state, massagesData: [...state.massagesData, {id:6, message:body}] }
-         }
+            return {...state, massagesData: [...state.massagesData, {id: 6, message: body}]}
+        }
         default:
             return state
     }

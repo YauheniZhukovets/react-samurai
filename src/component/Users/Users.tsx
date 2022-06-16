@@ -2,12 +2,13 @@ import React from 'react';
 import {UserType} from '../../redux/usersReducer';
 import {Paginator} from '../common/Paginator/Paginator';
 import {User} from './User';
+import s from './Users.module.css'
 
 type UsersPropsType = {
     getUsers: Array<UserType>
     totalUsersCount: number
     pageSize: number
-    currentPages: number
+    currentPage: number
     followingInProgress: number[]
     onPageChanged: (pageNumber: number) => void
     followTC: (userId: number) => void
@@ -18,27 +19,29 @@ export const Users = ({
                           getUsers,
                           totalUsersCount,
                           pageSize,
-                          currentPages,
+                          currentPage,
                           onPageChanged,
                           followingInProgress,
                           followTC,
                           unfollowTC,
                       }: UsersPropsType) => {
 
-    return <div>
+    return <div className={s.usersContainer}>
         <Paginator totalItemsCount={totalUsersCount}
                    pageSize={pageSize}
-                   currentPages={currentPages}
+                   currentPage={currentPage}
                    onPageChanged={onPageChanged}
-                   portionSize={10}/>
+                   portionSize={15}/>
 
+        <div className={s.users}>
+            {getUsers.map(m => <User key={m.id}
+                                     user={m}
+                                     followingInProgress={followingInProgress}
+                                     followTC={followTC}
+                                     unfollowTC={unfollowTC}
+            />)}
+        </div>
 
-        {getUsers.map(m => <User key={m.id}
-                                 user={m}
-                                 followingInProgress={followingInProgress}
-                                 followTC={followTC}
-                                 unfollowTC={unfollowTC}
-        />)}
     </div>
 };
 

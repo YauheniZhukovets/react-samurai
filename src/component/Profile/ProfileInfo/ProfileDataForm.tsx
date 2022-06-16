@@ -3,7 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input, Textarea} from '../../common/FormsControls/FormsControls';
 import {ProfileType} from '../../../redux/profileReducer';
 import s from './ProfileDataForm.module.css'
-import SuperButton from '../../../common/c2-SuperButton/SuperButton';
+import SuperButton from '../../common/SuperButton/SuperButton';
 
 type ProfileDataFormType = {
     profile: ProfileType;

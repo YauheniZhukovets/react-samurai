@@ -16,8 +16,6 @@
 }
 
 .default:active {
-    margin-top: 1px;
-    margin-bottom: -1px;
     zoom: 1;
     background: #d3d3d3;
 }
@@ -27,7 +25,10 @@
 }
 
 .default:disabled {
-    box-shadow: inset 0 -20px 20px rgba(148, 141, 141, 0.5);
+    box-shadow: none;
+    background-color: #a2a2a2;
+    text-shadow: none;
+    zoom: 0;
 }
 
 .red {
