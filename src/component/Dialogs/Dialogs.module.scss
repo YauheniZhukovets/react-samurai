@@ -1,0 +1,49 @@
+@import "./src/assets/styles/scss/variables";
+@import "./src/assets/styles/scss/mixins";
+
+.dialogsContainer {
+  @include flex(row, normal, normal, nowrap);
+
+  .dialogs {
+    display: grid;
+    grid-gap: 15px;
+    gap: 15px;
+    grid-template-columns: minmax(75px, 1fr) 1fr;
+    padding: 15px;
+    height: 400px;
+
+    .avatarContainer {
+      @include flex(column, space-around, normal, nowrap);
+    }
+
+    .dialogsItems {
+      @include flex(column, space-around, normal, nowrap);
+    }
+  }
+
+  .messages {
+    @include flex(column, normal, normal, nowrap);
+    padding: 15px;
+    width: auto;
+    margin-top: 15px;
+
+    .formContainer {
+      @include flex(column, center, flex-end, nowrap);
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+}
+
+.formTextarea {
+  @include textarea();
+  margin: 20px 0 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.buttonDialogs {
+  margin-top: 15px;
+}

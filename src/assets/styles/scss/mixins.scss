@@ -1,6 +1,6 @@
 @import "./variables";
 
-@mixin text( $font-family,$font-size, $line-height,$font-weight) {
+@mixin text($font-family,$font-size, $line-height,$font-weight) {
   font-family: $font-family;
   font-size: $font-size;
   line-height: $line-height;
@@ -8,13 +8,13 @@
   color: $textColor;
 }
 
-@mixin background ($background-size, $background-position, $background-repeat) {
+@mixin background($background-size, $background-position, $background-repeat) {
   background-size: $background-size;
   background-position: $background-position;
   background-repeat: $background-repeat;
 }
 
-@mixin flex ($direction, $justifyContent, $alignItems, $wrap) {
+@mixin flex($direction, $justifyContent, $alignItems, $wrap) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justifyContent;
@@ -22,7 +22,22 @@
   flex-wrap: $wrap;
 }
 
-@mixin container () {
+@mixin container() {
   width: 80%;
   margin: 0 auto;
+}
+
+@mixin textarea() {
+  width: auto;
+  min-width: 260px;
+  min-height: 70px;
+  padding: 8px;
+  font-size: 18px;
+  border-radius: 8px;
+  resize: vertical;
+  margin: 20px 0;
+  background-color: $bgSecondColor;
+  color: $textColor;
+  border: 1px solid transparent;
+  word-break: break-word;
 }

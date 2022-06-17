@@ -2,8 +2,7 @@
 @import "./assets/styles/scss/mixins";
 
 .app {
-    display: flex;
-    flex-direction: column;
+    @include flex(column, normal, normal, nowrap);
     background-color: $bgSecondColor;
     min-height: 100vh;
     height: 100%;
@@ -19,7 +18,6 @@
             position: relative;
             border-radius: 8px;
             background-color: $bgColor;
-            max-width: 100vw;
         }
     }
 }

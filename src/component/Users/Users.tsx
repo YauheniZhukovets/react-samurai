@@ -41,7 +41,6 @@ export const Users = ({
                                      unfollowTC={unfollowTC}
             />)}
         </div>
-
     </div>
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Dialogs.module.css'
+import s from './Dialogs.module.scss'
 import {Message} from './Message/Message';
 import {DialogItems} from './DialogsItem/DialogsItem';
 import {DialogsPropsType} from './DialogsContainer';
@@ -21,24 +21,21 @@ export const Dialogs = ({dialogsPage, AddMessage,}: DialogsPropsType) => {
     }
 
     return (
-        <div>
-            <div className={s.dialogsContainer}>
-                <div className={s.dialogs}>
-                    <div className={s.avatarContainer}>
-                        {avatarElement}
-                    </div>
-                    <div className={s.dialogsItems}>
-                        {dialogElement}
-                    </div>
+        <div className={s.dialogsContainer}>
+            <div className={s.dialogs}>
+                <div className={s.avatarContainer}>
+                    {avatarElement}
                 </div>
-                <div className={s.messages}>
-                    <div>
-                        {messageElement}
-                    </div>
-                    <div className={s.formContainer}>
-                        <AddMessageFormRedux onSubmit={addNewMessage}/>
-                    </div>
-
+                <div className={s.dialogsItems}>
+                    {dialogElement}
+                </div>
+            </div>
+            <div className={s.messages}>
+                <div>
+                    {messageElement}
+                </div>
+                <div className={s.formContainer}>
+                    <AddMessageFormRedux onSubmit={addNewMessage}/>
                 </div>
             </div>
         </div>

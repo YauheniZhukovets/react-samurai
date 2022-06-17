@@ -1,0 +1,13 @@
+@import "./src/assets/styles/scss/variables";
+@import "./src/assets/styles/scss/mixins";
+
+.textMessage {
+  @include text($textFontFamily, 1rem, 1.5, 400);
+  display: inline-block;
+  word-break: break-word;
+  margin-bottom: 25px;
+  background-color: $bgSecondColor;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+

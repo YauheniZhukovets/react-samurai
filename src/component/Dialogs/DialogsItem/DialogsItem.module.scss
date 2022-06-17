@@ -1,0 +1,27 @@
+@import "./src/assets/styles/scss/mixins";
+@import "./src/assets/styles/scss/variables";
+
+.dialog {
+  padding: 0 10px;
+
+  .activeLink {
+    @include text($titleFontFamily, 1.125rem, 1.4, 700);
+    text-decoration: none;
+    color: $secondPrimaryColor;
+    border-radius: 8px;
+  }
+
+  .link {
+    @include text($titleFontFamily, 1.125rem, 1.4, 700);
+    color: $textColor;
+    text-decoration: none;
+    border-radius: 8px;
+
+    &:hover {
+      text-shadow: $textColor 0 0 4px;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,40 @@
+@import "./src/assets/styles/scss/mixins";
+@import "./src/assets/styles/scss/variables";
+
+.nav {
+  @include flex(column, start, center, wrap);
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  background: linear-gradient($bgColor, $bgSecondColor, transparent);
+
+  .item {
+    @include text($textFontFamily, 24px, 1.2, 500);
+    padding: 7px 12px;
+
+    .activeLink {
+      text-decoration: none;
+      color: $secondPrimaryColor;
+      border-radius: 8px;
+      padding: 4px 12px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: $textColor;
+      border-radius: 8px;
+      padding: 4px 12px;
+
+      &:hover {
+        background-color: $primaryColor;
+        box-shadow: 0 0 15px $primaryColor;
+        text-shadow: $textColor 0 0 4px;
+      }
+    }
+  }
+}
+
+
+
+
+
