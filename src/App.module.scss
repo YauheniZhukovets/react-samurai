@@ -1,0 +1,29 @@
+@import "./assets/styles/scss/variables";
+@import "./assets/styles/scss/mixins";
+
+.app {
+    display: flex;
+    flex-direction: column;
+    background-color: $bgSecondColor;
+    min-height: 100vh;
+    height: 100%;
+
+    .appWrapper {
+        @include container;
+        flex: 1;
+        display: grid;
+        grid-template: 1fr/2fr 10fr;
+        grid-gap: 15px;
+
+        .appContent {
+            position: relative;
+            border-radius: 8px;
+            background-color: $bgColor;
+            max-width: 100vw;
+        }
+    }
+}
+
+
+
+

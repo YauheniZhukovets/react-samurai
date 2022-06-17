@@ -3,7 +3,7 @@ import {AppStateType} from '../../redux/reduxStore';
 import {followTC, requestUsersTC, unfollowTC, UserType,} from '../../redux/usersReducer';
 import React from 'react';
 import {Users} from './Users';
-import {Preloader} from '../common/Preloader/Preloader';
+import {Preloader} from '../Common/Preloader/Preloader';
 import {compose} from 'redux';
 import {
     getCurrentPages,

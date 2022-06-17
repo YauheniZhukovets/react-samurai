@@ -1,7 +1,8 @@
 import React from 'react'
-import s from './Header.module.css'
+import s from './Header.module.scss'
 import {NavLink} from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
+import SuperButton from '../Common/SuperButton/SuperButton';
 
 type HeaderPropsType = {
     login: null | string
@@ -10,7 +11,6 @@ type HeaderPropsType = {
 }
 
 export const Header = ({login, isAuth, logoutTC,}: HeaderPropsType) => {
-
     const onClickHandler = () => {
         logoutTC()
     }
@@ -24,9 +24,9 @@ export const Header = ({login, isAuth, logoutTC,}: HeaderPropsType) => {
                     {isAuth
                         ? <div>
                             <span className={s.headerLogin}>{login}</span>
-                            <button className={s.headerButton} onClick={onClickHandler}>Log out</button>
+                            <SuperButton className={s.headerButton} onClick={onClickHandler}>Log out</SuperButton>
                         </div>
-                        : <button className={s.headerButton}><NavLink to={'/login'}>Login</NavLink></button>}
+                        : <SuperButton className={s.headerButton}><NavLink to={'/login'}>Login</NavLink></SuperButton>}
                 </div>
             </div>
         </header>

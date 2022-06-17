@@ -1,8 +1,8 @@
-import {Preloader} from '../../common/Preloader/Preloader';
+import {Preloader} from '../../../Common/Preloader/Preloader';
 import s from './ProfileData.module.css';
 import React from 'react';
-import {ProfileType} from '../../../redux/profileReducer';
-import SuperButton from '../../common/SuperButton/SuperButton';
+import {ProfileType} from '../../../../redux/profileReducer';
+import SuperButton from '../../../Common/SuperButton/SuperButton';
 
 export type ProfileDataType = {
     profile: ProfileType

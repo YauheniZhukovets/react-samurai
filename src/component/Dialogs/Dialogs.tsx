@@ -4,10 +4,10 @@ import {Message} from './Message/Message';
 import {DialogItems} from './DialogsItem/DialogsItem';
 import {DialogsPropsType} from './DialogsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Textarea} from '../common/FormsControls/FormsControls';
+import {Textarea} from '../Common/FormsControls/FormsControls';
 import {maxLengthCreator, required} from '../../utils/validators/validators';
 import {Avatar} from './Avatar/Avatar';
-import SuperButton from '../common/SuperButton/SuperButton';
+import SuperButton from '../Common/SuperButton/SuperButton';
 
 
 export const Dialogs = ({dialogsPage, AddMessage,}: DialogsPropsType) => {

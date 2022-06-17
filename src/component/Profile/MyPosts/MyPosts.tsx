@@ -4,8 +4,8 @@ import {Post} from './Post/Post';
 import {MyPostsType} from './MyPostsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
-import {Textarea} from '../../common/FormsControls/FormsControls';
-import SuperButton from '../../common/SuperButton/SuperButton';
+import {Textarea} from '../../Common/FormsControls/FormsControls';
+import SuperButton from '../../Common/SuperButton/SuperButton';
 
 export const MyPosts = React.memo((props: MyPostsType) => {
     if (!props.profilePage.profile) {

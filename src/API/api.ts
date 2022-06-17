@@ -12,7 +12,7 @@ const instance = axios.create({
 export const usersAPI = {
     getUsers(currentNumberPages: number, pageSize: number) {
         return instance.get(`users?page=${currentNumberPages}&count=${pageSize}`)
-            .then(response => {
+            .then((response) => {
                     return response.data
                 } //вернул promise в котором data
             )

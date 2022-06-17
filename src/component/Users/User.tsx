@@ -3,7 +3,7 @@ import s from './Users.module.css';
 import {NavLink} from 'react-router-dom';
 import userPhoto from './../../assets/images/userIcon.png'
 import {UserType} from '../../redux/usersReducer';
-import SuperButton from '../common/SuperButton/SuperButton';
+import SuperButton from '../Common/SuperButton/SuperButton';
 
 
 type UserPropsType = {

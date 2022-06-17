@@ -1,0 +1,54 @@
+@import "./src/assets/styles/scss/variables";
+
+.default {
+    cursor: pointer;
+    background-color: $primaryColor;
+    color: $textColor;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 50px;
+    &:hover {
+        text-shadow: $textColor 0 0 4px;
+        box-shadow: $primaryColor 0 0 15px;
+    }
+    &:active {
+        background-color: $secondPrimaryColor;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        box-shadow: none;
+        background-color: #a2a2a2;
+        text-shadow: none;
+    }
+}
+
+
+.red {
+    cursor: pointer;
+    background-color: $redColor;
+    color: $textColor;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 50px;
+    &:hover {
+        text-shadow: $textColor 0 0 4px;
+        box-shadow: $redColor 0 0 15px;
+    }
+    &:active {
+        margin-top: 1px;
+        margin-bottom: -1px;
+        zoom: 1;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        box-shadow: none;
+        background-color: #a2a2a2;
+        text-shadow: none;
+    }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Profile} from '../Profile';
+import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../../redux/reduxStore';
+import {AppStateType} from '../../redux/reduxStore';
 import {
     getStatusTC,
     getUserProfileTC,
@@ -9,10 +9,10 @@ import {
     savePhotoTC,
     saveProfileTC,
     updateStatusTC
-} from '../../../redux/profileReducer';
-import {withRouter, WithRouterType} from '../../common/WithRouter/withRouter';
+} from '../../redux/profileReducer';
+import {withRouter, WithRouterType} from '../Common/WithRouter/withRouter';
 import {compose} from 'redux';
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type ProfileContainerType = mapStateToPropsType & mapDispatchToProps & WithRouterType
 

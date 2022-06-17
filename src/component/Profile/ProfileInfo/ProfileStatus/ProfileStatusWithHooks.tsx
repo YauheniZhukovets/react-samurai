@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import SuperInputText from '../../common/SuperInputText/SuperInputText';
+import SuperInputText from '../../../Common/SuperInputText/SuperInputText';
 
 export type ProfileStatusPropsType = {
     statusText: string

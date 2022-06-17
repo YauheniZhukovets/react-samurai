@@ -1,0 +1,28 @@
+@import "./variables";
+
+@mixin text( $font-family,$font-size, $line-height,$font-weight) {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  color: $textColor;
+}
+
+@mixin background ($background-size, $background-position, $background-repeat) {
+  background-size: $background-size;
+  background-position: $background-position;
+  background-repeat: $background-repeat;
+}
+
+@mixin flex ($direction, $justifyContent, $alignItems, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $wrap;
+}
+
+@mixin container () {
+  width: 80%;
+  margin: 0 auto;
+}

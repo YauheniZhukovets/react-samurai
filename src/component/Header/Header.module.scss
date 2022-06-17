@@ -1,0 +1,44 @@
+@import "./src/assets/styles/scss/variables";
+@import "./src/assets/styles/scss/mixins";
+
+.header {
+  @include flex(row, center, center, wrap);
+  background-color: $bgcHeaderFooter;
+  min-height: 75px;
+  margin-bottom: 15px;
+
+  .headerContainer {
+    @include flex(row, space-between, center, wrap);
+    @include container;
+    padding: 10px;
+
+    .headerLogo {
+      width: 55px;
+      margin: 0 10px;
+    }
+
+    .loginBlock {
+      @include flex(row, center, center, wrap);
+
+      .headerLogin {
+        @include text($titleFontFamily, 24px, 1.2, 600);
+        letter-spacing: 1px;
+        word-break: break-all;
+        margin-right: 12px;
+      }
+
+      .headerButton {
+        padding: 10px 15px;
+        & a {
+          color: $textColor;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+

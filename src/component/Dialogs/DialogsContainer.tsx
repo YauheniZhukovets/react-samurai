@@ -5,7 +5,7 @@ import {compose, Dispatch} from 'redux';
 import {Dialogs} from './Dialogs';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import React from 'react';
-import {withRouter} from '../common/WithRouter/withRouter';
+import {withRouter} from '../Common/WithRouter/withRouter';
 
 export type DialogsPropsType = MapStateToPropsType & mapDispatchToPropsType
 
