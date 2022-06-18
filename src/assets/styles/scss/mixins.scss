@@ -28,16 +28,42 @@
 }
 
 @mixin textarea() {
+  @include text($textFontFamily, 1rem, 1.4, 400);
   width: auto;
   min-width: 260px;
   min-height: 70px;
   padding: 8px;
-  font-size: 18px;
   border-radius: 8px;
   resize: vertical;
-  margin: 20px 0;
   background-color: $bgSecondColor;
-  color: $textColor;
   border: 1px solid transparent;
   word-break: break-word;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px 1px $primaryColor;
+  }
+}
+
+@mixin input() {
+  @include text($textFontFamily, 1rem, 1.4, 400);
+  min-width: 50px;
+  height: auto;
+  padding: 5px 0 5px 10px;
+  border-radius: 8px;
+  background-color: $bgSecondColor;
+  border: 1px solid transparent;
+  word-break: break-word;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px 1px $primaryColor;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px $secondPrimaryColor inset !important;
+  }
 }

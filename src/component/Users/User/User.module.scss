@@ -1,0 +1,40 @@
+@import "./src/assets/styles/scss/variables";
+@import "./src/assets/styles/scss/mixins";
+
+.container {
+  @include flex(column, normal, center, nowrap);
+  width: 100%;
+
+  .userContainer {
+    @include flex(column, normal, center, nowrap);
+
+    .userPhoto {
+      width: 50px;
+    }
+
+    .button {
+      padding: 6px 8px;
+    }
+
+    .userName {
+      @include text($titleFontFamily, 1.125rem, 1.4, 700);
+      word-break: break-word;
+      text-align: center;
+      padding: 3px 7px;
+    }
+
+    .userStatus {
+      @include text($titleFontFamily, 1rem, 1.5, 400);
+      word-break: break-word;
+      text-align: center;
+      padding: 3px 7px;
+    }
+  }
+}
+
+
+
+
+
+
+

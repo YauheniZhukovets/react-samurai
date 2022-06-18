@@ -38,10 +38,6 @@
 .formTextarea {
   @include textarea();
   margin: 20px 0 0;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .buttonDialogs {

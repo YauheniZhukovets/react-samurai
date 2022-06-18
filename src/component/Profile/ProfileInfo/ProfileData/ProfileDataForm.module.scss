@@ -1,0 +1,32 @@
+@import "./src/assets/styles/scss/mixins";
+@import "./src/assets/styles/scss/variables";
+
+.editFormContainer {
+    @include flex(row,space-between, normal,nowrap);
+    padding:  10px 10px;
+    word-break: break-word;
+
+    .formInput {
+        @include input();
+    }
+
+    .formTextarea {
+        @include textarea();
+    }
+
+    .contactValue {
+        padding-left: 20px;
+    }
+
+    .formSummaryError {
+        border: solid $redColor 2px;
+        color: $redColor;
+        padding: 5px;
+        width: 160px
+    }
+
+}
+
+
+
+

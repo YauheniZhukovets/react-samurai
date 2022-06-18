@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MyPosts.module.css'
+import s from './MyPosts.module.scss'
 import {Post} from './Post/Post';
 import {MyPostsType} from './MyPostsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
@@ -7,20 +7,20 @@ import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../Common/FormsControls/FormsControls';
 import SuperButton from '../../Common/SuperButton/SuperButton';
 
-export const MyPosts = React.memo((props: MyPostsType) => {
-    if (!props.profilePage.profile) {
+export const MyPosts = React.memo(({profilePage, AddPost}: MyPostsType) => {
+    if (!profilePage.profile) {
         return <div/>
     }
 
-    const postElements = props.profilePage.postsData.map(m => <Post key={m.id}
-                                                                    id={m.id}
-                                                                    photo={props.profilePage.profile.photos.large}
-                                                                    message={m.message}
-                                                                    likesCount={m.likesCount}
+    const postElements = profilePage.postsData.map(m => <Post key={m.id}
+                                                              id={m.id}
+                                                              photo={profilePage.profile.photos.large}
+                                                              message={m.message}
+                                                              likesCount={m.likesCount}
     />)
 
     const addNewMyPost = (value: FormDataType) => {
-        props.AddPost(value.newPostBody)
+        AddPost(value.newPostBody)
     }
 
     return (
@@ -56,7 +56,7 @@ const AddMyPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        name={'newPostBody'}
                 />
             </div>
-            <div className={s.buttonAddPost}>
+            <div className={s.button}>
                 <SuperButton type={'submit'}>Add post</SuperButton>
             </div>
         </form>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from './Paginator.module.css';
+import s from './Paginator.module.scss';
 import SuperButton from '../SuperButton/SuperButton';
 import cn from 'classnames';
 
@@ -30,45 +30,51 @@ export const Paginator = ({
     const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     const rightPortionPageNumber = portionNumber * portionSize
 
-    return <div className={s.pagination}>
-        <div className={s.buttonContainer}>
-            <SuperButton className={s.button}
-                         onClick={() => setPortionNumber(portionNumber - 1)}
-                         disabled={portionNumber <= 1}
-            >
-                Prev list
-            </SuperButton>
-            <SuperButton disabled={currentPage <= 1}
-                         className={s.button}
-                         onClick={() => onPageChanged(currentPage - 1)}
-            >
-                Prev
-            </SuperButton>
-            <SuperButton disabled={currentPage >= pagesCount}
-                         className={s.button}
-                         onClick={() => onPageChanged(currentPage + 1)}
-            >
-                Next
-            </SuperButton>
-            <SuperButton className={s.button}
-                         onClick={() => setPortionNumber(portionNumber + 1)}
-                         disabled={portionCount <= portionNumber}
-            >
-                Next list
-            </SuperButton>
-        </div>
+    return (
+        <div className={s.pagination}>
+            <div className={s.buttonContainer}>
+                <SuperButton className={s.button}
+                             onClick={() => setPortionNumber(portionNumber - 1)}
+                             disabled={portionNumber <= 1}
+                >
+                    Prev list
+                </SuperButton>
+                <SuperButton disabled={currentPage <= 1}
+                             className={s.button}
+                             onClick={() => onPageChanged(currentPage - 1)}
+                >
+                    Prev
+                </SuperButton>
+                <SuperButton disabled={currentPage >= pagesCount}
+                             className={s.button}
+                             onClick={() => onPageChanged(currentPage + 1)}
+                >
+                    Next
+                </SuperButton>
+                <SuperButton className={s.button}
+                             onClick={() => setPortionNumber(portionNumber + 1)}
+                             disabled={portionCount <= portionNumber}
+                >
+                    Next list
+                </SuperButton>
+            </div>
 
-        <div className={s.text}>Current page: <p className={s.currentNumber}>{currentPage}</p></div>
-        <div>
-            {pages
-                .filter((page) => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
-                .map((page, index) => {
-                    return <span key={index}
-                                 onClick={() => onPageChanged(page)}
-                                 className={cn(s.page, {[s.selectPage]: currentPage === page})}> {page}
-                    </span>
-                })}
+            <div className={s.text}>Current page: <p className={s.currentNumber}> {currentPage}</p></div>
+            <div>
+                {pages
+                    .filter((page) => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
+                    .map((page, index) => {
+                        return (
+                            <span key={index}
+                                  onClick={() => onPageChanged(page)}
+                                  className={cn(s.page, {[s.selectPage]: currentPage === page})}
+                            >
+                                {page}
+                            </span>
+                        )
+                    })}
+            </div>
         </div>
-    </div>;
+    )
 };
 

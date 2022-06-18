@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import s from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.scss'
 import {Preloader} from '../../Common/Preloader/Preloader';
 import {ProfileType} from '../../../redux/profileReducer';
 import userPhoto from '../../../assets/images/userIcon.png';
@@ -46,28 +46,35 @@ export const ProfileInfo = ({
         <div className={s.profileBlock}>
             <div className={s.avatarBlock}>
                 <div className={s.userAvatar} style={{backgroundImage: `url(${profile.photos.large || userPhoto})`}}/>
-                {isOwner && <div className={s.buttonFileContainer}>
-                    <input type="file"
-                           name="file"
-                           id="file"
-                           className={s.inputFile}
-                           onChange={onChangePhotoSelected}
-                    />
-                    <label htmlFor="file">Change avatar</label>
-                </div>}
+                {
+                    isOwner && <div className={s.buttonFileContainer}>
+                        <input type="file"
+                               name="file"
+                               id="file"
+                               className={s.inputFile}
+                               onChange={onChangePhotoSelected}
+                        />
+                        <label htmlFor="file">Change avatar</label>
+                    </div>
+                }
 
             </div>
             <div className={s.editModeContainer}>
-                {isOwner
-                    ? <ProfileStatusWithHooks statusText={status}
-                                              updateStatusTC={updateStatusTC}
-                    />
-                    : <div><b>Status: </b><span>{status}</span></div>
+                {
+                    isOwner
+                        ? <ProfileStatusWithHooks statusText={status} updateStatusTC={updateStatusTC}/>
+                        : <div><b>Status: </b><span>{status}</span></div>
                 }
                 {
                     editMode
-                        ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} profile={profile}/>
-                        : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => setEditMode(true)}/>
+                        ? <ProfileDataForm initialValues={profile}
+                                           onSubmit={onSubmit}
+                                           profile={profile}
+                        />
+                        : <ProfileData profile={profile}
+                                       isOwner={isOwner}
+                                       goToEditMode={() => setEditMode(true)}
+                        />
                 }
             </div>
 

@@ -8,42 +8,35 @@
 
   .loginTextContainer {
     @include flex(column, normal, normal, nowrap);
+    @include text($textFontFamily, 1rem, 1.5, 400);
+
+    & b {
+      @include text($textFontFamily, 1rem, 1.5, 500);
+    }
 
     & a {
       text-decoration: none;
-      color: $redColor;
+      color:$secondPrimaryColor;
 
       &:hover {
-        color: $textColor;
+        text-shadow: $secondPrimaryColor 0 0 4px;
       }
-    }
-
-    .loginText {
-      display: inline-block;
-      font-size: 18px;
-      margin-bottom: 10px;
     }
   }
 
   .formContainer {
     @include flex(column, normal, flex-start, nowrap);
-    line-height: 1;
-    font-size: 14px;
+    @include text($textFontFamily, 1rem, 1.4, 400);
 
     .fieldWrapper {
       display: flex;
-      font-size: 16px;
       margin: 5px;
 
       .input {
-        font-size: 18px;
-        padding: 3px 7px;
-        border: 1px solid green;
-        border-radius: 8px;
+        @include input();
       }
 
       .checkbox {
-        font-size: 16px;
         padding: 3px 7px;
       }
     }

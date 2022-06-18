@@ -1,8 +1,8 @@
 import React from 'react';
 import {UserType} from '../../redux/usersReducer';
 import {Paginator} from '../Common/Paginator/Paginator';
-import {User} from './User';
-import s from './Users.module.css'
+import s from './Users.module.scss'
+import {User} from './User/User';
 
 type UsersPropsType = {
     getUsers: Array<UserType>
@@ -31,7 +31,7 @@ export const Users = ({
                    pageSize={pageSize}
                    currentPage={currentPage}
                    onPageChanged={onPageChanged}
-                   portionSize={15}/>
+                   portionSize={10}/>
 
         <div className={s.users}>
             {getUsers.map(m => <User key={m.id}

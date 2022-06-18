@@ -1,0 +1,72 @@
+@import './src/assets/styles/scss/mixins';
+@import './src/assets/styles/scss/variables';
+
+.pagination {
+  @include flex(column, center, center, nowrap);
+
+  .buttonContainer {
+    @include flex(row, center, normal, wrap);
+
+    .button {
+      padding: 6px 12px;
+      margin: 7px;
+      white-space: nowrap;
+    }
+  }
+
+  .text {
+    @include text($titleFontFamily, 1rem, 1.5, 400);
+
+    .currentNumber {
+      @include text($titleFontFamily, 1rem, 1.5, 500);
+      display: inline-block;
+      padding: 3px 5px;
+      background-color: $secondPrimaryColor;
+      border-radius: 5px;
+      margin-top: 5px;
+      margin-bottom: 14px;
+    }
+  }
+
+  .selectPage {
+    color: #fff;
+    display: inline-block;
+    font-weight: 700;
+    background-color: $secondPrimaryColor !important;
+
+    &:hover {
+      box-shadow: none !important;
+    }
+  }
+
+  .page {
+    @include text($titleFontFamily, 1rem, 1.4, 400);
+    display: inline-block;
+    text-align: center;
+    min-width: 45px;
+    padding: 5px 0;
+    background-color: $primaryColor;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $secondPrimaryColor !important;
+      text-shadow: $textColor 0 0 4px;
+      box-shadow: $secondPrimaryColor 0 0 15px;
+    }
+
+    &:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+
+    &:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}
+
+
+
+
+
+
+

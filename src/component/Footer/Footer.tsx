@@ -7,7 +7,7 @@ export const Footer = () => {
         <footer className={s.footer}>
             <div className={s.footerContainer}>
                 <a className={s.title} href={'https://www.linkedin.com/in/yauheni-zhukovets/'} target={'_blank'}
-                   rel="noreferrer">Yauheni Zhukovets</a>
+                   rel="noreferrer">Yauheni Zhukavets</a>
                 <span className={s.copyright}>© 2022 All Rights Reserved</span>
             </div>
         </footer>

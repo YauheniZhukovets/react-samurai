@@ -1,0 +1,62 @@
+@import "src/assets/styles/scss/mixins";
+@import "src/assets/styles/scss/variables";
+
+.profileBlock {
+  @include flex(row, normal, normal, nowrap);
+  padding: 15px;
+
+  .avatarBlock {
+    @include flex(column, normal, center, nowrap);
+    margin-right: 20px;
+
+    .userAvatar {
+      @include background(cover, center, no-repeat);
+      height: 350px;
+      width: 300px;
+      border-radius: 8px;
+    }
+
+    .buttonFileContainer {
+      margin-top: 15px;
+
+      .inputFile {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+      }
+
+      & label {
+        @include text($textFontFamily, 1rem, 1.4, 400);
+        display: inline-block;
+        cursor: pointer;
+        background-color: $primaryColor;
+        padding: 8px 12px;
+        border-radius: 8px;
+        min-width: 50px;
+
+        &:hover {
+          text-shadow: $textColor 0 0 4px;
+          box-shadow: $primaryColor 0 0 15px;
+        }
+      }
+    }
+  }
+
+  .editModeContainer {
+    @include text($textFontFamily, 1rem, 2, 400);
+    padding: 10px;
+
+    & b {
+      @include text($titleFontFamily, 1.25rem, 2, 500);
+      letter-spacing: 1.2px;
+    }
+
+    & h2 {
+      @include text($titleFontFamily, 1.75rem, 2, 500);
+      letter-spacing: 1.4px;
+    }
+  }
+}

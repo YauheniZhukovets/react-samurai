@@ -1,0 +1,51 @@
+@import "./src/assets/styles/scss/mixins";
+@import "./src/assets/styles/scss/variables";
+
+.item {
+  display: flex;
+  font-size: 18px;
+  margin-bottom: 20px;
+  flex-direction: row;
+
+  .userAvatar {
+    @include background(cover, center, no-repeat);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+  }
+
+  .textBlock {
+    max-width: 60%;
+    margin-left: 20px;
+
+    & p {
+      background-color: $bgSecondColor;
+      padding: 14px;
+      border-radius: 8px;
+      word-wrap: break-word;
+    }
+
+    .likeWrapper {
+      margin-top: 8px;
+
+      .postLikesCount {
+        @include text($titleFontFamily, 1rem, 1.5, 500);
+        padding: 3px 5px;
+        background-color: $secondPrimaryColor;
+        border-radius: 5px;
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input, Textarea} from '../../../Common/FormsControls/FormsControls';
 import {ProfileType} from '../../../../redux/profileReducer';
-import s from './ProfileDataForm.module.css'
+import s from './ProfileDataForm.module.scss'
 import SuperButton from '../../../Common/SuperButton/SuperButton';
 
 type ProfileDataFormType = {
@@ -16,7 +16,9 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormTy
         <form onSubmit={handleSubmit} className={s.editFormContainer}>
             <div>
                 <div>
-                    <SuperButton>save</SuperButton>
+                    <SuperButton>
+                        Save
+                    </SuperButton>
                 </div>
                 <div>
                     <p>
@@ -34,14 +36,16 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormTy
                 <div>
                     <p>
                         <b>My skills</b> :
-                        <Field className={s.formTextarea} name={'lookingForAJobDescription'} component={Textarea} placeholder={'My skills'}/>
+                        <Field className={s.formTextarea} name={'lookingForAJobDescription'} component={Textarea}
+                               placeholder={'My skills'}/>
                     </p>
                 </div>
 
                 <div>
                     <p>
                         <b>About me</b> :
-                        <Field className={s.formTextarea} name={'aboutMe'} component={Textarea} placeholder={'About me'}/>
+                        <Field className={s.formTextarea} name={'aboutMe'} component={Textarea}
+                               placeholder={'About me'}/>
                     </p>
                 </div>
             </div>
@@ -50,7 +54,8 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormTy
                 {Object.keys(profile.contacts).map((key, index) => {
                     return (
                         <div className={s.contactValue} key={index}>
-                            <b>{key}</b> : <Field className={s.formInput} name={'contacts.' + key} component={Input} placeholder={key}/>
+                            <b>{key}</b> : <Field className={s.formInput} name={'contacts.' + key} component={Input}
+                                                  placeholder={key}/>
                         </div>
                     )
                 })}

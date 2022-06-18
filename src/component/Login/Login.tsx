@@ -41,7 +41,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginParamsType, LoginFormType> & Lo
                        name={'rememberMe'}
                        component={Input}
                        type={'checkbox'}/>
-                <span>remember me </span>
+                <span style={{paddingLeft: 5}}> remember me </span>
             </div>
             <div>
                 {error && <div className={style.formSummaryError}>{error}</div>}
@@ -77,12 +77,12 @@ const Login = ({loginTC, isAuth, captcha}: LoginContainerType) => {
     }
     return <div className={s.login}>
         <div className={s.loginTextContainer}>
-            <p className={s.loginText}>To log in get registered
+            <p>To log in get registered
                 <a href="https://social-network.samuraijs.com/" target="_blank" rel="noreferrer"> here</a>
             </p>
-            <p className={s.loginText}>Or use common test account credentials:</p>
-            <p className={s.loginText}><b>Email</b>: free@samuraijs.com</p>
-            <p className={s.loginText}><b>Password</b>: free</p>
+            <p>Or use common test account credentials:</p>
+            <p><b>Email</b>: free@samuraijs.com</p>
+            <p><b>Password</b>: free</p>
         </div>
         <LoginReduxForm onSubmit={onSubmit} captcha={captcha}/>
     </div>

@@ -1,0 +1,32 @@
+@import "./src/assets/styles/scss/variables";
+@import "./src/assets/styles/scss/mixins";
+
+.potsBlock {
+  @include text($textFontFamily, 1rem, 1.5, 400);
+  padding: 15px;
+
+  .myPostTitle {
+    @include text($titleFontFamily, 1.75rem, 2, 500);
+  }
+
+  .addMyPostForm {
+    @include flex(column, normal, normal, nowrap);
+    margin-bottom: 30px;
+
+    .formTextarea {
+      @include textarea();
+      margin: 20px 0 0;
+    }
+
+    .button {
+      margin: 20px 0 0;
+    }
+  }
+}
+
+
+
+
+
+
+

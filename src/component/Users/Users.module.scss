@@ -1,0 +1,11 @@
+.usersContainer {
+  margin-top: 15px;
+
+  .users {
+    display: grid;
+    grid-template: repeat(4, auto)/repeat(5, 1fr);
+    margin-top: 15px;
+  }
+}
+
+
