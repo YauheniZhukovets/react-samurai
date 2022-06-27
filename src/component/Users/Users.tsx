@@ -1,8 +1,8 @@
 import React from 'react';
-import {UserType} from '../../redux/usersReducer';
 import {Paginator} from '../Common/Paginator/Paginator';
 import s from './Users.module.scss'
 import {User} from './User/User';
+import {UserType} from '../../types/types';
 
 type UsersPropsType = {
     getUsers: Array<UserType>

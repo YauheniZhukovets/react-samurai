@@ -1,6 +1,6 @@
-import {appReducer, initializedSuccessAC, initialStateProfileType} from './appReducer';
+import {appReducer, initializedSuccessAC, InitialStateAppType, } from './appReducer';
 
-let startState: initialStateProfileType;
+let startState: InitialStateAppType;
 
 beforeEach(() => {
     startState = {

@@ -4,22 +4,16 @@ import {AppThunk} from './reduxStore';
 import {stopSubmit} from 'redux-form';
 
 const initialState = {
-    id: null,
-    login: null,
-    email: null,
+    id: null as number | null,
+    login: null as string | null,
+    email: null as string | null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: null as string | null
 }
 
-export type initialStateAuthType = {
-    id: null | number
-    login: null | string
-    email: null | string
-    isAuth: boolean
-    captchaUrl: string | null
-}
+export type initialStateAuthType = typeof initialState
 
-export const authReducer = (state: initialStateAuthType = initialState, action: AuthReducerType): initialStateAuthType => {
+export const authReducer = (state = initialState, action: AuthReducerType): initialStateAuthType => {
     switch (action.type) {
         case 'auth/SET-USER-DATA': {
             return {...state, ...action.payload}

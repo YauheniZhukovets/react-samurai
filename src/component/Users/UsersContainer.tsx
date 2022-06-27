@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {followTC, requestUsersTC, unfollowTC, UserType,} from '../../redux/usersReducer';
+import {followTC, requestUsersTC, unfollowTC, } from '../../redux/usersReducer';
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
@@ -12,7 +12,8 @@ import {
     getPageSize,
     getTotalUsersCount,
     getUsers
-} from '../../redux/userSelector';
+} from '../../redux/userSelectors';
+import {UserType} from '../../types/types';
 
 
 type MapStateToPropsType = {

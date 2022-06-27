@@ -1,34 +1,8 @@
 import {profileAPI} from '../API/api';
 import {AppStateType, AppThunk} from './reduxStore';
 import {stopSubmit} from 'redux-form';
-
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
-export type ProfileType = {
-    'aboutMe': string
-    'contacts': {
-        'facebook': string,
-        'website': string,
-        'vk': string,
-        'twitter': string,
-        'instagram': string,
-        'youtube': string,
-        'github': string,
-        'mainLink': string
-    }
-    'lookingForAJob': string
-    'lookingForAJobDescription': string
-    'fullName': string
-    'userId': string
-    'photos': {
-        'small': string
-        'large': string
-    }
-}
+import {v1} from 'uuid';
+import {ProfileType} from '../types/types';
 
 
 const initialState = {
@@ -39,17 +13,14 @@ const initialState = {
     profile: null as unknown as ProfileType,
     status: '',
 }
-export type InitialStateProfileType = {
-    postsData: Array<PostType>
-    profile: ProfileType
-    status: string
-}
 
-export const profileReducer = (state: InitialStateProfileType = initialState, action: ACProfileReducerType) => {
+export type InitialStateProfileType = typeof initialState
+
+export const profileReducer = (state = initialState, action: ACProfileReducerType): InitialStateProfileType => {
     switch (action.type) {
         case 'profile/ADD-POST': {
             const body = action.newPostBody
-            return {...state, postsData: [...state.postsData, {id: 5, message: body, likesCount: 0}]}
+            return {...state, postsData: [...state.postsData, {id: +v1(), message: body, likesCount: 0}]}
         }
         case 'profile/SET-USER-PROFILE': {
             return {...state, profile: action.profile}

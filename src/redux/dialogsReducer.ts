@@ -1,3 +1,4 @@
+import {v1} from 'uuid'
 import avatar from '../assets/images/userIcon.png'
 
 const initialState = {
@@ -13,7 +14,7 @@ const initialState = {
         {id: 2, message: 'Hello'},
         {id: 3, message: 'How are you?'},
         {id: 4, message: 'I\'m ok!'},
-        {id: 5, message: 'It is good!'}
+        {id: 5, message: 'It is good!'},
     ],
     avatarData: [
         {id: 1, link: avatar},
@@ -26,11 +27,11 @@ const initialState = {
 
 export type InitialStateDialogsType = typeof initialState
 
-export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ACDialogsReducerType): InitialStateDialogsType => {
+export const dialogsReducer = (state = initialState, action: ACDialogsReducerType): InitialStateDialogsType => {
     switch (action.type) {
         case 'dialogs/ADD-MESSAGE': {
             const body = action.newMessageBody
-            return {...state, massagesData: [...state.massagesData, {id: 6, message: body}]}
+            return {...state, massagesData: [...state.massagesData, {id: +v1(), message: body}]}
         }
         default:
             return state

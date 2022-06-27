@@ -2,8 +2,8 @@ import React from 'react';
 import s from './User.module.scss';
 import {NavLink} from 'react-router-dom';
 import userPhoto from '../../../assets/images/userIcon.png'
-import {UserType} from '../../../redux/usersReducer';
 import SuperButton from '../../Common/SuperButton/SuperButton';
+import {UserType} from '../../../types/types';
 
 
 type UserPropsType = {

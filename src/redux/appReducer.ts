@@ -5,11 +5,9 @@ const initialState = {
     initialized: false
 }
 
-export type initialStateAppType = {
-    initialized: boolean
-}
+export type InitialStateAppType = typeof initialState
 
-export const appReducer = (state: initialStateAppType = initialState, action: AppReducerType): initialStateAppType => {
+export const appReducer = (state = initialState, action: AppReducerType): InitialStateAppType => {
     switch (action.type) {
         case 'app/INITIALIZED-SUCCESS': {
             return {...state, initialized: true}

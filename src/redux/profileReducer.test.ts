@@ -3,9 +3,9 @@ import {
     deletePostAC,
     InitialStateProfileType,
     profileReducer,
-    ProfileType,
     setStatusAC
 } from './profileReducer';
+import {ProfileType} from '../types/types';
 
 let startState: InitialStateProfileType;
 

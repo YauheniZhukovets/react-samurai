@@ -1,9 +1,9 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input, Textarea} from '../../../Common/FormsControls/FormsControls';
-import {ProfileType} from '../../../../redux/profileReducer';
 import s from './ProfileDataForm.module.scss'
 import SuperButton from '../../../Common/SuperButton/SuperButton';
+import {ProfileType} from '../../../../types/types';
 
 type ProfileDataFormType = {
     profile: ProfileType;

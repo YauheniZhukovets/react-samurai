@@ -5,7 +5,6 @@ import {AppStateType} from '../../redux/reduxStore';
 import {
     getStatusTC,
     getUserProfileTC,
-    ProfileType,
     savePhotoTC,
     saveProfileTC,
     updateStatusTC
@@ -13,6 +12,7 @@ import {
 import {withRouter, WithRouterType} from '../Common/WithRouter/withRouter';
 import {compose} from 'redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {ProfileType} from '../../types/types';
 
 type ProfileContainerType = mapStateToPropsType & mapDispatchToProps & WithRouterType
 

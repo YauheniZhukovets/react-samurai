@@ -81,5 +81,3 @@ const mapStateToProps = (state: AppStateType) => ({
 export default compose(
     connect(mapStateToProps, {initializeAppTC})(App)
 )
-
-

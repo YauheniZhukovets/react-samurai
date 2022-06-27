@@ -1,44 +1,20 @@
 import {Dispatch} from 'redux';
 import {usersAPI} from '../API/api';
 import {updateObjectInArray} from '../utils/objectHelpers';
+import {UserType} from '../types/types';
 
-type PhotosType = {
-    small: string | undefined
-    large: string | undefined
-}
-type LocationType = {
-    country: string
-    city: string
-}
-
-export type UserType = {
-    photos: PhotosType
-    name: string;
-    id: number
-    followed: boolean
-    location: LocationType
-    status: string
-}
-
-
-export type initialStateUserType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPages: number
-    isFetching: boolean
-    followingInProgress: number[]
-}
 const initialState = {
-    users: [],
+    users: [] as UserType[],
     pageSize: 20,
     totalUsersCount: 0,
     currentPages: 1,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [] as number[]
 }
 
-export const usersReducer = (state: initialStateUserType = initialState, action: ACUsersReducerType): initialStateUserType => {
+export type InitialStateUserType = typeof initialState
+
+export const usersReducer = (state = initialState, action: ACUsersReducerType): InitialStateUserType => {
     switch (action.type) {
         case 'users/FOLLOW-SUCCESS':
             return {
@@ -133,7 +109,6 @@ export const followTC = (userId: number) => async (dispatch: Dispatch<ACUsersRed
 
 export const unfollowTC = (userId: number) => async (dispatch: Dispatch<ACUsersReducerType>) => {
     await followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), unfollowSuccessAC)
-
 }
 
 
