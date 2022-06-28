@@ -5,7 +5,7 @@ type MessagePropsType = {
     message: string
 }
 
-export const Message = ({message,}: MessagePropsType) => {
+export const Message:React.FC<MessagePropsType> = ({message} ) => {
 
     return <div>
         <span className={s.textMessage}>{message}</span>

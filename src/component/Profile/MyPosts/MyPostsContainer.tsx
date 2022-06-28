@@ -4,14 +4,15 @@ import {MyPosts} from './MyPosts';
 import {AppStateType} from '../../../redux/reduxStore';
 import {Dispatch} from 'redux';
 
-export type MyPostsType = MapStateToPropsType & mapDispatchToPropsType
-
 type MapStateToPropsType = {
     profilePage: InitialStateProfileType
 }
-type mapDispatchToPropsType = {
+
+type MapDispatchToPropsType = {
     AddPost: (newPostBody: string) => void
 }
+
+export type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -19,7 +20,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         AddPost: (newPostBody: string) => {
             dispatch(addPostAC(newPostBody))
@@ -27,4 +28,4 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, unknown, AppStateType>(mapStateToProps, mapDispatchToProps)(MyPosts)

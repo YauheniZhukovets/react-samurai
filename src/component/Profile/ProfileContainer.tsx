@@ -14,23 +14,24 @@ import {compose} from 'redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {ProfileType} from '../../types/types';
 
-type ProfileContainerType = mapStateToPropsType & mapDispatchToProps & WithRouterType
-
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     status: string
     profile: ProfileType
     authorizedUserId: number | null
     isAuth: boolean
 }
-type mapDispatchToProps = {
-    getUserProfileTC: (userId: number | null) => any
-    getStatusTC: (userId: number | null) => any
-    updateStatusTC: (status: string) => any
-    savePhotoTC: (file: File) => any
-    saveProfileTC: (formData: ProfileType) => any
+
+type MapDispatchToProps = {
+    getUserProfileTC: (userId: number | null) => void
+    getStatusTC: (userId: number | null) => void
+    updateStatusTC: (status: string) => void
+    savePhotoTC: (file: File) => void
+    saveProfileTC: (formData: ProfileType) => void
 }
 
-class ProfileContainer extends React.Component<ProfileContainerType, AppStateType> {
+type ProfileContainerType = MapStateToPropsType & MapDispatchToProps & WithRouterType
+
+class ProfileContainer extends React.Component<ProfileContainerType> {
 
     refreshProfile() {
         let userId = +this.props.router.params.userId || null
@@ -66,7 +67,7 @@ class ProfileContainer extends React.Component<ProfileContainerType, AppStateTyp
     }
 }
 
-let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,

@@ -5,6 +5,6 @@ type MessagePropsType = {
     avatar: string
 }
 
-export const Avatar = ({avatar,}: MessagePropsType) => {
+export const Avatar: React.FC<MessagePropsType> = ({avatar} ) => {
     return <img className={s.avatar} src={avatar}  alt={'avatar'}/>
 }

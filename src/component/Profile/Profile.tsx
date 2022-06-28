@@ -7,12 +7,12 @@ export type ProfilePropsType = {
     profile: ProfileType
     status: string
     isOwner: boolean
-    updateStatusTC: (status: string) => any
-    savePhotoTC: (file: File) => any
-    saveProfileTC: (formData: ProfileType) => any
+    updateStatusTC: (status: string) => void
+    savePhotoTC: (file: File) => void
+    saveProfileTC: (formData: ProfileType) => void
 }
 
-export const Profile = ({profile, status, updateStatusTC, isOwner, savePhotoTC, saveProfileTC}: ProfilePropsType) => {
+export const Profile:React.FC<ProfilePropsType> = ({profile, status, updateStatusTC, isOwner, savePhotoTC, saveProfileTC}) => {
     return (
         <div>
             <ProfileInfo profile={profile}

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Video.module.scss'
 
-export const Video = () => {
+export const Video: React.FC = () => {
 
     return (
         <div className={s.videoContainer}>

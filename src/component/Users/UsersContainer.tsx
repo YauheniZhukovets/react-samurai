@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {followTC, requestUsersTC, unfollowTC, } from '../../redux/usersReducer';
+import {followTC, requestUsersTC, unfollowTC,} from '../../redux/usersReducer';
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
@@ -17,7 +17,7 @@ import {UserType} from '../../types/types';
 
 
 type MapStateToPropsType = {
-    getUsers: Array<UserType>
+    users: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -25,15 +25,15 @@ type MapStateToPropsType = {
     followingInProgress: number[]
 }
 
-type mapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     requestUsersTC: (currentNumberPages: number, pageSize: number) => void
     followTC: (userId: number) => void
     unfollowTC: (userId: number) => void
 }
 
-export type UsersType = MapStateToPropsType & mapDispatchToPropsType
+export type UsersType = MapStateToPropsType & MapDispatchToPropsType
 
-class UsersComponent extends React.Component<UsersType, AppStateType> {
+class UsersComponent extends React.Component<UsersType> {
 
     componentDidMount() {
         this.props.requestUsersTC(this.props.currentPage, this.props.pageSize)
@@ -54,7 +54,7 @@ class UsersComponent extends React.Component<UsersType, AppStateType> {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        getUsers: getUsers(state),
+        users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPages(state),
@@ -64,9 +64,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {
-            requestUsersTC,
-            followTC,
-            unfollowTC,
-        }
-    ))(UsersComponent)
+    connect<MapStateToPropsType, MapDispatchToPropsType, unknown, AppStateType>(mapStateToProps, {
+        requestUsersTC,
+        followTC,
+        unfollowTC,
+    }))(UsersComponent)

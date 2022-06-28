@@ -16,14 +16,14 @@ export type ProfileInfoPropsType = {
     isOwner: boolean
 }
 
-export const ProfileInfo = ({
-                                profile,
-                                status,
-                                updateStatusTC,
-                                isOwner,
-                                savePhotoTC,
-                                saveProfileTC
-                            }: ProfileInfoPropsType) => {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
+                                                                profile,
+                                                                status,
+                                                                updateStatusTC,
+                                                                isOwner,
+                                                                savePhotoTC,
+                                                                saveProfileTC
+                                                            }) => {
     const [editMode, setEditMode] = useState(false)
 
     const onChangePhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {

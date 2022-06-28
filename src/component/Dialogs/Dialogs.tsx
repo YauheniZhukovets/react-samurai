@@ -10,7 +10,7 @@ import {Avatar} from './Avatar/Avatar';
 import SuperButton from '../Common/SuperButton/SuperButton';
 
 
-export const Dialogs = ({dialogsPage, AddMessage,}: DialogsPropsType) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, AddMessage,}) => {
 
     const dialogElement = dialogsPage.dialogsData.map((m) => <DialogItems key={m.id} name={m.name} id={m.id}/>)
     const messageElement = dialogsPage.massagesData.map((m) => <Message key={m.id} message={m.message}/>)

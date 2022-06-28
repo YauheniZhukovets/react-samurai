@@ -9,7 +9,7 @@ type PostPropsType = {
     photo: string
 }
 
-export const Post = ({photo, message, likesCount,}: PostPropsType) => {
+export const Post: React.FC<PostPropsType> = ({photo, message, likesCount}) => {
     return (
         <div className={s.item}>
             <div className={s.userAvatar} style={{backgroundImage: `url(${photo || userPhoto})`}}/>

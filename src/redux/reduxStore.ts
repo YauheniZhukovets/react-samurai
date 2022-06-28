@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 //export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppActionType =
@@ -30,8 +30,7 @@ export type AppActionType =
     | AuthReducerType
     | AppReducerType
 
-export type AppThunk<ReturnType = void> =
-    ThunkAction<ReturnType, AppStateType, unknown, AppActionType>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionType>
 
 //@ts-ignore
 window.store = store

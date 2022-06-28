@@ -66,7 +66,17 @@ const LoginForm: React.FC<InjectedFormProps<LoginParamsType, LoginFormType> & Lo
 
 const LoginReduxForm = reduxForm<LoginParamsType, LoginFormType>({form: 'login'})(LoginForm)
 
-const Login = ({loginTC, isAuth, captcha}: LoginContainerType) => {
+type MapStateToProps = {
+    isAuth: boolean
+    captcha: string | null
+}
+type MapDispatchToProps = {
+    loginTC: (formData: LoginParamsType) => void
+}
+
+type LoginContainerPropsType = MapDispatchToProps & MapStateToProps
+
+const Login:React.FC<LoginContainerPropsType> = ({loginTC, isAuth, captcha}) => {
 
     const onSubmit = (formData: LoginParamsType) => {
         loginTC(formData)
@@ -93,13 +103,5 @@ const mapStateToProps = (state: AppStateType) => ({
     captcha: state.auth.captchaUrl,
 })
 
-export default connect(mapStateToProps, {loginTC})(Login)
+export default connect<MapStateToProps, MapDispatchToProps, unknown, AppStateType>(mapStateToProps, {loginTC})(Login)
 
-type LoginContainerType = MapDispatchToProps & MapStateToProps
-type MapStateToProps = {
-    isAuth: boolean
-    captcha: string | null
-}
-type MapDispatchToProps = {
-    loginTC: Function
-}

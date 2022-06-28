@@ -7,15 +7,15 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import React from 'react';
 import {withRouter} from '../Common/WithRouter/withRouter';
 
-export type DialogsPropsType = MapStateToPropsType & mapDispatchToPropsType
-
 type MapStateToPropsType = {
     dialogsPage: InitialStateDialogsType
     isAuth: boolean
 }
-type mapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     AddMessage: (newMessageBody: string) => void
 }
+
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -24,7 +24,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         AddMessage: (newMessageBody: string) => {
             dispatch(AddMessageAC(newMessageBody))
@@ -33,7 +33,7 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect<MapStateToPropsType, MapDispatchToPropsType, unknown, AppStateType>(mapStateToProps, mapDispatchToProps),
     withRouter,
     withAuthRedirect
 )(Dialogs)

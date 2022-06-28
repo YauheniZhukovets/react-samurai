@@ -7,7 +7,7 @@ type DialogItemsType = {
     id: number
 }
 
-export const DialogItems = ({id, name,}: DialogItemsType) => {
+export const DialogItems: React.FC<DialogItemsType> = ({id, name}) => {
     const path = `/dialogs/${id}`
     const setActive = ({isActive}: { isActive: boolean }) => isActive ? s.activeLink : s.link
 

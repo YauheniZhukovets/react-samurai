@@ -3,14 +3,10 @@ import s from './Header.module.scss'
 import {NavLink} from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import SuperButton from '../Common/SuperButton/SuperButton';
+import {HeaderContainerPropsType} from './HeaderContainer';
 
-type HeaderPropsType = {
-    login: null | string
-    isAuth: boolean
-    logoutTC: Function
-}
 
-export const Header = ({login, isAuth, logoutTC,}: HeaderPropsType) => {
+export const Header:React.FC<HeaderContainerPropsType> = ({login, isAuth, logoutTC,} ) => {
     const onClickHandler = () => {
         logoutTC()
     }

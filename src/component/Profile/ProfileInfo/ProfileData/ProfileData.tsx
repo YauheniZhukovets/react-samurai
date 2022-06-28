@@ -9,7 +9,7 @@ export type ProfileDataType = {
     isOwner: boolean
     goToEditMode: () => void
 }
-export const ProfileData = ({profile, isOwner, goToEditMode}: ProfileDataType) => {
+export const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner, goToEditMode}) => {
     if (!profile) {
         return <Preloader/>
     }

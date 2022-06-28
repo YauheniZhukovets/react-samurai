@@ -13,7 +13,7 @@ type UserPropsType = {
     unfollowTC: (userId: number) => void
 }
 
-export const User = ({user, followingInProgress, followTC, unfollowTC,}: UserPropsType) => {
+export const User:React.FC<UserPropsType> = ({user, followingInProgress, followTC, unfollowTC}) => {
     return (
         <div className={s.container}>
             <div className={s.userContainer}>
