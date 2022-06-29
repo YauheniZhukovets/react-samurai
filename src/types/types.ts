@@ -1,3 +1,5 @@
+import {ResultCodeForCaptcha, ResultCodesEnum} from '../enums/enums';
+
 export type ProfileType = {
     'aboutMe': string
     'contacts': {
@@ -19,11 +21,12 @@ export type ProfileType = {
         'large': string
     }
 }
+export type UserPhotoType = {
+    small: string
+    large: string
+}
 export type UserType = {
-    photos: {
-        small: string
-        large: string
-    }
+    photos: UserPhotoType
     name: string;
     id: number
     followed: boolean
@@ -32,4 +35,29 @@ export type UserType = {
         city: string
     }
     status: string
+}
+export type UserResponseType = {
+    items: Array<UserType>
+    totalCount: number
+    error: string
+}
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe?: boolean
+    captcha?: string
+}
+export type AuthMeType = {
+    email: string
+    id: number
+    login: string
+}
+export type BaseApiType<T = {}> = {
+    data: T
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+}
+export type SecurityType = {
+    url: string
 }

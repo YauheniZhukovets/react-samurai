@@ -1,5 +1,13 @@
 import axios, {AxiosResponse} from 'axios';
-import {ProfileType} from '../types/types';
+import {
+    AuthMeType,
+    BaseApiType,
+    LoginParamsType,
+    ProfileType,
+    SecurityType,
+    UserPhotoType,
+    UserResponseType
+} from '../types/types';
 
 const instance = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -11,20 +19,20 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentNumberPages: number, pageSize: number) {
-        return instance.get(`users?page=${currentNumberPages}&count=${pageSize}`)
+        return instance.get<any, AxiosResponse<UserResponseType>>(`users?page=${currentNumberPages}&count=${pageSize}`)
             .then((response) => {
                     return response.data
                 } //вернул promise в котором data
             )
     },
     unfollowUser(userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete<any, AxiosResponse<BaseApiType>>(`follow/${userId}`)
             .then(response => {
                 return response.data.resultCode
             })
     },
     followUser(userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post<any, AxiosResponse<BaseApiType>>(`follow/${userId}`)
             .then(response => {
                 return response.data.resultCode
             })
@@ -33,70 +41,47 @@ export const usersAPI = {
 
 export const authAPI = {
     authMe() {
-        return instance.get<BaseProfileType<AuthMeType>>(`auth/me`)
+        return instance.get<any, AxiosResponse<BaseApiType<AuthMeType>>>(`auth/me`)
             .then(response => {
                 return response.data
             })
     },
     login(data: LoginParamsType) {
-        return instance.post<BaseProfileType<{ userId: number }>>('/auth/login', data)
+        return instance.post<any, AxiosResponse<BaseApiType<{ userId: number }>>>('/auth/login', data)
     },
     logout() {
-        return instance.delete<BaseProfileType>('/auth/login')
+        return instance.delete<any, AxiosResponse<BaseApiType>>('/auth/login')
     },
 }
 
 export const securityAPI = {
     getCaptchaUrl() {
-        return instance.get<any,AxiosResponse<SecurityType>>(`security/get-captcha-url`)
+        return instance.get<any, AxiosResponse<SecurityType>>(`security/get-captcha-url`)
     }
 }
 
 export const profileAPI = {
     getProfile(userId: string) {
-        return instance.get(`profile/` + userId)
+        return instance.get<any, AxiosResponse<ProfileType>>(`profile/` + userId)
     },
     getStatus(userId: string) {
-        return instance.get(`profile/status/` + userId)
+        return instance.get<any, AxiosResponse<string>>(`profile/status/` + userId)
     },
     updateStatus(status: string) {
-        return instance.put<BaseProfileType>(`profile/status/`, {status: status})
+        return instance.put<any, AxiosResponse<BaseApiType>>(`profile/status/`, {status: status})
     },
     savePhoto(file: File) {
         let formData = new FormData()
         formData.append('image', file)
-        return instance.put('profile/photo/',formData, {
+        return instance.put<any, AxiosResponse<BaseApiType<UserPhotoType>>>('profile/photo/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
     },
     saveProfile(data: ProfileType) {
-        return instance.put('profile/', data)
+        return instance.put<any, AxiosResponse<BaseApiType>>('profile/', data)
     }
 
 }
 
-export type LoginParamsType = {
-    email: string
-    password: string
-    rememberMe?: boolean
-    captcha?: string
-}
-
-
-type AuthMeType = {
-    email: string
-    id: number
-    login: string
-}
-type BaseProfileType<T = {}> = {
-    data: T
-    fieldsErrors: string[]
-    messages: string[]
-    resultCode: number
-}
-
-type SecurityType = {
-    url: string
-}

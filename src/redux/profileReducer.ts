@@ -1,7 +1,8 @@
 import {profileAPI} from '../API/api';
-import {AppStateType, AppThunk} from './reduxStore';
+import {AppStateType, AppThunkType} from './reduxStore';
 import {stopSubmit} from 'redux-form';
 import {v1} from 'uuid';
+import {ResultCodesEnum} from '../enums/enums';
 import {ProfileType} from '../types/types';
 
 
@@ -16,7 +17,7 @@ const initialState = {
 
 export type InitialStateProfileType = typeof initialState
 
-export const profileReducer = (state = initialState, action: ACProfileReducerType): InitialStateProfileType => {
+export const profileReducer = (state = initialState, action: ProfileReducerType): InitialStateProfileType => {
     switch (action.type) {
         case 'profile/ADD-POST': {
             const body = action.newPostBody
@@ -38,7 +39,7 @@ export const profileReducer = (state = initialState, action: ACProfileReducerTyp
             return state
     }
 }
-export type ACProfileReducerType =
+export type ProfileReducerType =
     | AddPostACType
     | SetUserProfileACType
     | SetStatusACType
@@ -67,33 +68,34 @@ export const savePhotoSuccessAC = (photos: { small: string, large: string }) => 
     return {type: 'profile/SAVE-PHOTO-SUCCESS', photos} as const
 }
 
-export const getUserProfileTC = (userId: string): AppThunk => async (dispatch) => {
+export const getUserProfileTC = (userId: string): AppThunkType => async (dispatch) => {
     const res = await profileAPI.getProfile(userId)
     dispatch(setUserProfileAC(res.data))
 }
 
-export const getStatusTC = (status: string): AppThunk => async (dispatch) => {
+export const getStatusTC = (status: string): AppThunkType => async (dispatch) => {
     const res = await profileAPI.getStatus(status)
+    debugger
     dispatch(setStatusAC(res.data))
 }
 
-export const updateStatusTC = (status: string): AppThunk => async (dispatch) => {
+export const updateStatusTC = (status: string): AppThunkType => async (dispatch) => {
     const res = await profileAPI.updateStatus(status)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodesEnum.Success) {
         dispatch(setStatusAC(status))
     }
 }
-export const savePhotoTC = (file: File): AppThunk => async (dispatch) => {
+export const savePhotoTC = (file: File): AppThunkType => async (dispatch) => {
     const res = await profileAPI.savePhoto(file)
-    if (res.data.resultCode === 0) {
-        dispatch(savePhotoSuccessAC(res.data.data.photos))
+    if (res.data.resultCode === ResultCodesEnum.Success) {
+        dispatch(savePhotoSuccessAC(res.data.data))
     }
 }
 
-export const saveProfileTC = (profile: ProfileType): AppThunk => async (dispatch, getState: () => AppStateType) => {
+export const saveProfileTC = (profile: ProfileType): AppThunkType => async (dispatch, getState: () => AppStateType) => {
     const state = getState()
     const res = await profileAPI.saveProfile(profile)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodesEnum.Success) {
         dispatch(getUserProfileTC(state.profilePage.profile.userId))
     } else {
         let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Field is wrong'

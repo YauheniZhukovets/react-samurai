@@ -1,5 +1,5 @@
 import {getAuthMeTC} from './authReducer';
-import {AppThunk} from './reduxStore';
+import {AppThunkType} from './reduxStore';
 
 const initialState = {
     initialized: false
@@ -23,7 +23,7 @@ export const initializedSuccessAC = () => {
     return {type: 'app/INITIALIZED-SUCCESS'} as const
 }
 
-export const initializeAppTC = (): AppThunk => async (dispatch) => {
+export const initializeAppTC = (): AppThunkType => async (dispatch) => {
     await dispatch(getAuthMeTC())
     dispatch(initializedSuccessAC())
 }

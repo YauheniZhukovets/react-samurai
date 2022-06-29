@@ -1,6 +1,7 @@
-import {Dispatch} from 'redux';
 import {usersAPI} from '../API/api';
 import {updateObjectInArray} from '../utils/objectHelpers';
+import {AppThunkType} from './reduxStore';
+import {Dispatch} from 'redux';
 import {UserType} from '../types/types';
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
 
 export type InitialStateUserType = typeof initialState
 
-export const usersReducer = (state = initialState, action: ACUsersReducerType): InitialStateUserType => {
+export const usersReducer = (state = initialState, action: UsersReducerType): InitialStateUserType => {
     switch (action.type) {
         case 'users/FOLLOW-SUCCESS':
             return {
@@ -44,7 +45,7 @@ export const usersReducer = (state = initialState, action: ACUsersReducerType): 
             return state
     }
 }
-export type ACUsersReducerType = FollowSuccessACType | UnfollowSuccessACType | SetUserACType
+export type UsersReducerType = FollowSuccessACType | UnfollowSuccessACType | SetUserACType
     | SetCurrentPageACType | SetTotalUsersCountACType | ToggleIsFetchingACType
     | ToggleIsFollowingProgressACType
 
@@ -83,7 +84,7 @@ export const toggleIsFollowingProgressAC = (isFetching: boolean, userId: number)
     return {type: 'users/TOGGLE-IS-FOLLOWING-PROGRESS', isFetching, userId} as const
 }
 
-export const requestUsersTC = (page: number, pageSize: number) => async (dispatch: Dispatch<ACUsersReducerType>) => {
+export const requestUsersTC = (page: number, pageSize: number): AppThunkType => async (dispatch) => {
     dispatch(toggleIsFetchingAC(true))
     dispatch(setCurrentPageAC(page))
 
@@ -93,7 +94,7 @@ export const requestUsersTC = (page: number, pageSize: number) => async (dispatc
     dispatch(setTotalUsersCountAC(data.totalCount))
 }
 
-export const followUnfollowFlow = async (dispatch: any, userId: number, apiMethod: Function, actionCreator: Function) => {
+export const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: Function, actionCreator: Function) => {
     dispatch(toggleIsFollowingProgressAC(true, userId))
 
     const resultCode = await apiMethod(userId)
@@ -103,11 +104,11 @@ export const followUnfollowFlow = async (dispatch: any, userId: number, apiMetho
     dispatch(toggleIsFollowingProgressAC(false, userId))
 }
 
-export const followTC = (userId: number) => async (dispatch: Dispatch<ACUsersReducerType>) => {
+export const followTC = (userId: number): AppThunkType => async (dispatch) => {
     await followUnfollowFlow(dispatch, userId, usersAPI.followUser.bind(usersAPI), followSuccessAC)
 }
 
-export const unfollowTC = (userId: number) => async (dispatch: Dispatch<ACUsersReducerType>) => {
+export const unfollowTC = (userId: number): AppThunkType => async (dispatch) => {
     await followUnfollowFlow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), unfollowSuccessAC)
 }
 
