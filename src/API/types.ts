@@ -1,4 +1,4 @@
-import {ResultCodeForCaptcha, ResultCodesEnum} from '../enums/enums';
+import {ResultCodesEnum} from './enums';
 
 export type ProfileType = {
     'aboutMe': string
@@ -39,7 +39,7 @@ export type UserType = {
 export type UserResponseType = {
     items: Array<UserType>
     totalCount: number
-    error: string
+    error: string | null
 }
 export type LoginParamsType = {
     email: string
@@ -52,11 +52,11 @@ export type AuthMeType = {
     id: number
     login: string
 }
-export type BaseApiType<T = {}> = {
-    data: T
+export type BaseApiType<D = {}, RC = ResultCodesEnum> = {
+    data: D
     fieldsErrors: string[]
     messages: string[]
-    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    resultCode: RC
 }
 export type SecurityType = {
     url: string

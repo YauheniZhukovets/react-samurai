@@ -1,7 +1,7 @@
 import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
-import {ProfileType} from '../../types/types';
+import {ProfileType} from '../../API/types';
 
 export type ProfilePropsType = {
     profile: ProfileType
@@ -9,10 +9,17 @@ export type ProfilePropsType = {
     isOwner: boolean
     updateStatusTC: (status: string) => void
     savePhotoTC: (file: File) => void
-    saveProfileTC: (formData: ProfileType) => void
+    saveProfileTC: (formData: ProfileType) => Promise<any>
 }
 
-export const Profile:React.FC<ProfilePropsType> = ({profile, status, updateStatusTC, isOwner, savePhotoTC, saveProfileTC}) => {
+export const Profile: React.FC<ProfilePropsType> = ({
+                                                        profile,
+                                                        status,
+                                                        updateStatusTC,
+                                                        isOwner,
+                                                        savePhotoTC,
+                                                        saveProfileTC
+                                                    }) => {
     return (
         <div>
             <ProfileInfo profile={profile}

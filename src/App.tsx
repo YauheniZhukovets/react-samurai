@@ -2,7 +2,7 @@ import React from 'react';
 import {Navbar} from './component/Navbar/Navbar';
 import {Route, Routes,} from 'react-router';
 import {Video} from './component/Video/Video';
-import {AppStateType} from './redux/reduxStore';
+import {AppStateType} from './redux/store';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {Preloader} from './component/Common/Preloader/Preloader';
@@ -22,7 +22,7 @@ type MapStateToProps = {
     initialized: boolean
 }
 type MapDispatchToProps = {
-    initializeAppTC: () => any
+    initializeAppTC: () => void
 }
 
 class App extends React.Component <AppConnectType, AppStateType> {

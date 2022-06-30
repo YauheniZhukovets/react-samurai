@@ -1,10 +1,9 @@
-import {profileAPI} from '../API/api';
-import {AppStateType, AppThunkType} from './reduxStore';
+import {AppStateType, AppThunkType, InferActionsType} from './store';
 import {stopSubmit} from 'redux-form';
 import {v1} from 'uuid';
-import {ResultCodesEnum} from '../enums/enums';
-import {ProfileType} from '../types/types';
-
+import {ResultCodesEnum} from '../API/enums';
+import {ProfileType} from '../API/types';
+import {profileAPI} from '../API/profile-api';
 
 const initialState = {
     postsData: [
@@ -39,56 +38,40 @@ export const profileReducer = (state = initialState, action: ProfileReducerType)
             return state
     }
 }
-export type ProfileReducerType =
-    | AddPostACType
-    | SetUserProfileACType
-    | SetStatusACType
-    | DeletePostACType
-    | SavePhotoSuccessACACType
+export type ProfileReducerType = InferActionsType<typeof actions>
 
+export const actions = {
+    addPost: (newPostBody: string) => ({type: 'profile/ADD-POST', newPostBody} as const),
+    setUserProfile: (profile: ProfileType) => ({type: 'profile/SET-USER-PROFILE', profile} as const),
+    setStatus: (status: string) => ({type: 'profile/SET-STATUS', status} as const),
+    deletePost: (id: number) => ({type: 'profile/DELETE-POST', id} as const),
+    savePhotoSuccess: (photos: { small: string, large: string }) => ({
+        type: 'profile/SAVE-PHOTO-SUCCESS',
+        photos
+    } as const),
+}
 
-type AddPostACType = ReturnType<typeof addPostAC>
-export const addPostAC = (newPostBody: string) => {
-    return {type: 'profile/ADD-POST', newPostBody} as const
-}
-type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
-export const setUserProfileAC = (profile: ProfileType) => {
-    return {type: 'profile/SET-USER-PROFILE', profile} as const
-}
-type SetStatusACType = ReturnType<typeof setStatusAC>
-export const setStatusAC = (status: string) => {
-    return {type: 'profile/SET-STATUS', status} as const
-}
-type DeletePostACType = ReturnType<typeof deletePostAC>
-export const deletePostAC = (id: number) => {
-    return {type: 'profile/DELETE-POST', id} as const
-}
-type SavePhotoSuccessACACType = ReturnType<typeof savePhotoSuccessAC>
-export const savePhotoSuccessAC = (photos: { small: string, large: string }) => {
-    return {type: 'profile/SAVE-PHOTO-SUCCESS', photos} as const
-}
 
 export const getUserProfileTC = (userId: string): AppThunkType => async (dispatch) => {
     const res = await profileAPI.getProfile(userId)
-    dispatch(setUserProfileAC(res.data))
+    dispatch(actions.setUserProfile(res.data))
 }
 
 export const getStatusTC = (status: string): AppThunkType => async (dispatch) => {
     const res = await profileAPI.getStatus(status)
-    debugger
-    dispatch(setStatusAC(res.data))
+    dispatch(actions.setStatus(res.data))
 }
 
 export const updateStatusTC = (status: string): AppThunkType => async (dispatch) => {
     const res = await profileAPI.updateStatus(status)
     if (res.data.resultCode === ResultCodesEnum.Success) {
-        dispatch(setStatusAC(status))
+        dispatch(actions.setStatus(status))
     }
 }
 export const savePhotoTC = (file: File): AppThunkType => async (dispatch) => {
     const res = await profileAPI.savePhoto(file)
     if (res.data.resultCode === ResultCodesEnum.Success) {
-        dispatch(savePhotoSuccessAC(res.data.data))
+        dispatch(actions.savePhotoSuccess(res.data.data))
     }
 }
 

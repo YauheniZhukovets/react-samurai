@@ -1,11 +1,8 @@
 import {
-    addPostAC,
-    deletePostAC,
     InitialStateProfileType,
-    profileReducer,
-    setStatusAC
+    profileReducer,actions
 } from './profileReducer';
-import {ProfileType} from '../types/types';
+import {ProfileType} from '../API/types';
 
 let startState: InitialStateProfileType;
 
@@ -21,25 +18,25 @@ beforeEach(() => {
 })
 
 test('length of posts should be incremented', () => {
-    const action = addPostAC('it-kamasutra.com')
+    const action = actions.addPost('it-kamasutra.com')
     const newState = profileReducer(startState, action)
 
     expect(newState.postsData.length).toBe(3);
 });
 test('message of new post should be correct', () => {
-    const action = addPostAC('it-kamasutra.com')
+    const action = actions.addPost('it-kamasutra.com')
     const newState = profileReducer(startState, action)
 
     expect(newState.postsData[2].message).toBe('it-kamasutra.com')
 });
 test('post of status should be change', () => {
-    const action = setStatusAC('!!!Loading!!!')
+    const action = actions.setStatus('!!!Loading!!!')
     const newState = profileReducer(startState, action)
 
     expect(newState.status).toBe('!!!Loading!!!');
 });
 test('after deleted length of messages should be increment', () => {
-    const action = deletePostAC(1)
+    const action = actions.deletePost(1)
     const newState = profileReducer(startState, action)
 
     expect(newState.postsData.length).toBe(1);

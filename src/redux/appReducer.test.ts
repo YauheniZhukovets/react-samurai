@@ -1,4 +1,4 @@
-import {appReducer, initializedSuccessAC, InitialStateAppType, } from './appReducer';
+import {appReducer, actions, InitialStateAppType, } from './appReducer';
 
 let startState: InitialStateAppType;
 
@@ -9,7 +9,7 @@ beforeEach(() => {
 })
 
 test('must be should initialized', () => {
-    const action = initializedSuccessAC()
+    const action = actions.initializedSuccess()
     const newState = appReducer(startState, action)
 
     expect(newState.initialized).toBe(true);

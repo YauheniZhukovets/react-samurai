@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {Header} from './Header';
 import {logoutTC} from '../../redux/authReducer';
-import {AppStateType} from '../../redux/reduxStore';
+import {AppStateType} from '../../redux/store';
 
 type MapStateToPropsType = {
     login: null | string

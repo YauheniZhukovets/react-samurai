@@ -1,5 +1,7 @@
 import {v1} from 'uuid'
 import avatar from '../assets/images/userIcon.png'
+import {InferActionsType} from './store';
+
 
 const initialState = {
     dialogsData: [
@@ -37,9 +39,12 @@ export const dialogsReducer = (state = initialState, action: DialogsReducerType)
             return state
     }
 }
-export type DialogsReducerType = AddMessageACType
+export type DialogsReducerType = InferActionsType<typeof actions>
 
-type AddMessageACType = ReturnType<typeof AddMessageAC>
-export const AddMessageAC = (newMessageBody: string) => {
-    return {type: 'dialogs/ADD-MESSAGE', newMessageBody} as const
+export const actions = {
+    addMessage: (newMessageBody: string) => ({type: 'dialogs/ADD-MESSAGE', newMessageBody} as const)
 }
+
+
+
+

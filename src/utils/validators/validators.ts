@@ -5,7 +5,6 @@ export const required = (value: string) => {
 }
 
 export const maxLengthCreator = (maxLength: number) => {
-
     return (value: string) => {
         if (value && value.length > maxLength) return `Max length is ${maxLength} symbol`
         return undefined

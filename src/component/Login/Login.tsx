@@ -4,12 +4,12 @@ import {Input} from '../Common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {loginTC} from '../../redux/authReducer';
-import {AppStateType} from '../../redux/reduxStore';
+import {AppStateType} from '../../redux/store';
 import {Navigate} from 'react-router-dom';
 import style from '../Common/FormsControls/FormsControls.module.css'
 import s from './Login.module.scss'
 import SuperButton from '../Common/SuperButton/SuperButton';
-import {LoginParamsType} from '../../types/types';
+import {LoginParamsType} from '../../API/types';
 
 
 type LoginFormType = {

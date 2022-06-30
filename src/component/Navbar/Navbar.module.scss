@@ -2,7 +2,7 @@
 @import "./src/assets/styles/scss/variables";
 
 .nav {
-  @include flex(column, start, center, wrap);
+  @include flex(column, flex-start, center, wrap);
   height: 100%;
   width: 100%;
   border-radius: 8px;

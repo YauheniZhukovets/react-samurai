@@ -1,5 +1,5 @@
 import {getAuthMeTC} from './authReducer';
-import {AppThunkType} from './reduxStore';
+import {AppThunkType, InferActionsType} from './store';
 
 const initialState = {
     initialized: false
@@ -16,16 +16,15 @@ export const appReducer = (state = initialState, action: AppReducerType): Initia
             return state
     }
 }
-export type AppReducerType = InitializedSuccessACType
+export type AppReducerType = InferActionsType<typeof actions>
 
-type InitializedSuccessACType = ReturnType<typeof initializedSuccessAC>
-export const initializedSuccessAC = () => {
-    return {type: 'app/INITIALIZED-SUCCESS'} as const
+export const actions = {
+    initializedSuccess: () => ({type: 'app/INITIALIZED-SUCCESS'} as const)
 }
 
 export const initializeAppTC = (): AppThunkType => async (dispatch) => {
     await dispatch(getAuthMeTC())
-    dispatch(initializedSuccessAC())
+    dispatch(actions.initializedSuccess())
 }
 
 

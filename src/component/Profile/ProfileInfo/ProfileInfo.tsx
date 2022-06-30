@@ -5,14 +5,14 @@ import userPhoto from '../../../assets/images/userIcon.png';
 import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
 import ProfileDataForm from './ProfileData/ProfileDataForm';
 import {ProfileData} from './ProfileData/ProfileData';
-import {ProfileType} from '../../../types/types';
+import {ProfileType} from '../../../API/types';
 
 export type ProfileInfoPropsType = {
     profile: ProfileType
     status: string
-    updateStatusTC: (status: string) => any
-    savePhotoTC: (file: File) => any
-    saveProfileTC: (formData: ProfileType) => any
+    updateStatusTC: (status: string) => void
+    savePhotoTC: (file: File) => void
+    saveProfileTC: (formData: ProfileType) => Promise<any>
     isOwner: boolean
 }
 

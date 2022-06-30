@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/reduxStore';
+import {AppStateType} from '../../redux/store';
 import {followTC, requestUsersTC, unfollowTC,} from '../../redux/usersReducer';
 import React from 'react';
 import {Users} from './Users';
@@ -13,7 +13,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from '../../redux/userSelectors';
-import {UserType} from '../../types/types';
+import {UserType} from '../../API/types';
 
 
 type MapStateToPropsType = {
