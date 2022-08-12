@@ -11,15 +11,13 @@ export const usersAPI = {
             )
     },
     unfollowUser(userId: number) {
-        return instance.delete<any, AxiosResponse<BaseApiType>>(`follow/${userId}`)
-            .then(res => {
-                return res.data.resultCode
-            })
+        return instance.delete<BaseApiType>(`follow/${userId}`).then((res)=>{
+            return res.data
+        })
     },
     followUser(userId: number) {
-        return instance.post<any, AxiosResponse<BaseApiType>>(`follow/${userId}`)
-            .then(res => {
-                return res.data.resultCode
-            })
+        return instance.post<BaseApiType>(`follow/${userId}`).then((res) => {
+            return res.data
+        })
     }
 }

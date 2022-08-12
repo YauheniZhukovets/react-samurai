@@ -1,8 +1,10 @@
 import {updateObjectInArray} from '../utils/objectHelpers';
 import {AppThunkType, InferActionsType} from './store';
 import {Dispatch} from 'redux';
-import {UserType} from '../API/types';
+import {BaseApiType, UserType} from '../API/types';
 import {usersAPI} from '../API/users-api';
+import {ResultCodesEnum} from '../API/enums';
+
 
 const initialState = {
     users: [] as UserType[],
@@ -47,14 +49,36 @@ export const usersReducer = (state = initialState, action: UsersReducerType): In
 }
 export type UsersReducerType = InferActionsType<typeof actions>
 
-const actions = {
-    followSuccess: (userID: number) => ({type: 'users/FOLLOW-SUCCESS', id: userID} as const),
-    unfollowSuccess: (userID: number) => ({type: 'users/UNFOLLOW-SUCCESS', id: userID} as const),
-    setUser: (users: Array<UserType>) => ({type: 'users/SET-USER', users: users} as const),
-    setCurrentPage: (currentPages: number) => ({type: 'users/SET-CURRENT-PAGE', currentPages} as const),
-    setTotalUsersCount: (totalCount: number) => ({type: 'users/SET-TOTAL-USERS-COUNT', totalCount} as const),
-    toggleIsFetching: (isFetching: boolean) => ({type: 'users/TOGGLE-IS-FETCHING', isFetching} as const),
-    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => ({type: 'users/TOGGLE-IS-FOLLOWING-PROGRESS', isFetching, userId} as const),
+export const actions = {
+    followSuccess: (userID: number) => ({
+        type: 'users/FOLLOW-SUCCESS',
+        id: userID
+    } as const),
+    unfollowSuccess: (userID: number) => ({
+        type: 'users/UNFOLLOW-SUCCESS',
+        id: userID
+    } as const),
+    setUser: (users: Array<UserType>) => ({
+        type: 'users/SET-USER',
+        users: users
+    } as const),
+    setCurrentPage: (currentPages: number) => ({
+        type: 'users/SET-CURRENT-PAGE',
+        currentPages
+    } as const),
+    setTotalUsersCount: (totalCount: number) => ({
+        type: 'users/SET-TOTAL-USERS-COUNT',
+        totalCount
+    } as const),
+    toggleIsFetching: (isFetching: boolean) => ({
+        type: 'users/TOGGLE-IS-FETCHING',
+        isFetching
+    } as const),
+    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => ({
+        type: 'users/TOGGLE-IS-FOLLOWING-PROGRESS',
+        isFetching,
+        userId
+    } as const),
 }
 
 
@@ -68,11 +92,11 @@ export const requestUsersTC = (page: number, pageSize: number): AppThunkType => 
     dispatch(actions.setTotalUsersCount(data.totalCount))
 }
 
-export const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: Function, actionCreator: Function) => {
+export const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: (userId: number) => Promise<BaseApiType>, actionCreator: Function) => {
     dispatch(actions.toggleIsFollowingProgress(true, userId))
 
-    const resultCode = await apiMethod(userId)
-    if (resultCode === 0) {
+    const result = await apiMethod(userId)
+    if (result.resultCode === ResultCodesEnum.Success) {
         dispatch(actionCreator(userId))
     }
     dispatch(actions.toggleIsFollowingProgress(false, userId))
