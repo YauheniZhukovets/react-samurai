@@ -1,18 +1,17 @@
 import React from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/store';
+import {ProfileType} from 'api/types';
+import {withRouter, WithRouterType} from 'hoc/withRouter';
 import {
     getStatusTC,
     getUserProfileTC,
-    savePhotoTC,
-    saveProfileTC,
+    savePhotoTC, saveProfileTC,
     updateStatusTC
-} from '../../redux/profileReducer';
-import {withRouter, WithRouterType} from '../Common/WithRouter/withRouter';
+} from 'store/redusers/profileReducer';
 import {compose} from 'redux';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
-import {ProfileType} from '../../API/types';
+import {withAuthRedirect} from 'hoc/withAuthRedirect';
+import {AppStateType} from 'store/types';
 
 type MapStateToPropsType = {
     status: string

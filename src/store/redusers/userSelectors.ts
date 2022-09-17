@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import {AppStateType} from './store';
+import {AppStateType} from 'store/types';
 
 
 const getUsersSelector = (state: AppStateType) => {

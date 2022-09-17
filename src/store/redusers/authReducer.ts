@@ -1,10 +1,10 @@
 import {Dispatch} from 'redux';
-import {AppActionType, AppThunkType, InferActionsType} from './store';
 import {stopSubmit} from 'redux-form';
-import {ResultCodeForCaptcha, ResultCodesEnum} from '../API/enums';
-import {LoginParamsType} from '../API/types';
-import {authAPI} from '../API/auth-api';
-import {securityAPI} from '../API/security-api';
+import {ResultCodeForCaptcha, ResultCodesEnum} from 'api/enums';
+import {LoginParamsType} from 'api/types';
+import {authAPI} from 'api/auth-api';
+import {securityAPI} from 'api/security-api';
+import {AppActionType, AppThunkType, InferActionsType} from 'store/types';
 
 
 const initialState = {

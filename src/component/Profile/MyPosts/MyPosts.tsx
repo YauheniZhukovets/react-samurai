@@ -3,9 +3,9 @@ import s from './MyPosts.module.scss'
 import {Post} from './Post/Post';
 import {MyPostsPropsType} from './MyPostsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../Common/FormsControls/FormsControls';
 import SuperButton from '../../Common/SuperButton/SuperButton';
+import {maxLengthCreator, required} from 'utils/validators/validators';
 
 export const MyPosts: React.FC<MyPostsPropsType> = React.memo(({profilePage, AddPost}) => {
 

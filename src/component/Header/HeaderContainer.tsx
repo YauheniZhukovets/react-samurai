@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {Header} from './Header';
-import {logoutTC} from '../../redux/authReducer';
-import {AppStateType} from '../../redux/store';
+import {logoutTC} from 'store/redusers/authReducer';
+import {AppStateType} from 'store/types';
+
 
 type MapStateToPropsType = {
     login: null | string

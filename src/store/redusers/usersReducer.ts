@@ -1,9 +1,9 @@
-import {updateObjectInArray} from '../utils/objectHelpers';
-import {AppThunkType, InferActionsType} from './store';
+import {updateObjectInArray} from 'utils/objectHelpers';
 import {Dispatch} from 'redux';
-import {BaseApiType, UserType} from '../API/types';
-import {usersAPI} from '../API/users-api';
-import {ResultCodesEnum} from '../API/enums';
+import {BaseApiType, UserType} from 'api/types';
+import {usersAPI} from 'api/users-api';
+import {ResultCodesEnum} from 'api/enums';
+import {AppThunkType, InferActionsType} from 'store/types';
 
 
 const initialState = {

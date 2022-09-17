@@ -2,7 +2,7 @@ import {Preloader} from '../../../Common/Preloader/Preloader';
 import s from './ProfileData.module.scss';
 import React from 'react';
 import SuperButton from '../../../Common/SuperButton/SuperButton';
-import {ProfileType} from '../../../../API/types';
+import {ProfileType} from 'api/types';
 
 export type ProfileDataType = {
     profile: ProfileType

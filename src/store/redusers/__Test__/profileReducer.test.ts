@@ -1,8 +1,9 @@
+import {ProfileType} from 'api/types';
 import {
+    actions,
     InitialStateProfileType,
-    profileReducer,actions
-} from './profileReducer';
-import {ProfileType} from '../API/types';
+    profileReducer
+} from 'store/redusers/profileReducer';
 
 let startState: InitialStateProfileType;
 

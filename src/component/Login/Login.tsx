@@ -1,15 +1,16 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input} from '../Common/FormsControls/FormsControls';
-import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
-import {loginTC} from '../../redux/authReducer';
-import {AppStateType} from '../../redux/store';
 import {Navigate} from 'react-router-dom';
 import style from '../Common/FormsControls/FormsControls.module.css'
 import s from './Login.module.scss'
 import SuperButton from '../Common/SuperButton/SuperButton';
-import {LoginParamsType} from '../../API/types';
+import {LoginParamsType} from 'api/types';
+import {required} from 'utils/validators/validators';
+import {loginTC} from 'store/redusers/authReducer';
+import {AppStateType} from 'store/types';
+
 
 
 type LoginFormType = {

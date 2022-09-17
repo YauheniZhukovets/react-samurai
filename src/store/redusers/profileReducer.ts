@@ -1,9 +1,9 @@
-import {AppStateType, AppThunkType, InferActionsType} from './store';
 import {stopSubmit} from 'redux-form';
 import {v1} from 'uuid';
-import {ResultCodesEnum} from '../API/enums';
-import {ProfileType} from '../API/types';
-import {profileAPI} from '../API/profile-api';
+import {ResultCodesEnum} from 'api/enums';
+import {ProfileType} from 'api/types';
+import {profileAPI} from 'api/profile-api';
+import {AppStateType, AppThunkType, InferActionsType} from 'store/types';
 
 const initialState = {
     postsData: [
