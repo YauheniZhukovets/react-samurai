@@ -21,10 +21,12 @@ export type ProfileType = {
         'large': string
     }
 }
+
 export type UserPhotoType = {
     small: string
     large: string
 }
+
 export type UserType = {
     photos: UserPhotoType
     name: string;
@@ -36,28 +38,33 @@ export type UserType = {
     }
     status: string
 }
+
 export type UserResponseType = {
     items: Array<UserType>
     totalCount: number
     error: string | null
 }
+
 export type LoginParamsType = {
     email: string
     password: string
     rememberMe?: boolean
     captcha?: string
 }
+
 export type AuthMeType = {
     email: string
     id: number
     login: string
 }
+
 export type BaseApiType<D = {}, RC = ResultCodesEnum> = {
     data: D
     fieldsErrors: string[]
     messages: string[]
     resultCode: RC
 }
+
 export type SecurityType = {
     url: string
 }
