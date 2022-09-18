@@ -1,23 +1,21 @@
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/store';
-import {followTC, requestUsersTC, unfollowTC,} from '../../redux/usersReducer';
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
 import {compose} from 'redux';
+import {followTC, requestUsersTC, unfollowTC} from 'store/redusers/usersReducer';
 import {
-    getCurrentPages,
-    getFollowingInProgress,
+    getCurrentPages, getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount,
-    getUsers
-} from '../../redux/userSelectors';
-import {UserType} from '../../API/types';
+    getTotalUsersCount, getUsers
+} from 'store/redusers/userSelectors';
+import {UserType} from 'api/types';
+import {AppStateType} from 'store/types';
 
 
 type MapStateToPropsType = {
-    users: Array<UserType>
+    users: UserType []
     pageSize: number
     totalUsersCount: number
     currentPage: number

@@ -1,9 +1,9 @@
-import {actions, followTC, unfollowTC} from '../redux/usersReducer';
-import {usersAPI} from '../API/users-api';
-import {BaseApiType} from '../API/types';
-import {ResultCodesEnum} from '../API/enums';
+import {usersAPI} from 'api/users-api';
+import {BaseApiType} from 'api/types';
+import {ResultCodesEnum} from 'api/enums';
+import {actions, followTC, unfollowTC} from 'store/redusers/usersReducer';
 
-jest.mock('../API/users-api')
+jest.mock('../api/users-api')
 const userAPIMock = usersAPI as jest.Mocked<typeof usersAPI>
 
 const dispatchMock = jest.fn()

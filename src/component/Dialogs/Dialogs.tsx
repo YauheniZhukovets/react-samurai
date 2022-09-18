@@ -5,9 +5,9 @@ import {DialogItems} from './DialogsItem/DialogsItem';
 import {DialogsPropsType} from './DialogsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from '../Common/FormsControls/FormsControls';
-import {maxLengthCreator, required} from '../../utils/validators/validators';
 import {Avatar} from './Avatar/Avatar';
 import SuperButton from '../Common/SuperButton/SuperButton';
+import {maxLengthCreator, required} from 'utils/validators/validators';
 
 
 export const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, AddMessage,}) => {

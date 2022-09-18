@@ -2,7 +2,7 @@ import React from 'react';
 import {Paginator} from '../Common/Paginator/Paginator';
 import s from './Users.module.scss'
 import {User} from './User/User';
-import {UserType} from '../../API/types';
+import {UserType} from 'api/types';
 
 type UsersPropsType = {
     users: Array<UserType>

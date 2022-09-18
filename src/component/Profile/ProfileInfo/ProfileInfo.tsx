@@ -5,7 +5,7 @@ import userPhoto from '../../../assets/images/userIcon.png';
 import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
 import ProfileDataForm from './ProfileData/ProfileDataForm';
 import {ProfileData} from './ProfileData/ProfileData';
-import {ProfileType} from '../../../API/types';
+import {ProfileType} from 'api/types';
 
 export type ProfileInfoPropsType = {
     profile: ProfileType

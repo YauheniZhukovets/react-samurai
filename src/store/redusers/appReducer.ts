@@ -1,5 +1,6 @@
-import {getAuthMeTC} from './authReducer';
-import {AppThunkType, InferActionsType} from './store';
+import {getAuthMeTC} from 'store/redusers/authReducer';
+import {AppThunkType, InferActionsType} from 'store/types';
+
 
 const initialState = {
     initialized: false

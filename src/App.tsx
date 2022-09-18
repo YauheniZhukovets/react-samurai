@@ -1,16 +1,16 @@
 import React from 'react';
-import {Navbar} from './component/Navbar/Navbar';
 import {Route, Routes,} from 'react-router';
-import {Video} from './component/Video/Video';
-import {AppStateType} from './redux/store';
-import {connect} from 'react-redux';
 import {compose} from 'redux';
-import {Preloader} from './component/Common/Preloader/Preloader';
 import HeaderContainer from './component/Header/HeaderContainer';
-import {initializeAppTC} from './redux/appReducer';
 import {Navigate} from 'react-router-dom';
 import s from './App.module.scss'
-import {Footer} from './component/Footer/Footer';
+import {Preloader} from 'component/Common/Preloader/Preloader';
+import {Video} from 'component/Video/Video';
+import {Navbar} from 'component/Navbar/Navbar';
+import {Footer} from 'component/Footer/Footer';
+import {initializeAppTC} from 'store/redusers/appReducer';
+import {connect} from 'react-redux';
+import {AppStateType} from 'store/types';
 
 const Login = React.lazy(() => import('./component/Login/Login'));
 const UsersContainer = React.lazy(() => import('./component/Users/UsersContainer'));

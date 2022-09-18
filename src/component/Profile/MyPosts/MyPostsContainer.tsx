@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
-import {actions, InitialStateProfileType} from '../../../redux/profileReducer';
-import {MyPosts} from './MyPosts';
-import {AppStateType} from '../../../redux/store';
 import {Dispatch} from 'redux';
+import {actions, InitialStateProfileType} from 'store/redusers/profileReducer';
+import {MyPosts} from 'component/Profile/MyPosts/MyPosts';
+import {AppStateType} from 'store/types';
 
 type MapStateToPropsType = {
     profilePage: InitialStateProfileType

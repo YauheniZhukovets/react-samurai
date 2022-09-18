@@ -1,11 +1,13 @@
 import React, {ComponentType} from 'react';
 import {Navigate} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {AppStateType} from '../redux/store';
+import {AppStateType} from 'store/types';
+
 
 type MapStateToProps = {
     isAuth: boolean
 }
+
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         isAuth: state.auth.isAuth

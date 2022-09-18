@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
-import {actions, InitialStateDialogsType} from '../../redux/dialogsReducer';
-import {AppStateType} from '../../redux/store';
 import {compose, Dispatch} from 'redux';
 import {Dialogs} from './Dialogs';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import React from 'react';
-import {withRouter} from '../Common/WithRouter/withRouter';
+import {withRouter} from 'hoc/withRouter';
+import {withAuthRedirect} from 'hoc/withAuthRedirect';
+import {actions, InitialStateDialogsType} from 'store/redusers/dialogsReducer';
+import {AppStateType} from 'store/types';
 
 type MapStateToPropsType = {
     dialogsPage: InitialStateDialogsType

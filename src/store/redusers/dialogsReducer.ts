@@ -1,6 +1,6 @@
 import {v1} from 'uuid'
-import avatar from '../assets/images/userIcon.png'
-import {InferActionsType} from './store';
+import avatar from 'assets/images/userIcon.png'
+import {InferActionsType} from 'store/types';
 
 
 const initialState = {
